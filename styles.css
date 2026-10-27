@@ -141,8 +141,8 @@ strong { color: var(--text-strong); font-weight: 500; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .tags li {
-  font-size: 0.75rem; font-weight: 500; color: var(--accent);
-  background: var(--accent-soft); padding: 4px 12px; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 500; color: var(--muted);
+  background: rgba(20, 18, 16, 0.05); padding: 4px 12px; border-radius: 999px;
 }
 
 .arrow-link { display: inline-flex; gap: 6px; margin-top: 32px; font-weight: 600; color: var(--text-strong); }
@@ -211,8 +211,8 @@ strong { color: var(--text-strong); font-weight: 500; }
 .fw-card:hover .arrow { transform: translate(3px, -3px); }
 .fw-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .fw-tags li {
-  font-size: 0.75rem; font-weight: 500; color: var(--accent);
-  background: var(--accent-soft); padding: 4px 12px; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 500; color: var(--muted);
+  background: rgba(20, 18, 16, 0.05); padding: 4px 12px; border-radius: 999px;
 }
 
 .foot { font-size: 0.85rem; color: var(--faint); padding-top: 32px; padding-bottom: 32px; }
