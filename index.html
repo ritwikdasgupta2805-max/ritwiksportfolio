@@ -3,169 +3,174 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ritwik Dasgupta — Portfolio</title>
-  <meta name="description" content="Portfolio of Ritwik Dasgupta: projects, experience, and contact.">
-  <meta property="og:title" content="Ritwik Dasgupta — Portfolio">
-  <meta property="og:description" content="Projects, experience, and contact.">
+  <title>Ritwik Dasgupta — Senior UX Designer</title>
+  <meta name="description" content="Ritwik Dasgupta is a Senior UX Designer at Amazon, previously at Microsoft. Architect by training, product designer by practice.">
+  <meta property="og:title" content="Ritwik Dasgupta — Senior UX Designer">
+  <meta property="og:description" content="Senior UX Designer at Amazon. Previously Microsoft. Architect by training.">
   <meta property="og:url" content="https://ritwiksportfolio.com/">
+  <meta name="theme-color" content="#0a0f1e">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script>
-    // Apply saved theme before paint to avoid a flash
-    try {
-      const t = localStorage.getItem('theme');
-      if (t) document.documentElement.dataset.theme = t;
-    } catch (e) {}
-  </script>
 </head>
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <a href="#top" class="logo">RD<span class="accent">.</span></a>
-      <nav>
-        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><button class="theme-toggle" aria-label="Toggle dark mode">◐</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <!-- Cursor spotlight -->
+  <div class="spotlight" aria-hidden="true"></div>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero container">
-      <p class="mono eyebrow">Hi, my name is</p>
-      <h1>Ritwik Dasgupta.</h1>
-      <h2 class="muted">I build things for the web.</h2>
-      <p class="lead">
-        <!-- TODO: replace with your own one-line pitch -->
-        I'm a developer who enjoys turning ideas into clean, useful software.
-        Currently focused on building thoughtful, accessible products.
-      </p>
-      <div class="cta">
-        <a href="#projects" class="btn btn-primary">See my work</a>
-        <a href="#contact" class="btn">Get in touch</a>
-      </div>
-    </section>
+  <!-- Parallax background layers -->
+  <div class="parallax" aria-hidden="true">
+    <div class="layer grid" data-speed="-0.08"></div>
+    <div class="layer orb orb-1" data-speed="-0.25" data-mouse="18"></div>
+    <div class="layer orb orb-2" data-speed="-0.4" data-mouse="-28"></div>
+    <div class="layer orb orb-3" data-speed="-0.15" data-mouse="10"></div>
+    <div class="layer monogram" data-speed="-0.55">RD</div>
+  </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="section container">
-      <h3 class="section-title"><span class="mono accent">01.</span> About me</h3>
-      <div class="about-grid">
-        <div>
-          <!-- TODO: replace with your bio -->
-          <p>
-            Hello! I'm Ritwik. Write a few sentences here about who you are,
-            what you're studying or working on, and what excites you.
-          </p>
-          <p>
-            Mention a highlight or two — a project you're proud of, a team
-            you've been part of, or what you're learning right now.
-          </p>
-          <p>Here are a few technologies I've been working with recently:</p>
-          <ul class="skills mono">
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>React</li>
-            <li>Node.js</li>
-            <li>SQL</li>
-            <li>Git</li>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <div class="wrap">
+    <!-- LEFT: sticky intro + nav -->
+    <header class="side">
+      <div>
+        <h1 class="name"><a href="/">Ritwik Dasgupta</a></h1>
+        <h2 class="role">Senior UX Designer at Amazon</h2>
+        <p class="tagline">I design calm, intuitive experiences for products used by millions.</p>
+
+        <nav class="nav" aria-label="In-page">
+          <ul>
+            <li><a href="#about" class="active"><span class="line"></span><span class="label">About</span></a></li>
+            <li><a href="#experience"><span class="line"></span><span class="label">Experience</span></a></li>
+            <li><a href="#work"><span class="line"></span><span class="label">Selected Work</span></a></li>
+            <li><a href="#education"><span class="line"></span><span class="label">Education</span></a></li>
           </ul>
-        </div>
-        <div class="photo">
-          <!-- TODO: add your photo as assets/profile.jpg and swap this div for:
-               <img src="assets/profile.jpg" alt="Ritwik Dasgupta"> -->
-          <div class="photo-placeholder">RD</div>
-        </div>
+        </nav>
       </div>
-    </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="section container">
-      <h3 class="section-title"><span class="mono accent">02.</span> Things I've built</h3>
-      <div class="cards">
-        <!-- TODO: replace these with your real projects -->
-        <article class="card">
-          <h4>Project One</h4>
-          <p>A short description of what this project does, the problem it solves, and your role in it.</p>
-          <ul class="tags mono"><li>React</li><li>Node</li><li>MongoDB</li></ul>
-          <div class="card-links">
-            <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="#" target="_blank" rel="noopener">Live ↗</a>
-          </div>
-        </article>
-        <article class="card">
-          <h4>Project Two</h4>
-          <p>A short description of what this project does, the problem it solves, and your role in it.</p>
-          <ul class="tags mono"><li>Python</li><li>Flask</li></ul>
-          <div class="card-links">
-            <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-        <article class="card">
-          <h4>Project Three</h4>
-          <p>A short description of what this project does, the problem it solves, and your role in it.</p>
-          <ul class="tags mono"><li>JavaScript</li><li>CSS</li></ul>
-          <div class="card-links">
-            <a href="#" target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="#" target="_blank" rel="noopener">Live ↗</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section container">
-      <h3 class="section-title"><span class="mono accent">03.</span> Experience &amp; education</h3>
-      <ol class="timeline">
-        <!-- TODO: replace with your real history -->
-        <li>
-          <span class="mono muted when">2025 — Present</span>
-          <h4>Role Title · <span class="accent">Company</span></h4>
-          <p>What you do there and one or two concrete accomplishments.</p>
-        </li>
-        <li>
-          <span class="mono muted when">2024</span>
-          <h4>Internship · <span class="accent">Company</span></h4>
-          <p>What you worked on and what you shipped.</p>
-        </li>
-        <li>
-          <span class="mono muted when">2021 — 2025</span>
-          <h4>Degree · <span class="accent">University</span></h4>
-          <p>Major, notable coursework, clubs, or awards.</p>
-        </li>
-      </ol>
-      <!-- Optional: add your resume as assets/resume.pdf, then uncomment:
-      <a href="assets/resume.pdf" class="btn" target="_blank" rel="noopener">View résumé</a> -->
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section container contact">
-      <h3 class="section-title center"><span class="mono accent">04.</span> Get in touch</h3>
-      <p class="lead center">
-        I'm always open to new opportunities and conversations.
-        Whether you have a question or just want to say hi, my inbox is open.
-      </p>
-      <a href="mailto:ritwikdasgupta3@gmail.com" class="btn btn-primary">Say hello</a>
-      <ul class="socials">
-        <!-- TODO: update with your real profile links -->
-        <li><a href="https://github.com/ritwikdasgupta2805-max" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:ritwikdasgupta3@gmail.com">Email</a></li>
+      <ul class="socials" aria-label="Social links">
+        <!-- TODO: replace with your LinkedIn profile URL -->
+        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a></li>
+        <li><a href="mailto:ritwikdasgupta3@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+        </a></li>
+        <!-- TODO: add Dribbble / Medium / Behance if you use them -->
       </ul>
-    </section>
-  </main>
+    </header>
 
-  <footer class="footer mono muted">
-    <p>© <span id="year"></span> Ritwik Dasgupta</p>
-  </footer>
+    <!-- RIGHT: scrolling content -->
+    <main id="content" class="main">
+      <section id="about" class="section" aria-label="About me">
+        <h3 class="mobile-heading">About</h3>
+        <!-- TODO: refine this bio in your own voice -->
+        <p>
+          I started out designing buildings. Five years of <strong>architecture</strong> at NIT Calicut taught me
+          that good spaces are shaped around the people who move through them — a lesson I carried into
+          a Master's in Design at <strong>IIT Delhi</strong> and, ever since, into digital products.
+        </p>
+        <p>
+          For the past decade I've worked on large-scale consumer and enterprise experiences. I'm currently a
+          <strong>Senior UX Designer at Amazon</strong>, where I lead end-to-end design — from research and
+          problem framing through interaction design, prototyping, and shipping. Before that I spent nearly four
+          years as a UX Designer at <strong>Microsoft</strong> in Hyderabad.
+        </p>
+        <p>
+          I care about clarity over cleverness, systems over one-offs, and the small details that make an
+          interface feel effortless.
+        </p>
+      </section>
+
+      <section id="experience" class="section" aria-label="Work experience">
+        <h3 class="mobile-heading">Experience</h3>
+        <ol class="list">
+          <li class="item">
+            <span class="when">2022 — Present</span>
+            <div>
+              <h4>Senior UX Designer · <span class="co">Amazon</span></h4>
+              <!-- TODO: describe your scope and impact -->
+              <p>Lead design for [product area]. Partner with product, engineering and research to define strategy, run studies, and ship experiences used by millions of customers.</p>
+              <ul class="tags"><li>Product strategy</li><li>Interaction design</li><li>Prototyping</li><li>Mentorship</li></ul>
+            </div>
+          </li>
+          <li class="item">
+            <span class="when">2020 — 2022</span>
+            <div>
+              <h4>UX Designer · <span class="co">Amazon</span></h4>
+              <p>Designed [features] for [product]. Drove usability testing and contributed to [design system / platform].</p>
+              <ul class="tags"><li>User research</li><li>Design systems</li><li>Figma</li></ul>
+            </div>
+          </li>
+          <li class="item">
+            <span class="when">2016 — 2020</span>
+            <div>
+              <h4>UX Designer · <span class="co">Microsoft</span></h4>
+              <p>Hyderabad. Worked on [product / team], designing [what you designed] and collaborating closely with engineering across [region / org].</p>
+              <ul class="tags"><li>Enterprise UX</li><li>Accessibility</li><li>Fluent Design</li></ul>
+            </div>
+          </li>
+        </ol>
+        <!-- TODO: add assets/resume.pdf, then uncomment:
+        <a class="arrow-link" href="assets/resume.pdf" target="_blank" rel="noopener">View full résumé <span>↗</span></a> -->
+      </section>
+
+      <section id="work" class="section" aria-label="Selected work">
+        <h3 class="mobile-heading">Selected Work</h3>
+        <!-- TODO: replace with real case studies -->
+        <div class="work">
+          <a class="case" href="#">
+            <div class="thumb t1"><span>Case study 01</span></div>
+            <div>
+              <h4>Project title <span class="arrow">↗</span></h4>
+              <p>One-line summary of the problem, your role, and the measurable outcome.</p>
+              <ul class="tags"><li>Research</li><li>Mobile</li><li>0 → 1</li></ul>
+            </div>
+          </a>
+          <a class="case" href="#">
+            <div class="thumb t2"><span>Case study 02</span></div>
+            <div>
+              <h4>Project title <span class="arrow">↗</span></h4>
+              <p>One-line summary of the problem, your role, and the measurable outcome.</p>
+              <ul class="tags"><li>Design system</li><li>Web</li></ul>
+            </div>
+          </a>
+          <a class="case" href="#">
+            <div class="thumb t3"><span>Case study 03</span></div>
+            <div>
+              <h4>Project title <span class="arrow">↗</span></h4>
+              <p>One-line summary of the problem, your role, and the measurable outcome.</p>
+              <ul class="tags"><li>Enterprise</li><li>Data viz</li></ul>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="education" class="section" aria-label="Education">
+        <h3 class="mobile-heading">Education</h3>
+        <ol class="list">
+          <li class="item">
+            <span class="when">2014 — 2016</span>
+            <div>
+              <h4>Master of Design (M.Des) · <span class="co">IIT Delhi</span></h4>
+              <p>Indian Institute of Technology, Delhi.</p>
+            </div>
+          </li>
+          <li class="item">
+            <span class="when">2009 — 2014</span>
+            <div>
+              <h4>Bachelor of Architecture (B.Arch) · <span class="co">NIT Calicut</span></h4>
+              <p>National Institute of Technology, Calicut.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer class="foot">
+        <p>Designed by Ritwik Dasgupta. Built with plain HTML, CSS and a little JavaScript. © <span id="year"></span></p>
+      </footer>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
