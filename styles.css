@@ -35,8 +35,8 @@ strong { color: var(--text-strong); font-weight: 500; }
 .spotlight {
   position: fixed; inset: 0; z-index: 1; pointer-events: none;
   background:
-    radial-gradient(600px circle at var(--x) var(--y), rgba(29, 78, 216, 0.16), transparent 70%),
-    radial-gradient(220px circle at var(--x) var(--y), rgba(94, 234, 212, 0.07), transparent 70%);
+    radial-gradient(180px circle at var(--x) var(--y), rgba(94, 234, 212, 0.22), transparent 70%),
+    radial-gradient(700px circle at var(--x) var(--y), rgba(59, 130, 246, 0.38), transparent 70%);
   transition: opacity 0.4s;
 }
 
@@ -53,7 +53,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
 }
 .orb { border-radius: 50%; filter: blur(80px); opacity: 0.35; }
-.orb-1 { width: 460px; height: 460px; top: 8%; left: -8%; background: #1d4ed8; }
+.orb-1 { width: 460px; height: 460px; top: 8%; left: -8%; background: #1d4ed8; opacity: 0.22; }
 .orb-2 { width: 380px; height: 380px; top: 70%; right: -6%; background: #7c3aed; opacity: 0.22; }
 .orb-3 { width: 300px; height: 300px; top: 140%; left: 35%; background: #0d9488; opacity: 0.22; }
 .monogram {
@@ -118,11 +118,11 @@ strong { color: var(--text-strong); font-weight: 500; }
   position: relative; display: grid; gap: 16px; padding: 20px; margin: 0 -20px;
   border-radius: 10px; transition: background 0.25s, box-shadow 0.25s;
 }
-.item { grid-template-columns: 130px 1fr; }
+.item { grid-template-columns: 170px 1fr; }
 .item::before, .case::before {
   /* shimmer border that follows the cursor inside the card */
   content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: radial-gradient(240px circle at var(--cx, 50%) var(--cy, 50%), rgba(94, 234, 212, 0.45), transparent 70%);
+  background: radial-gradient(240px circle at var(--cx, 50%) var(--cy, 50%), rgba(94, 234, 212, 0.8), transparent 70%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   opacity: 0; transition: opacity 0.25s;
