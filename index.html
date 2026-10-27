@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <!-- Cursor spotlight -->
@@ -42,8 +42,8 @@
           <ul>
             <li><a href="#about" class="active"><span class="line"></span><span class="label">About</span></a></li>
             <li><a href="#experience"><span class="line"></span><span class="label">Experience</span></a></li>
-            <li><a href="#education"><span class="line"></span><span class="label">Education</span></a></li>
             <li><a href="#work"><span class="line"></span><span class="label">Featured Work</span></a></li>
+            <li><a href="#education"><span class="line"></span><span class="label">Education</span></a></li>
           </ul>
         </nav>
       </div>
@@ -114,6 +114,53 @@
         <a class="arrow-link" href="assets/resume.pdf" target="_blank" rel="noopener">View full résumé <span>↗</span></a> -->
       </section>
 
+      <section id="work" class="section" aria-label="Featured work">
+        <h3 class="mobile-heading">Featured Work</h3>
+        <!-- TODO: replace with real case studies (title, summary, tags, link, image) -->
+        <div class="fw-grid">
+          <a class="fw-card" href="#">
+            <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
+            <div class="fw-meta">
+              <div>
+                <h4>Project title <span class="arrow">↗</span></h4>
+                <p>One-line summary of the problem, your role, and the outcome.</p>
+              </div>
+              <ul class="fw-tags"><li>Research</li><li>Mobile</li><li>2025</li></ul>
+            </div>
+          </a>
+          <a class="fw-card" href="#">
+            <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+            <div class="fw-meta">
+              <div>
+                <h4>Project title <span class="arrow">↗</span></h4>
+                <p>One-line summary of the problem, your role, and the outcome.</p>
+              </div>
+              <ul class="fw-tags"><li>Design system</li><li>2024</li></ul>
+            </div>
+          </a>
+          <a class="fw-card" href="#">
+            <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
+            <div class="fw-meta">
+              <div>
+                <h4>Project title <span class="arrow">↗</span></h4>
+                <p>One-line summary of the problem, your role, and the outcome.</p>
+              </div>
+              <ul class="fw-tags"><li>Enterprise</li><li>2023</li></ul>
+            </div>
+          </a>
+          <a class="fw-card" href="#">
+            <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
+            <div class="fw-meta">
+              <div>
+                <h4>Project title <span class="arrow">↗</span></h4>
+                <p>One-line summary of the problem, your role, and the outcome.</p>
+              </div>
+              <ul class="fw-tags"><li>0 → 1</li><li>Web</li><li>2019</li></ul>
+            </div>
+          </a>
+        </div>
+      </section>
+
       <section id="education" class="section" aria-label="Education">
         <h3 class="mobile-heading">Education</h3>
         <ol class="list">
@@ -134,73 +181,13 @@
         </ol>
       </section>
 
+      <footer class="foot">
+        <p>Let's talk — <a href="mailto:ritwikdasgupta3@gmail.com">ritwikdasgupta3@gmail.com</a></p>
+        <p>Designed by Ritwik Dasgupta. © <span id="year"></span></p>
+      </footer>
     </main>
   </div>
 
-  <!-- FEATURED WORK: full width, Lusion-style scroll reveals -->
-  <section id="work" class="featured" aria-label="Featured work">
-    <header class="fw-head">
-      <p class="fw-eyebrow"><span class="dot"></span>Selected case studies</p>
-      <h2 class="fw-title" aria-label="Featured Work">
-        <span class="line-mask"><span class="line-inner">Featured</span></span>
-        <span class="line-mask"><span class="line-inner">Work<em>(04)</em></span></span>
-      </h2>
-    </header>
-
-    <!-- TODO: replace with real case studies (title, summary, tags, link, image) -->
-    <div class="fw-grid">
-      <a class="fw-card fw-wide" href="#">
-        <div class="fw-media"><div class="fw-art a1"><span class="blob b1"></span><span class="blob b2"></span><span class="ui"></span></div></div>
-        <div class="fw-meta">
-          <div>
-            <h3>Project title</h3>
-            <p>One-line summary of the problem, your role, and the outcome.</p>
-          </div>
-          <ul class="fw-tags"><li>Research</li><li>Mobile</li><li>2025</li></ul>
-        </div>
-      </a>
-      <a class="fw-card" href="#">
-        <div class="fw-media"><div class="fw-art a2"><span class="blob b1"></span><span class="blob b2"></span><span class="ui"></span></div></div>
-        <div class="fw-meta">
-          <div>
-            <h3>Project title</h3>
-            <p>One-line summary of the problem, your role, and the outcome.</p>
-          </div>
-          <ul class="fw-tags"><li>Design system</li><li>2024</li></ul>
-        </div>
-      </a>
-      <a class="fw-card" href="#">
-        <div class="fw-media"><div class="fw-art a3"><span class="blob b1"></span><span class="blob b2"></span><span class="ui"></span></div></div>
-        <div class="fw-meta">
-          <div>
-            <h3>Project title</h3>
-            <p>One-line summary of the problem, your role, and the outcome.</p>
-          </div>
-          <ul class="fw-tags"><li>Enterprise</li><li>2023</li></ul>
-        </div>
-      </a>
-      <a class="fw-card fw-wide" href="#">
-        <div class="fw-media"><div class="fw-art a4"><span class="blob b1"></span><span class="blob b2"></span><span class="ui"></span></div></div>
-        <div class="fw-meta">
-          <div>
-            <h3>Project title</h3>
-            <p>One-line summary of the problem, your role, and the outcome.</p>
-          </div>
-          <ul class="fw-tags"><li>0 → 1</li><li>Web</li><li>2019</li></ul>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <footer class="site-foot">
-    <p class="foot-big">Let's make something<br>people love using.</p>
-    <a class="foot-cta" href="mailto:ritwikdasgupta3@gmail.com">ritwikdasgupta3@gmail.com <span>↗</span></a>
-    <p class="foot-small">Designed by Ritwik Dasgupta. © <span id="year"></span></p>
-  </footer>
-
-  <!-- Cursor label shown over project cards -->
-  <div class="view-cursor" aria-hidden="true"><span>View</span></div>
-
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ addEventListener('pointermove', e => {
   requestTick();
 }, { passive: true });
 
-document.querySelectorAll('.item').forEach(card => {
+document.querySelectorAll('.item, .fw-card').forEach(card => {
   card.addEventListener('pointermove', e => {
     const r = card.getBoundingClientRect();
     card.style.setProperty('--cx', e.clientX - r.left + 'px');
@@ -46,8 +46,8 @@ function update() {
   ticking = false;
 }
 
-// Featured work: each image un-crops and settles as it scrolls into view,
-// with the artwork drifting inside its frame (parallax)
+// Featured work: each image gently un-crops and settles as it scrolls into view,
+// with the artwork drifting slightly inside its frame (parallax)
 const medias = [...document.querySelectorAll('.fw-media')].map(el => ({ el, art: el.firstElementChild }));
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 function updateFeatured() {
@@ -57,9 +57,9 @@ function updateFeatured() {
     if (r.bottom < -100 || r.top > vh + 100) continue;
     const p = clamp((vh - r.top) / (vh * 0.75), 0, 1);
     const eased = 1 - Math.pow(1 - p, 3);
-    el.style.setProperty('--clip', ((1 - eased) * 12).toFixed(2) + '%');
-    art.style.setProperty('--s', (1.25 - 0.25 * eased).toFixed(4));
-    art.style.setProperty('--py', ((r.top + r.height / 2 - vh / 2) * -0.1).toFixed(1) + 'px');
+    el.style.setProperty('--clip', ((1 - eased) * 4).toFixed(2) + '%');
+    art.style.setProperty('--s', (1.08 - 0.08 * eased).toFixed(4));
+    art.style.setProperty('--py', ((r.top + r.height / 2 - vh / 2) * -0.04).toFixed(1) + 'px');
   }
 }
 addEventListener('resize', requestTick);
@@ -96,24 +96,3 @@ if (!reduceMotion) {
   });
 }
 
-// Featured heading lines slide up; card captions lift in
-const reveal = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      reveal.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.2 });
-document.querySelectorAll('.fw-head, .fw-card').forEach(el => reveal.observe(el));
-
-// "View" cursor over project cards
-const viewCursor = document.querySelector('.view-cursor');
-addEventListener('pointermove', e => {
-  viewCursor.style.setProperty('--vx', e.clientX + 'px');
-  viewCursor.style.setProperty('--vy', e.clientY + 'px');
-}, { passive: true });
-document.querySelectorAll('.fw-card').forEach(card => {
-  card.addEventListener('pointerenter', () => viewCursor.classList.add('on'));
-  card.addEventListener('pointerleave', () => viewCursor.classList.remove('on'));
-});
