@@ -1,6 +1,9 @@
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.documentElement;
 
+// Hand control back to the normal styles once the entrance has played
+if (root.classList.contains('intro')) setTimeout(() => root.classList.remove('intro'), 2200);
+
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Cursor spotlight + per-card shimmer border
