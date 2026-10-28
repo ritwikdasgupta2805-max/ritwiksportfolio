@@ -54,7 +54,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
 }
-.orb { border-radius: 50%; filter: blur(90px); opacity: 0.55; }
+.orb { border-radius: 50%; filter: blur(70px); opacity: 0.7; mix-blend-mode: multiply; } /* overlaps mix like watercolour */
 .orb-1 { width: 480px; height: 480px; top: 4%; left: -10%; background: var(--peach); }
 .orb-2 { width: 420px; height: 420px; top: 60%; right: -8%; background: var(--lilac); }
 .orb-3 { width: 340px; height: 340px; top: 130%; left: 35%; background: var(--mint); }
@@ -336,7 +336,7 @@ strong { color: var(--text-strong); font-weight: 500; }
     display: block; position: sticky; top: 0; z-index: 5;
     margin: 0 -24px 24px; padding: 18px 24px;
     font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong);
-    background: rgba(247, 244, 239, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
   .spotlight { display: none; }
 }

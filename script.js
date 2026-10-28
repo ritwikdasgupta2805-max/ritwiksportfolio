@@ -47,7 +47,22 @@ function update() {
   }
   updateFeatured();
   updateReveals();
+  updateTint();
   ticking = false;
+}
+
+// Colour journey: the page background drifts cream → blush → lavender →
+// mint → cream as you scroll, so moving down the page feels like moving
+// through space rather than along a flat sheet.
+const tintStops = ['#f7f4ef', '#fbede6', '#f1edfb', '#eaf5ef', '#f7f4ef'].map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
+function updateTint() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+  const f = p * (tintStops.length - 1);
+  const i = Math.min(tintStops.length - 2, Math.floor(f));
+  const t = f - i;
+  const rgb = tintStops[i].map((c, k) => Math.round(c + (tintStops[i + 1][k] - c) * t));
+  root.style.setProperty('--bg', `rgb(${rgb.join(',')})`);
 }
 
 // Featured work: each image gently un-crops and settles as it scrolls into view,
