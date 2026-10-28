@@ -128,19 +128,45 @@ function showTip(key) {
   tip.style.top = (m[2] / vb.height * 100) + '%';
   tip.classList.add('on');
 }
+// Roll new text into a slot: the old word slides up and out, the new one
+// rises in (letter by letter where the script allows it) and the slot's
+// width eases to fit. Arabic and Devanagari stay whole so letters keep joining.
+function roll(box, text, lang) {
+  const old = box.querySelector('.roll');
+  const next = document.createElement('span');
+  next.className = 'roll';
+  if (lang) { next.lang = lang; next.dir = lang === 'ar' ? 'rtl' : 'ltr'; }
+  const splittable = /^[\p{Script=Latin}\p{Script=Han}\s’'-]+$/u.test(text);
+  if (splittable) {
+    for (const c of text) next.append(Object.assign(document.createElement('span'), { className: 'ch', textContent: c }));
+  } else {
+    next.textContent = text;
+  }
+  const from = box.getBoundingClientRect().width;
+  Object.assign(next.style, { position: 'absolute', left: '0', top: '0' });
+  box.append(next);
+  const to = next.getBoundingClientRect().width;
+  const settle = () => { old?.remove(); next.style.position = ''; box.style.width = ''; };
+  if (reduceMotion || !old) return settle();
+
+  const ease = 'cubic-bezier(0.65, 0, 0.35, 1)', dur = 600, stagger = 28;
+  box.style.width = from + 'px';
+  box.getBoundingClientRect(); // commit the start width before easing to the new one
+  box.style.width = to + 'px';
+  old.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-100%)', opacity: 0 }],
+    { duration: dur, easing: ease, fill: 'forwards' });
+  const parts = splittable ? [...next.children] : [next];
+  parts.forEach((el, i) => el.animate([{ transform: 'translateY(110%)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }],
+    { duration: dur, easing: ease, delay: i * stagger, fill: 'backwards' }));
+  setTimeout(settle, dur + parts.length * stagger + 30);
+}
 function nextGreeting() {
   gi = (gi + 1) % greetings.length;
   const [key, word, lang] = greetings[gi];
-  hello.classList.add('swap');
-  setTimeout(() => {
-    helloWord.textContent = word;
-    helloWord.lang = lang;
-    helloWord.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    helloWhere.textContent = marketNames[key];
-    hello.classList.remove('swap');
-    cycled = key;
-    lightUp();
-  }, reduceMotion ? 0 : 450);
+  roll(helloWord, word, lang);
+  roll(helloWhere, marketNames[key]);
+  cycled = key;
+  lightUp();
 }
 setTimeout(() => { nextGreeting(); setInterval(nextGreeting, 2600); }, 1800);
 

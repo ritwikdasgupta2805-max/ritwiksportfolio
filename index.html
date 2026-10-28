@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=18">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -41,7 +41,7 @@
     <header class="side">
       <div>
         <!-- Greeting cycles through the languages of the markets I design for (script.js) -->
-        <p class="hello" aria-hidden="true"><span class="hello-word">Hello</span><span class="hello-where"></span></p>
+        <p class="hello" aria-hidden="true"><span class="hello-word"><span class="roll">Hello</span></span><span class="hello-where"><span class="roll"></span></span></p>
         <h1 class="name"><a href="/">Ritwik Dasgupta</a></h1>
         <h2 class="role">Senior Product Designer at Amazon</h2>
         <p class="tagline">I design calm, intuitive experiences for products used by millions.</p>
@@ -120,8 +120,13 @@
       <section id="markets" class="section" aria-label="Markets">
         <h3 class="mobile-heading">Markets</h3>
         <p>
-          At Amazon I design for international marketplaces — <strong>ten countries across five continents</strong>,
-          in languages that read both left-to-right and right-to-left.
+          At Amazon I design for <strong>ten emerging marketplaces across five continents</strong>, where many
+          customers are shopping online for the first time.
+        </p>
+        <p>
+          That brings its own problems to solve: patchy networks and entry-level phones, earning the trust of
+          first-time buyers, cash on delivery and instalment payments, addresses without street names, and
+          many languages within a single country.
         </p>
         <div class="map">
           <img class="map-dots" src="assets/world-dots.svg?v=2" alt="" width="1177" height="565">
@@ -230,6 +235,6 @@
     </main>
   </div>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>

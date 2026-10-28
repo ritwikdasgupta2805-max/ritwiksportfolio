@@ -234,13 +234,20 @@ strong { color: var(--text-strong); font-weight: 500; }
 
 /* ---------- Hello (cycling greeting) ---------- */
 .hello {
-  display: flex; align-items: baseline; gap: 12px; height: 1.7em; margin-bottom: 12px;
-  font-size: 1.05rem; line-height: 1.7;
+  display: flex; align-items: center; gap: 12px; height: 1.8em; margin-bottom: 12px;
+  font-size: 1.05rem; line-height: 1.8;
 }
-.hello-word { color: var(--text-strong); font-weight: 500; }
-.hello-where { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
-.hello-word, .hello-where { transition: opacity 0.45s ease, filter 0.45s ease, translate 0.45s ease; }
-.hello.swap .hello-word, .hello.swap .hello-where { opacity: 0; filter: blur(6px); translate: 0 -8px; }
+/* Each part is a clipped slot: words roll through it and its width eases
+   to fit the next word, like Smart Animate / Magic Move */
+.hello-word, .hello-where {
+  position: relative; display: inline-block; overflow: hidden; white-space: nowrap;
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
+}
+.hello-word { color: var(--text-strong); font-weight: 500; height: 1.8em; }
+.hello-where { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); height: 1.8em; line-height: 1.8em; }
+.roll, .roll .ch { display: inline-block; white-space: pre; }
 
 /* ---------- Markets map ---------- */
 .map { position: relative; margin-top: 40px; }
