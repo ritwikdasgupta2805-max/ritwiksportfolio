@@ -239,7 +239,7 @@ marketButtons.forEach(b => {
 // rise into place as they scroll up the screen. Tied to scroll position, so
 // it reverses when scrolling back, and nearby blocks stagger naturally.
 const reveals = reduceMotion ? [] :
-  [...document.querySelectorAll('.section > p, .item, .map, .markets, .project, .arrow-link')].map(el => {
+  [...document.querySelectorAll('.section > p, .item, .map, .markets, .work-title, .project-title, .slide, .project-foot, .arrow-link')].map(el => {
     el.classList.add('reveal');
     return { el, y: 0 };
   });
