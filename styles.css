@@ -1,5 +1,5 @@
 :root {
-  --bg: #fff2ea;
+  --bg: #fffbf8;
   --text: #3a3631;
   --text-strong: #141210;
   --muted: #5c5750;
@@ -44,7 +44,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 
 /* ---------- Parallax background ---------- */
-.parallax { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.parallax { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: var(--glow, 1); }
 .layer { position: absolute; will-change: transform; }
 .grid {
   inset: -50% -10%;

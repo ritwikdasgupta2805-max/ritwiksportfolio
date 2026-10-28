@@ -51,18 +51,25 @@ function update() {
   ticking = false;
 }
 
-// Colour journey: the page background drifts peach cream → raspberry blush →
-// apricot → peach → cream as you scroll, so moving down the page feels like moving
-// through space rather than along a flat sheet.
-const tintStops = ['#fff2ea', '#ffe7e8', '#ffeedb', '#ffe9df', '#fff2ea'].map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
+// Colour journey: the first screen sits close to white, then the page warms
+// to peach within one screen of scrolling and drifts raspberry blush →
+// apricot → peach for the rest, so moving down feels like moving through
+// space. The glows bloom in over that first screen too.
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const nearWhite = hex('#fffbf8');
+const tintStops = ['#fff2ea', '#ffe7e8', '#ffeedb', '#ffe9df'].map(hex);
+const mix = (a, b, t) => a.map((c, k) => Math.round(c + (b[k] - c) * t));
 function updateTint() {
+  const intro = Math.min(1, Math.max(0, scrollY / (innerHeight * 0.9)));
+  const eased = intro * intro * (3 - 2 * intro);
   const max = document.documentElement.scrollHeight - innerHeight;
-  const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+  const rest = Math.max(1, max - innerHeight * 0.9);
+  const p = Math.min(1, Math.max(0, (scrollY - innerHeight * 0.9) / rest));
   const f = p * (tintStops.length - 1);
   const i = Math.min(tintStops.length - 2, Math.floor(f));
-  const t = f - i;
-  const rgb = tintStops[i].map((c, k) => Math.round(c + (tintStops[i + 1][k] - c) * t));
-  root.style.setProperty('--bg', `rgb(${rgb.join(',')})`);
+  const journey = mix(tintStops[i], tintStops[i + 1], f - i);
+  root.style.setProperty('--bg', `rgb(${mix(nearWhite, journey, eased).join(',')})`);
+  root.style.setProperty('--glow', (0.3 + 0.7 * eased).toFixed(3));
 }
 
 // Featured work: each image gently un-crops and settles as it scrolls into view,
