@@ -136,7 +136,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 
 .when { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); padding-top: 4px; }
 .item h4 { color: var(--text-strong); font-weight: 500; font-size: 1rem; line-height: 1.4; }
-.co { color: var(--accent); }
+.co { color: var(--text-strong); }
 .item p { margin-top: 8px; font-size: 0.92rem; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
