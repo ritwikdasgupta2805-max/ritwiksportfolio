@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=41">
+  <link rel="stylesheet" href="styles.css?v=42">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -53,8 +53,8 @@
             <li><a href="#about" class="active"><span class="line"></span><span class="label">About</span></a></li>
             <li><a href="#experience"><span class="line"></span><span class="label">Experience</span></a></li>
             <li><a href="#markets"><span class="line"></span><span class="label">Markets</span></a></li>
-            <li><a href="#work"><span class="line"></span><span class="label">Featured Work</span></a></li>
             <li><a href="#education"><span class="line"></span><span class="label">Education</span></a></li>
+            <li><a href="#work"><span class="line"></span><span class="label">Featured Work</span></a></li>
           </ul>
         </nav>
       </div>
@@ -130,7 +130,7 @@
           different ways in every market, while keeping the value clear and simple to act on.
         </p>
         <div class="map">
-          <img class="map-dots" src="assets/world-dots.svg?v=2" alt="" width="1177" height="565">
+          <img class="map-dots" src="assets/world-dots.svg?v=3" alt="" width="1177" height="565">
           <svg class="map-pins" viewBox="0 0 1177 565" aria-hidden="true">
             <defs>
               <radialGradient id="halo"><stop offset="0" stop-color="#3346f0" stop-opacity="0.35"/><stop offset="1" stop-color="#3346f0" stop-opacity="0"/></radialGradient>
@@ -162,113 +162,6 @@
         </ul>
       </section>
 
-      <section id="work" class="section dark" aria-label="Featured work">
-        <h3 class="mobile-heading">Featured Work</h3>
-        <!-- TODO: feature captions are drafts; swap the placeholder art for real screens and link "Learn more" to case studies -->
-        <article class="project" aria-labelledby="p-value">
-          <h4 class="project-title" id="p-value">Increasing value perception on Amazon</h4>
-          <div class="track" tabindex="0" role="region" aria-label="Increasing value perception on Amazon: features">
-            <figure class="slide">
-              <figcaption>
-                <h5>Price you pay, upfront on search</h5>
-                <p>The net effective price, with all applicable offers combined, shown right in search results.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
-            </figure>
-            <figure class="slide">
-              <figcaption>
-                <h5>Offer discovery and application on the detail page</h5>
-                <p>Offers that are easy to discover, understand and apply, so customers realise their savings.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
-            </figure>
-            <figure class="slide">
-              <figcaption>
-                <h5>Offer discovery and application in the cart</h5>
-                <p>A last chance to find and apply offers before checkout, with total savings for the whole basket shown clearly.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
-            </figure>
-          </div>
-          <div class="project-foot">
-            <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
-            <div class="car-ctrl">
-              <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
-              <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
-              <button type="button" class="car-btn next" aria-label="Next feature">›</button>
-            </div>
-          </div>
-        </article>
-        <article class="project" aria-labelledby="p-checkout">
-          <h4 class="project-title" id="p-checkout">One-tap in-context checkout</h4>
-          <div class="track" tabindex="0" role="region" aria-label="One-tap in-context checkout: features">
-            <figure class="slide">
-              <figcaption>
-                <h5>Buy without leaving the page you’re on</h5>
-                <p>Checking out right where you decide, with no jump to a separate flow.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
-            </figure>
-            <figure class="slide">
-              <figcaption>
-                <h5>Checkout wherever you are</h5>
-                <p>One-tap checkout is available literally anywhere — the homepage, search, the cart and every page in between — so customers can buy the moment they decide.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
-            </figure>
-            <figure class="slide">
-              <figcaption>
-                <h5>Review details and pay now</h5>
-                <p>Address, payment and delivery date in one compact view, so customers can check everything at a glance and pay with confidence.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
-            </figure>
-          </div>
-          <div class="project-foot">
-            <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
-            <div class="car-ctrl">
-              <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
-              <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
-              <button type="button" class="car-btn next" aria-label="Next feature">›</button>
-            </div>
-          </div>
-        </article>
-        <article class="project" aria-labelledby="p-baskets">
-          <h4 class="project-title" id="p-baskets">Helping customers build bigger baskets on Amazon</h4>
-          <div class="track" tabindex="0" role="region" aria-label="Helping customers build bigger baskets on Amazon: features">
-            <figure class="slide">
-              <figcaption>
-                <h5>Things that go together, together</h5>
-                <p>Grouping items that are bought together, so complete sets are easy to add.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
-            </figure>
-            <figure class="slide">
-              <figcaption>
-                <h5>The right add-on at the right moment</h5>
-                <p>Suggesting relevant extras when they&#x27;re most useful, not as clutter.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
-            </figure>
-            <figure class="slide">
-              <figcaption>
-                <h5>A clear nudge toward free delivery</h5>
-                <p>Showing how close a basket is to free delivery, and what would get it there.</p>
-              </figcaption>
-              <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
-            </figure>
-          </div>
-          <div class="project-foot">
-            <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
-            <div class="car-ctrl">
-              <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
-              <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
-              <button type="button" class="car-btn next" aria-label="Next feature">›</button>
-            </div>
-          </div>
-        </article>
-      </section>
-
       <section id="education" class="section" aria-label="Education">
         <h3 class="mobile-heading">Education</h3>
         <ol class="list">
@@ -289,13 +182,126 @@
         </ol>
       </section>
 
-      <footer class="foot">
-        <p>Let's talk — <a href="mailto:ritwikdasgupta3@gmail.com">ritwikdasgupta3@gmail.com</a></p>
-        <p>Designed by Ritwik Dasgupta. © <span id="year"></span></p>
-      </footer>
     </main>
   </div>
 
-  <script src="script.js?v=41"></script>
+  <section id="work" class="dark" aria-label="Featured work">
+    <div class="work-inner">
+      <h3 class="mobile-heading">Featured Work</h3>
+      <h2 class="work-title">Featured work</h2>
+      <!-- TODO: feature captions are drafts; swap the placeholder art for real screens and link "Learn more" to case studies -->
+      <article class="project" aria-labelledby="p-value">
+        <h4 class="project-title" id="p-value">Increasing value perception on Amazon</h4>
+        <div class="track" tabindex="0" role="region" aria-label="Increasing value perception on Amazon: features">
+          <figure class="slide">
+            <figcaption>
+              <h5>Price you pay, upfront on search</h5>
+              <p>The net effective price, with all applicable offers combined, shown right in search results.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
+          </figure>
+          <figure class="slide">
+            <figcaption>
+              <h5>Offer discovery and application on the detail page</h5>
+              <p>Offers that are easy to discover, understand and apply, so customers realise their savings.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+          </figure>
+          <figure class="slide">
+            <figcaption>
+              <h5>Offer discovery and application in the cart</h5>
+              <p>A last chance to find and apply offers before checkout, with total savings for the whole basket shown clearly.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
+          </figure>
+        </div>
+        <div class="project-foot">
+          <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
+          <div class="car-ctrl">
+            <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
+            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
+            <button type="button" class="car-btn next" aria-label="Next feature">›</button>
+          </div>
+        </div>
+      </article>
+      <article class="project" aria-labelledby="p-checkout">
+        <h4 class="project-title" id="p-checkout">One-tap in-context checkout</h4>
+        <div class="track" tabindex="0" role="region" aria-label="One-tap in-context checkout: features">
+          <figure class="slide">
+            <figcaption>
+              <h5>Buy without leaving the page you’re on</h5>
+              <p>Checking out right where you decide, with no jump to a separate flow.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+          </figure>
+          <figure class="slide">
+            <figcaption>
+              <h5>Checkout wherever you are</h5>
+              <p>One-tap checkout is available literally anywhere — the homepage, search, the cart and every page in between — so customers can buy the moment they decide.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
+          </figure>
+          <figure class="slide">
+            <figcaption>
+              <h5>Review details and pay now</h5>
+              <p>Address, payment and delivery date in one compact view, so customers can check everything at a glance and pay with confidence.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
+          </figure>
+        </div>
+        <div class="project-foot">
+          <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
+          <div class="car-ctrl">
+            <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
+            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
+            <button type="button" class="car-btn next" aria-label="Next feature">›</button>
+          </div>
+        </div>
+      </article>
+      <article class="project" aria-labelledby="p-baskets">
+        <h4 class="project-title" id="p-baskets">Helping customers build bigger baskets on Amazon</h4>
+        <div class="track" tabindex="0" role="region" aria-label="Helping customers build bigger baskets on Amazon: features">
+          <figure class="slide">
+            <figcaption>
+              <h5>Things that go together, together</h5>
+              <p>Grouping items that are bought together, so complete sets are easy to add.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
+          </figure>
+          <figure class="slide">
+            <figcaption>
+              <h5>The right add-on at the right moment</h5>
+              <p>Suggesting relevant extras when they&#x27;re most useful, not as clutter.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
+          </figure>
+          <figure class="slide">
+            <figcaption>
+              <h5>A clear nudge toward free delivery</h5>
+              <p>Showing how close a basket is to free delivery, and what would get it there.</p>
+            </figcaption>
+            <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+          </figure>
+        </div>
+        <div class="project-foot">
+          <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
+          <div class="car-ctrl">
+            <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
+            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
+            <button type="button" class="car-btn next" aria-label="Next feature">›</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <p>Let's talk — <a href="mailto:ritwikdasgupta3@gmail.com">ritwikdasgupta3@gmail.com</a></p>
+      <p>Designed by Ritwik Dasgupta. © <span id="year"></span></p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=42"></script>
 </body>
 </html>
