@@ -51,10 +51,10 @@ function update() {
   ticking = false;
 }
 
-// Colour journey: the page background drifts cream → blush → lavender →
-// mint → cream as you scroll, so moving down the page feels like moving
+// Colour journey: the page background drifts peach cream → raspberry blush →
+// apricot → peach → cream as you scroll, so moving down the page feels like moving
 // through space rather than along a flat sheet.
-const tintStops = ['#f7f4ef', '#fbede6', '#f1edfb', '#eaf5ef', '#f7f4ef'].map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
+const tintStops = ['#fff2ea', '#ffe7e8', '#ffeedb', '#ffe9df', '#fff2ea'].map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
 function updateTint() {
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
