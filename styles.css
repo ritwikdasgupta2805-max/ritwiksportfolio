@@ -163,13 +163,11 @@ strong { color: var(--text-strong); font-weight: 500; }
 .track::-webkit-scrollbar { display: none; }
 .track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .slide { position: relative; flex: 0 0 64%; margin: 0; scroll-snap-align: start; }
-.slide figcaption { /* feature title sits at the top of the card, Apple-style */
-  position: absolute; z-index: 2; left: 0; right: 0; top: 0; padding: 22px 24px 0;
-  text-align: center; font-size: 0.98rem; font-weight: 500; line-height: 1.35; color: var(--text-strong);
-}
+.slide figcaption { padding: 16px 4px 0; }
+.slide h5 { font-size: 1rem; font-weight: 600; line-height: 1.35; color: var(--text-strong); }
+.slide figcaption p { margin-top: 6px; font-size: 0.92rem; line-height: 1.55; }
 .slide .fw-media { aspect-ratio: 4 / 5; border-radius: 20px; clip-path: inset(var(--clip) round 20px); -webkit-clip-path: inset(var(--clip) round 20px); }
-.slide .ui { top: 60%; }
-.project-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 18px; }
+.project-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 24px; }
 .learn-more { color: var(--accent); font-weight: 500; }
 .learn-more span { display: inline-block; transition: transform 0.2s; }
 .learn-more:hover span { transform: translateX(3px); }
