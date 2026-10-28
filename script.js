@@ -49,9 +49,19 @@ function update() {
 // Featured work: each image gently un-crops and settles as it scrolls into view,
 // with the artwork drifting slightly inside its frame (parallax)
 const medias = [...document.querySelectorAll('.fw-media')].map(el => ({ el, art: el.firstElementChild }));
+const fwGrid = document.querySelector('.fw-grid');
+const cards = [...document.querySelectorAll('.fw-card')].map((el, i) => ({ el, speed: i % 2 ? -0.1 : 0.05 }));
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 function updateFeatured() {
   const vh = innerHeight;
+  const twoCols = innerWidth > 640;
+  // Left and right columns drift at different speeds, each as one block.
+  // The grid itself isn't transformed, so its position is stable to measure.
+  const g = fwGrid.getBoundingClientRect();
+  const fromCenter = clamp(g.top + g.height / 2 - vh / 2, -vh * 0.7, vh * 0.7);
+  for (const { el, speed } of cards) {
+    el.style.setProperty('--lift', twoCols ? (fromCenter * speed).toFixed(1) + 'px' : '0px');
+  }
   for (const { el, art } of medias) {
     const r = el.getBoundingClientRect();
     if (r.bottom < -100 || r.top > vh + 100) continue;
@@ -59,7 +69,9 @@ function updateFeatured() {
     const eased = 1 - Math.pow(1 - p, 3);
     el.style.setProperty('--clip', ((1 - eased) * 4).toFixed(2) + '%');
     art.style.setProperty('--s', (1.08 - 0.08 * eased).toFixed(4));
-    art.style.setProperty('--py', ((r.top + r.height / 2 - vh / 2) * -0.04).toFixed(1) + 'px');
+    // Artwork slides inside its frame, capped so the edges never show
+    const limit = r.height * 0.13;
+    art.style.setProperty('--py', clamp((r.top + r.height / 2 - vh / 2) * -0.12, -limit, limit).toFixed(1) + 'px');
   }
 }
 addEventListener('resize', requestTick);

@@ -58,6 +58,8 @@ strong { color: var(--text-strong); font-weight: 500; }
 .orb-1 { width: 480px; height: 480px; top: 4%; left: -10%; background: var(--peach); }
 .orb-2 { width: 420px; height: 420px; top: 60%; right: -8%; background: var(--lilac); }
 .orb-3 { width: 340px; height: 340px; top: 130%; left: 35%; background: var(--mint); }
+.orb-4 { width: 300px; height: 300px; top: 200%; right: 6%; background: var(--peach); }
+.orb-5 { width: 380px; height: 380px; top: 140%; left: -12%; background: var(--lilac); opacity: 0.45; }
 .monogram {
   right: 4%; top: 55%;
   font-size: clamp(14rem, 28vw, 26rem); font-weight: 800; line-height: 1; letter-spacing: -0.06em;
@@ -152,8 +154,9 @@ strong { color: var(--text-strong); font-weight: 500; }
 
 
 /* ---------- Featured work ---------- */
-.fw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 -20px; }
-.fw-card:nth-child(even) { transform: translateY(32px); } /* gentle stagger */
+.fw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 -20px; padding-top: 48px; }
+.fw-card:nth-child(even) { --stagger: 32px; }
+.fw-card { transform: translate3d(0, calc(var(--stagger, 0px) + var(--lift, 0px)), 0); } /* columns drift at different speeds */
 .fw-card {
   position: relative; display: block; padding: 20px; border-radius: 10px;
   transition: background 0.25s, box-shadow 0.25s, opacity 0.25s;
@@ -179,7 +182,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 .fw-art {
   --s: 1; --py: 0px;
-  position: absolute; inset: -6% 0; /* extra height for inner parallax */
+  position: absolute; inset: -14% 0; /* extra height for inner parallax */
   transform: translate3d(0, var(--py), 0) scale(var(--s));
   transition: filter 0.4s;
 }
@@ -221,9 +224,9 @@ strong { color: var(--text-strong); font-weight: 500; }
 .foot a:hover { color: var(--accent); border-color: var(--accent); }
 
 @media (max-width: 640px) {
-  .fw-grid { grid-template-columns: 1fr; gap: 32px; margin: 0; }
+  .fw-grid { grid-template-columns: 1fr; gap: 32px; margin: 0; padding-top: 0; }
   .fw-card { padding: 0; }
-  .fw-card:nth-child(even) { transform: none; }
+  .fw-card:nth-child(even) { --stagger: 0px; }
   .fw-card:hover { background: none; box-shadow: none; }
   .fw-card::before { display: none; }
   .fw-grid:hover .fw-card:not(:hover) { opacity: 1; }
@@ -240,6 +243,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   .layer { transform: none !important; }
   .fw-media { --clip: 0% !important; }
   .fw-art { --s: 1 !important; --py: 0px !important; }
+  .fw-card { --lift: 0px !important; }
 }
 
 /* ---------- Mobile / tablet ---------- */
