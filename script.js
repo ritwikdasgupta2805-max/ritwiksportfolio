@@ -114,6 +114,18 @@ document.querySelectorAll('.project').forEach(project => {
   sync();
 });
 
+// Mobile section labels lighten once they stick to the top of the screen
+const stickyHeads = [...document.querySelectorAll('.mobile-heading')];
+function updateStuck() {
+  for (const h of stickyHeads) {
+    const top = h.getBoundingClientRect().top;
+    const sectionBottom = h.parentElement.getBoundingClientRect().bottom;
+    h.classList.toggle('stuck', top <= 0.5 && sectionBottom > h.offsetHeight);
+  }
+}
+addEventListener('scroll', updateStuck, { passive: true });
+updateStuck();
+
 // Highlight the nav item for the section in view
 const navLinks = [...document.querySelectorAll('.nav a')];
 const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));

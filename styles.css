@@ -317,6 +317,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   .fw-media { --clip: 0% !important; }
   .fw-art { --s: 1 !important; --py: 0px !important; }
   .dot { transition: none; }
+  .mobile-heading::after { transition: none; }
   .hello-word, .hello-where { transition: none; }
   .pin.active .ring { animation: none; }
 }
@@ -332,8 +333,25 @@ strong { color: var(--text-strong); font-weight: 500; }
     display: block; position: sticky; top: 0; z-index: 5;
     margin: 0 -24px 24px; padding: 18px 24px;
     font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong);
-    background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
+  /* Band fades from the page colour down to a lighter, creamier shade.
+     A second, lighter layer fades in once the label sticks to the top. */
+  .mobile-heading::before, .mobile-heading::after {
+    content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  }
+  .mobile-heading::before {
+    background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--bg) 92%, transparent),
+      color-mix(in srgb, color-mix(in srgb, var(--bg) 45%, #fff) 85%, transparent));
+  }
+  .mobile-heading::after {
+    background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--bg) 40%, #fff),
+      color-mix(in srgb, var(--bg) 15%, #fff));
+    opacity: 0; transition: opacity 0.45s ease;
+  }
+  .mobile-heading.stuck::after { opacity: 0.9; }
   .spotlight { display: none; }
 }
 @media (max-width: 640px) {
