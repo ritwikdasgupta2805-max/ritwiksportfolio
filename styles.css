@@ -399,7 +399,10 @@ strong { color: var(--text-strong); font-weight: 500; }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
   .mobile-heading { margin: 0 -16px 24px; padding: 18px 16px; }
+  .main { padding-bottom: 48px; }
+  .main > .section:last-child { margin-bottom: 0; } /* trim the gap above the dark sheet */
   .dark { padding: 0 0 56px; }
+  .dark .mobile-heading { padding-top: 24px; }
   .work-inner { padding: 0 16px; }
   .foot-inner { padding: 32px 16px; }
   .slide { flex-basis: 86%; }
