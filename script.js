@@ -95,11 +95,73 @@ function setActive() {
 addEventListener('scroll', setActive, { passive: true });
 setActive();
 
+// Hello in the languages of the markets I design for. Each greeting lights
+// up its market on the map; hovering a pin or a country name takes over.
+const greetings = [
+  ['india', 'नमस्ते', 'hi'], ['uae', 'مرحبا', 'ar'], ['turkey', 'Merhaba', 'tr'], ['singapore', '你好', 'zh'],
+  ['brazil', 'Olá', 'pt'], ['saudi', 'السلام عليكم', 'ar'], ['australia', 'G’day', 'en'], ['mexico', 'Hola', 'es'],
+  ['egypt', 'أهلاً', 'ar'], ['southafrica', 'Sawubona', 'zu'],
+];
+const marketNames = Object.fromEntries([...document.querySelectorAll('.markets button')].map(b => [b.dataset.market, b.textContent]));
+const hello = document.querySelector('.hello');
+const helloWord = hello.querySelector('.hello-word');
+const helloWhere = hello.querySelector('.hello-where');
+const pins = [...document.querySelectorAll('.pin')];
+const marketButtons = [...document.querySelectorAll('.markets button')];
+const map = document.querySelector('.map');
+const tip = document.querySelector('.map-tip');
+let cycled = null, hovered = null, gi = -1;
+
+function lightUp() {
+  const key = hovered || cycled;
+  pins.forEach(p => p.classList.toggle('active', p.dataset.market === key));
+  marketButtons.forEach(b => b.classList.toggle('active', b.dataset.market === key));
+}
+function showTip(key) {
+  if (!key) return tip.classList.remove('on');
+  const pin = pins.find(p => p.dataset.market === key);
+  const m = pin.getAttribute('transform').match(/translate\(([\d.]+) ([\d.]+)\)/);
+  const g = greetings.find(x => x[0] === key);
+  tip.textContent = `${marketNames[key]} · ${g[1]}`;
+  const vb = pin.ownerSVGElement.viewBox.baseVal;
+  tip.style.left = (m[1] / vb.width * 100) + '%';
+  tip.style.top = (m[2] / vb.height * 100) + '%';
+  tip.classList.add('on');
+}
+function nextGreeting() {
+  gi = (gi + 1) % greetings.length;
+  const [key, word, lang] = greetings[gi];
+  hello.classList.add('swap');
+  setTimeout(() => {
+    helloWord.textContent = word;
+    helloWord.lang = lang;
+    helloWord.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    helloWhere.textContent = marketNames[key];
+    hello.classList.remove('swap');
+    cycled = key;
+    lightUp();
+  }, reduceMotion ? 0 : 450);
+}
+setTimeout(() => { nextGreeting(); setInterval(nextGreeting, 2600); }, 1800);
+
+function hover(key) { hovered = key; lightUp(); showTip(key); }
+pins.forEach(p => {
+  p.addEventListener('pointerenter', () => hover(p.dataset.market));
+  p.addEventListener('pointerleave', () => hover(null));
+});
+marketButtons.forEach(b => {
+  b.addEventListener('pointerenter', () => hover(b.dataset.market));
+  b.addEventListener('pointerleave', () => hover(null));
+  b.addEventListener('focus', () => hover(b.dataset.market));
+  b.addEventListener('blur', () => hover(null));
+  b.addEventListener('click', () => hover(b.dataset.market)); // tap on touch screens
+});
+
 // Apple-style reveal: blocks start faded and slightly low, then darken and
 // rise into place as they scroll up the screen. Tied to scroll position, so
 // it reverses when scrolling back, and nearby blocks stagger naturally.
 const reveals = reduceMotion ? [] :
-  [...document.querySelectorAll('.section > p, .item, .fw-card, .arrow-link')].map(el => {
+  [...document.querySelectorAll('.section > p, .item, .map, .markets, .fw-card, .arrow-link')].map(el => {
     el.classList.add('reveal');
     return { el, y: 0 };
   });

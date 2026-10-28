@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=15">
+  <link rel="stylesheet" href="styles.css?v=17">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -40,6 +40,8 @@
     <!-- LEFT: sticky intro + nav -->
     <header class="side">
       <div>
+        <!-- Greeting cycles through the languages of the markets I design for (script.js) -->
+        <p class="hello" aria-hidden="true"><span class="hello-word">Hello</span><span class="hello-where"></span></p>
         <h1 class="name"><a href="/">Ritwik Dasgupta</a></h1>
         <h2 class="role">Senior Product Designer at Amazon</h2>
         <p class="tagline">I design calm, intuitive experiences for products used by millions.</p>
@@ -48,6 +50,7 @@
           <ul>
             <li><a href="#about" class="active"><span class="line"></span><span class="label">About</span></a></li>
             <li><a href="#experience"><span class="line"></span><span class="label">Experience</span></a></li>
+            <li><a href="#markets"><span class="line"></span><span class="label">Markets</span></a></li>
             <li><a href="#work"><span class="line"></span><span class="label">Featured Work</span></a></li>
             <li><a href="#education"><span class="line"></span><span class="label">Education</span></a></li>
           </ul>
@@ -112,6 +115,45 @@
         </ol>
         <!-- TODO: add assets/resume.pdf, then uncomment:
         <a class="arrow-link" href="assets/resume.pdf" target="_blank" rel="noopener">View full résumé <span>↗</span></a> -->
+      </section>
+
+      <section id="markets" class="section" aria-label="Markets">
+        <h3 class="mobile-heading">Markets</h3>
+        <p>
+          At Amazon I design for international marketplaces — <strong>ten countries across five continents</strong>,
+          in languages that read both left-to-right and right-to-left.
+        </p>
+        <div class="map">
+          <img class="map-dots" src="assets/world-dots.svg?v=2" alt="" width="1177" height="565">
+          <svg class="map-pins" viewBox="0 0 1177 565" aria-hidden="true">
+            <defs>
+              <radialGradient id="halo"><stop offset="0" stop-color="#3346f0" stop-opacity="0.35"/><stop offset="1" stop-color="#3346f0" stop-opacity="0"/></radialGradient>
+            </defs>
+            <g class="pin" data-market="india" transform="translate(783 197.9)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="uae" transform="translate(705.8 212.7)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="saudi" transform="translate(674.8 214.9)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="egypt" transform="translate(617.4 191.8)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="turkey" transform="translate(606.7 144)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="australia" transform="translate(1040.5 469.2)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="singapore" transform="translate(892.2 316.2)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="brazil" transform="translate(335.3 423.9)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="mexico" transform="translate(140.7 237.9)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+            <g class="pin" data-market="southafrica" transform="translate(606.6 435.6)"><circle class="halo" r="22"/><circle class="ring" r="7"/><circle class="core" r="4.5"/><circle class="hit" r="11"/></g>
+          </svg>
+          <div class="map-tip" aria-hidden="true"></div>
+        </div>
+        <ul class="markets" aria-label="Marketplaces">
+          <li><button type="button" data-market="india">India</button></li>
+          <li><button type="button" data-market="uae">UAE</button></li>
+          <li><button type="button" data-market="saudi">Saudi Arabia</button></li>
+          <li><button type="button" data-market="egypt">Egypt</button></li>
+          <li><button type="button" data-market="turkey">Türkiye</button></li>
+          <li><button type="button" data-market="singapore">Singapore</button></li>
+          <li><button type="button" data-market="australia">Australia</button></li>
+          <li><button type="button" data-market="southafrica">South Africa</button></li>
+          <li><button type="button" data-market="brazil">Brazil</button></li>
+          <li><button type="button" data-market="mexico">Mexico</button></li>
+        </ul>
       </section>
 
       <section id="work" class="section" aria-label="Featured work">
@@ -188,6 +230,6 @@
     </main>
   </div>
 
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>
