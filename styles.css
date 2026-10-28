@@ -158,13 +158,19 @@ strong { color: var(--text-strong); font-weight: 500; }
 .dark {
   --text-strong: #f5f5f7; --muted: #a1a1a6;
   position: relative; z-index: 2; scroll-margin-top: 0;
-  color: var(--muted); background: #1d1d1f; padding: 120px 0 136px;
+  color: var(--muted); background: #1d1d1f; padding: 96px 0 136px;
+  border-radius: 40px 40px 0 0; /* rises like a sheet over the light page */
 }
-.work-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+.work-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; counter-reset: project; }
 /* Type matches the rest of the page: section label like the nav labels,
    project titles like .role, card text like the Experience items */
-.work-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); margin-bottom: 56px; }
+.work-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); margin-bottom: 72px; }
 .project + .project { margin-top: 96px; }
+.project-title::before { /* 01, 02, 03 kicker in peach */
+  counter-increment: project; content: "0" counter(project);
+  display: block; margin-bottom: 10px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #ffa98a;
+}
 .project-title { font-size: 1.2rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.4; color: var(--text-strong); margin-bottom: 24px; }
 .track {
   display: flex; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain;
@@ -175,7 +181,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .slide {
   position: relative; flex: 0 0 78%; margin: 0; scroll-snap-align: start;
   display: flex; flex-direction: column; aspect-ratio: 3 / 4;
-  background: #000; border-radius: 18px; overflow: hidden;
+  background: #28282b; border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 18px; overflow: hidden;
 }
 .slide figcaption { padding: 36px 32px 28px; text-align: center; }
 .slide h5 { font-size: 1rem; font-weight: 500; line-height: 1.4; color: #f5f5f7; }
@@ -199,13 +205,21 @@ strong { color: var(--text-strong); font-weight: 500; }
 /* Desktop: all three feature cards side by side, image on top (Apple's
    "Developer stories" layout); the carousel controls aren't needed */
 @media (min-width: 1025px) {
-  .project + .project { margin-top: 112px; }
+  .project { display: grid; grid-template-columns: 1fr auto; align-items: end; column-gap: 24px; }
+  .project + .project { margin-top: 120px; }
   .project-title { margin-bottom: 28px; }
-  .track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; overflow: visible; border-radius: 0; }
-  .slide { flex: none; aspect-ratio: auto; }
-  .slide .fw-media { order: -1; flex: none; aspect-ratio: 16 / 9; }
-  .slide figcaption { text-align: left; padding: 24px 28px 32px; }
+  .track { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; overflow: visible; border-radius: 0; }
+  .project-foot { grid-row: 1; grid-column: 2; margin: 0 0 28px; }
+  .slide {
+    flex: none; aspect-ratio: auto; background: #28282b;
+    border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 22px;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s, background 0.3s;
+  }
+  .slide:hover { transform: translateY(-6px); border-color: rgba(255, 255, 255, 0.16); background: #2d2d30; }
+  .slide .fw-media { order: -1; flex: none; aspect-ratio: 4 / 3; margin: 10px 10px 0; border-radius: 14px; }
+  .slide figcaption { text-align: left; padding: 22px 22px 28px; }
   .car-ctrl { display: none; }
+}
 }
 .foot { position: relative; z-index: 2; font-size: 0.85rem; color: var(--faint); }
 .foot-inner { max-width: 1280px; margin: 0 auto; padding: 48px; }
@@ -229,19 +243,22 @@ strong { color: var(--text-strong); font-weight: 500; }
 .a2 { background: linear-gradient(160deg, #ffd1dd 0%, #ff7fa3 100%); } /* raspberry */
 .a3 { background: linear-gradient(200deg, #ffe9c7 0%, #ffbf73 100%); } /* apricot */
 .a4 { background: linear-gradient(120deg, #ffc9c4 0%, #ff8f8f 100%); } /* strawberry */
-.ui { /* placeholder screen until real images are added */
-  position: absolute; left: 50%; top: 50%; width: 56%; aspect-ratio: 16 / 10;
-  transform: translate(-50%, -50%); border-radius: 8px;
-  background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 20px 40px -20px rgba(20, 18, 16, 0.3);
+.ui { /* placeholder phone screen until real images are added */
+  position: absolute; left: 50%; top: 24%; width: 40%; aspect-ratio: 9 / 16;
+  transform: translateX(-50%); border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92); border: 1px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 30px 60px -24px rgba(20, 18, 16, 0.45);
 }
-.ui::before { /* abstract content lines */
-  content: ""; position: absolute; inset: 12%;
+.ui::before { /* abstract content: heading, price, lines, peach button */
+  content: ""; position: absolute; inset: 9% 10%;
   background:
-    linear-gradient(rgba(20, 18, 16, 0.75) 0 0) 0 0 / 55% 12% no-repeat,
-    linear-gradient(rgba(20, 18, 16, 0.15) 0 0) 0 32% / 80% 7% no-repeat,
-    linear-gradient(rgba(20, 18, 16, 0.12) 0 0) 0 48% / 65% 7% no-repeat,
-    linear-gradient(rgba(51, 70, 240, 0.85) 0 0) 0 100% / 34% 18% no-repeat;
+    linear-gradient(rgba(20, 18, 16, 0.8) 0 0) 0 0 / 60% 5% no-repeat,
+    linear-gradient(rgba(20, 18, 16, 0.08) 0 0) 0 11% / 100% 34% no-repeat,
+    linear-gradient(rgba(20, 18, 16, 0.55) 0 0) 0 51% / 42% 5% no-repeat,
+    linear-gradient(rgba(20, 18, 16, 0.14) 0 0) 0 60% / 85% 3.5% no-repeat,
+    linear-gradient(rgba(20, 18, 16, 0.1) 0 0) 0 66% / 70% 3.5% no-repeat,
+    linear-gradient(#ff8a65 0 0) 0 78% / 100% 8% no-repeat;
+  border-radius: 4px;
 }
 
 .foot p + p { margin-top: 6px; }
@@ -368,7 +385,8 @@ strong { color: var(--text-strong); font-weight: 500; }
     opacity: 0; transition: opacity 0.35s ease;
   }
   .mobile-heading.stuck::after { opacity: 1; }
-  .dark { padding: 0 0 64px; }
+  .dark { padding: 0 0 64px; border-radius: 28px 28px 0 0; }
+  .dark .mobile-heading { border-radius: 28px 28px 0 0; }
   .work-inner { padding: 0 24px; }
   .work-title { display: none; }
   .foot-inner { padding: 40px 24px; }
