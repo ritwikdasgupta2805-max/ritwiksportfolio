@@ -226,7 +226,6 @@ strong { color: var(--text-strong); font-weight: 500; }
   .slide { flex-basis: 84%; }
   .project-foot { flex-wrap: wrap; }
 }
-}
 
 /* ---------- Hello (cycling greeting) ---------- */
 .hello {
