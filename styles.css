@@ -153,24 +153,38 @@ strong { color: var(--text-strong); font-weight: 500; }
 .arrow-link:hover span { transform: translate(3px, -3px); }
 
 
-/* ---------- Featured work ---------- */
-.fw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 -20px; padding-top: 48px; }
-.fw-card:nth-child(even) { --stagger: 32px; }
-.fw-card { transform: translate3d(0, calc(var(--stagger, 0px) + var(--lift, 0px)), 0); } /* columns drift at different speeds */
-.fw-card {
-  position: relative; display: block; padding: 20px; border-radius: 10px;
-  transition: background 0.25s, box-shadow 0.25s, opacity 0.25s;
+/* ---------- Featured work: per-project feature carousels ---------- */
+.project + .project { margin-top: 88px; }
+.project-title { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; color: var(--text-strong); margin-bottom: 20px; }
+.track {
+  display: flex; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 20px;
 }
-.fw-card::before { /* same cursor-following border as the experience cards */
-  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: radial-gradient(240px circle at var(--cx, 50%) var(--cy, 50%), rgba(51, 70, 240, 0.55), transparent 70%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude;
-  opacity: 0; transition: opacity 0.25s;
+.track::-webkit-scrollbar { display: none; }
+.track:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.slide { position: relative; flex: 0 0 64%; margin: 0; scroll-snap-align: start; }
+.slide figcaption { /* feature title sits at the top of the card, Apple-style */
+  position: absolute; z-index: 2; left: 0; right: 0; top: 0; padding: 22px 24px 0;
+  text-align: center; font-size: 0.98rem; font-weight: 500; line-height: 1.35; color: var(--text-strong);
 }
-.fw-card:hover { background: var(--card); box-shadow: 0 1px 2px rgba(20, 18, 16, 0.04), 0 16px 40px -20px rgba(20, 18, 16, 0.18); }
-.fw-card:hover::before { opacity: 1; }
-.fw-grid:hover .fw-card:not(:hover) { opacity: 0.5; }
+.slide .fw-media { aspect-ratio: 4 / 5; border-radius: 20px; clip-path: inset(var(--clip) round 20px); -webkit-clip-path: inset(var(--clip) round 20px); }
+.slide .ui { top: 60%; }
+.project-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 18px; }
+.learn-more { color: var(--accent); font-weight: 500; }
+.learn-more span { display: inline-block; transition: transform 0.2s; }
+.learn-more:hover span { transform: translateX(3px); }
+.car-ctrl { display: flex; align-items: center; gap: 8px; }
+.dots { display: flex; align-items: center; gap: 6px; padding: 12px 14px; border-radius: 999px; background: rgba(20, 18, 16, 0.06); }
+.dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 999px; background: rgba(20, 18, 16, 0.28); cursor: pointer; transition: width 0.35s cubic-bezier(0.65, 0, 0.35, 1), background 0.35s; }
+.dot.active { width: 22px; background: var(--text-strong); }
+.car-btn {
+  width: 32px; height: 32px; border: 0; border-radius: 50%; cursor: pointer;
+  background: rgba(20, 18, 16, 0.06); color: var(--text-strong); font: inherit; font-size: 1.15rem; line-height: 1;
+  transition: background 0.2s, opacity 0.2s;
+}
+.car-btn:hover:not(:disabled) { background: rgba(20, 18, 16, 0.12); }
+.car-btn:disabled { opacity: 0.35; cursor: default; }
+.dot:focus-visible, .car-btn:focus-visible, .learn-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .fw-media {
   --clip: 0%;
@@ -190,7 +204,6 @@ strong { color: var(--text-strong); font-weight: 500; }
 .a2 { background: linear-gradient(160deg, #e3dcff 0%, #a99bff 100%); }
 .a3 { background: linear-gradient(200deg, #d4f5e7 0%, #7fd8b5 100%); }
 .a4 { background: linear-gradient(120deg, #c9d0ff 0%, #5d6cf5 100%); }
-.fw-card:hover .fw-art { filter: saturate(1.15); }
 .ui { /* placeholder screen until real images are added */
   position: absolute; left: 50%; top: 50%; width: 56%; aspect-ratio: 16 / 10;
   transform: translate(-50%, -50%); border-radius: 8px;
@@ -206,30 +219,15 @@ strong { color: var(--text-strong); font-weight: 500; }
     linear-gradient(rgba(51, 70, 240, 0.85) 0 0) 0 100% / 34% 18% no-repeat;
 }
 
-.fw-meta { margin-top: 16px; }
-.fw-meta h4 { color: var(--text-strong); font-weight: 500; font-size: 1rem; line-height: 1.4; transition: color 0.25s; }
-.fw-meta p { margin-top: 6px; font-size: 0.92rem; }
-.fw-card:hover h4 { color: var(--accent); }
-.arrow { display: inline-block; transition: transform 0.2s; }
-.fw-card:hover .arrow { transform: translate(3px, -3px); }
-.fw-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.fw-tags li {
-  font-size: 0.75rem; font-weight: 500; color: var(--muted);
-  background: rgba(20, 18, 16, 0.05); padding: 4px 12px; border-radius: 999px;
-}
-
 .foot { font-size: 0.85rem; color: var(--faint); padding-top: 32px; padding-bottom: 32px; }
 .foot p + p { margin-top: 6px; }
 .foot a { color: var(--text-strong); border-bottom: 1px solid rgba(20, 18, 16, 0.3); transition: color 0.2s, border-color 0.2s; }
 .foot a:hover { color: var(--accent); border-color: var(--accent); }
 
 @media (max-width: 640px) {
-  .fw-grid { grid-template-columns: 1fr; gap: 32px; margin: 0; padding-top: 0; }
-  .fw-card { padding: 0; }
-  .fw-card:nth-child(even) { --stagger: 0px; }
-  .fw-card:hover { background: none; box-shadow: none; }
-  .fw-card::before { display: none; }
-  .fw-grid:hover .fw-card:not(:hover) { opacity: 1; }
+  .slide { flex-basis: 84%; }
+  .project-foot { flex-wrap: wrap; }
+}
 }
 
 /* ---------- Hello (cycling greeting) ---------- */
@@ -320,7 +318,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   .layer { transform: none !important; }
   .fw-media { --clip: 0% !important; }
   .fw-art { --s: 1 !important; --py: 0px !important; }
-  .fw-card { --lift: 0px !important; }
+  .dot { transition: none; }
   .hello-word, .hello-where { transition: none; }
   .pin.active .ring { animation: none; }
 }

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=25">
+  <link rel="stylesheet" href="styles.css?v=26">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -163,42 +163,82 @@
 
       <section id="work" class="section" aria-label="Featured work">
         <h3 class="mobile-heading">Featured Work</h3>
-        <!-- TODO: replace with real case studies (title, summary, tags, link, image) -->
-        <div class="fw-grid">
-          <a class="fw-card" href="#">
-            <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
-            <div class="fw-meta">
-              <div>
-                <h4>Increasing value perception on Amazon <span class="arrow">↗</span></h4>
-                <!-- TODO: refine summary; add year and a headline outcome if shareable -->
-                <p>Helping customers see the real value of what they buy, by making prices, deals and savings clear at every step.</p>
-              </div>
-              <ul class="fw-tags"><li>Pricing &amp; deals</li><li>Emerging markets</li></ul>
+        <!-- TODO: feature captions are drafts; swap the placeholder art for real screens and link "Learn more" to case studies -->
+        <article class="project" aria-labelledby="p-value">
+          <h4 class="project-title" id="p-value">Increasing value perception on Amazon</h4>
+          <div class="track" tabindex="0" role="region" aria-label="Increasing value perception on Amazon: features">
+            <figure class="slide">
+              <figcaption>Savings you can see at a glance</figcaption>
+              <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
+            </figure>
+            <figure class="slide">
+              <figcaption>Deals that explain themselves</figcaption>
+              <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+            </figure>
+            <figure class="slide">
+              <figcaption>Confidence in the price, right to checkout</figcaption>
+              <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
+            </figure>
+          </div>
+          <div class="project-foot">
+            <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
+            <div class="car-ctrl">
+              <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
+              <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
+              <button type="button" class="car-btn next" aria-label="Next feature">›</button>
             </div>
-          </a>
-          <a class="fw-card" href="#">
-            <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
-            <div class="fw-meta">
-              <div>
-                <h4>One-tap in-context checkout <span class="arrow">↗</span></h4>
-                <!-- TODO: refine summary; add year and a headline outcome if shareable -->
-                <p>Letting customers buy in a single tap without leaving the page they're on, so more checkouts succeed.</p>
-              </div>
-              <ul class="fw-tags"><li>Checkout</li><li>Payments</li><li>Conversion</li></ul>
+          </div>
+        </article>
+        <article class="project" aria-labelledby="p-checkout">
+          <h4 class="project-title" id="p-checkout">One-tap in-context checkout</h4>
+          <div class="track" tabindex="0" role="region" aria-label="One-tap in-context checkout: features">
+            <figure class="slide">
+              <figcaption>Buy without leaving the page you’re on</figcaption>
+              <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+            </figure>
+            <figure class="slide">
+              <figcaption>Smart defaults for address and payment</figcaption>
+              <div class="fw-media"><div class="fw-art a4"><span class="ui"></span></div></div>
+            </figure>
+            <figure class="slide">
+              <figcaption>Instant, reassuring confirmation</figcaption>
+              <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
+            </figure>
+          </div>
+          <div class="project-foot">
+            <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
+            <div class="car-ctrl">
+              <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
+              <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
+              <button type="button" class="car-btn next" aria-label="Next feature">›</button>
             </div>
-          </a>
-          <a class="fw-card" href="#">
-            <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
-            <div class="fw-meta">
-              <div>
-                <h4>Helping customers build bigger baskets on Amazon <span class="arrow">↗</span></h4>
-                <!-- TODO: refine summary; add year and a headline outcome if shareable -->
-                <p>Making it easy to discover and add the things that go together, so every order does more for the customer.</p>
-              </div>
-              <ul class="fw-tags"><li>Discovery</li><li>Recommendations</li><li>Basket size</li></ul>
+          </div>
+        </article>
+        <article class="project" aria-labelledby="p-baskets">
+          <h4 class="project-title" id="p-baskets">Helping customers build bigger baskets on Amazon</h4>
+          <div class="track" tabindex="0" role="region" aria-label="Helping customers build bigger baskets on Amazon: features">
+            <figure class="slide">
+              <figcaption>Things that go together, together</figcaption>
+              <div class="fw-media"><div class="fw-art a3"><span class="ui"></span></div></div>
+            </figure>
+            <figure class="slide">
+              <figcaption>The right add-on at the right moment</figcaption>
+              <div class="fw-media"><div class="fw-art a1"><span class="ui"></span></div></div>
+            </figure>
+            <figure class="slide">
+              <figcaption>A clear nudge toward free delivery</figcaption>
+              <div class="fw-media"><div class="fw-art a2"><span class="ui"></span></div></div>
+            </figure>
+          </div>
+          <div class="project-foot">
+            <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
+            <div class="car-ctrl">
+              <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
+              <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
+              <button type="button" class="car-btn next" aria-label="Next feature">›</button>
             </div>
-          </a>
-        </div>
+          </div>
+        </article>
       </section>
 
       <section id="education" class="section" aria-label="Education">
@@ -228,6 +268,6 @@
     </main>
   </div>
 
-  <script src="script.js?v=25"></script>
+  <script src="script.js?v=26"></script>
 </body>
 </html>

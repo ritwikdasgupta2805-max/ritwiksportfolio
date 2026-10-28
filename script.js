@@ -16,7 +16,7 @@ addEventListener('pointermove', e => {
   requestTick();
 }, { passive: true });
 
-document.querySelectorAll('.item, .fw-card').forEach(card => {
+document.querySelectorAll('.item').forEach(card => {
   card.addEventListener('pointermove', e => {
     const r = card.getBoundingClientRect();
     card.style.setProperty('--cx', e.clientX - r.left + 'px');
@@ -68,19 +68,9 @@ function updateTint() {
 // Featured work: each image gently un-crops and settles as it scrolls into view,
 // with the artwork drifting slightly inside its frame (parallax)
 const medias = [...document.querySelectorAll('.fw-media')].map(el => ({ el, art: el.firstElementChild }));
-const fwGrid = document.querySelector('.fw-grid');
-const cards = [...document.querySelectorAll('.fw-card')].map((el, i) => ({ el, speed: i % 2 ? -0.1 : 0.05 }));
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 function updateFeatured() {
   const vh = innerHeight;
-  const twoCols = innerWidth > 640;
-  // Left and right columns drift at different speeds, each as one block.
-  // The grid itself isn't transformed, so its position is stable to measure.
-  const g = fwGrid.getBoundingClientRect();
-  const fromCenter = clamp(g.top + g.height / 2 - vh / 2, -vh * 0.7, vh * 0.7);
-  for (const { el, speed } of cards) {
-    el.style.setProperty('--lift', twoCols ? (fromCenter * speed).toFixed(1) + 'px' : '0px');
-  }
   for (const { el, art } of medias) {
     const r = el.getBoundingClientRect();
     if (r.bottom < -100 || r.top > vh + 100) continue;
@@ -95,6 +85,34 @@ function updateFeatured() {
 }
 addEventListener('resize', requestTick);
 addEventListener('scroll', requestTick, { passive: true });
+
+// Feature carousels: scroll-snapping tracks with dots and arrows
+document.querySelectorAll('.project').forEach(project => {
+  const track = project.querySelector('.track');
+  const slides = [...track.children];
+  const dots = [...project.querySelectorAll('.dot')];
+  const prev = project.querySelector('.prev');
+  const next = project.querySelector('.next');
+  const offsetOf = i => slides[i].offsetLeft - slides[0].offsetLeft;
+  const current = () => {
+    if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) return slides.length - 1;
+    let best = 0;
+    slides.forEach((_, i) => { if (Math.abs(offsetOf(i) - track.scrollLeft) < Math.abs(offsetOf(best) - track.scrollLeft)) best = i; });
+    return best;
+  };
+  const go = i => track.scrollTo({ left: offsetOf(clamp(i, 0, slides.length - 1)), behavior: reduceMotion ? 'auto' : 'smooth' });
+  const sync = () => {
+    const i = current();
+    dots.forEach((d, n) => { d.classList.toggle('active', n === i); d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
+  };
+  prev.addEventListener('click', () => go(current() - 1));
+  next.addEventListener('click', () => go(current() + 1));
+  dots.forEach((d, n) => d.addEventListener('click', () => go(n)));
+  track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+  sync();
+});
 
 // Highlight the nav item for the section in view
 const navLinks = [...document.querySelectorAll('.nav a')];
@@ -202,7 +220,7 @@ marketButtons.forEach(b => {
 // rise into place as they scroll up the screen. Tied to scroll position, so
 // it reverses when scrolling back, and nearby blocks stagger naturally.
 const reveals = reduceMotion ? [] :
-  [...document.querySelectorAll('.section > p, .item, .map, .markets, .fw-card, .arrow-link')].map(el => {
+  [...document.querySelectorAll('.section > p, .item, .map, .markets, .project, .arrow-link')].map(el => {
     el.classList.add('reveal');
     return { el, y: 0 };
   });
