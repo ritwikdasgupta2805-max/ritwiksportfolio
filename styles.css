@@ -178,15 +178,15 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 .track::-webkit-scrollbar { display: none; }
 .track:focus-visible { outline: 2px solid #ffa98a; outline-offset: 4px; }
+/* No card box, border or hover lift: these aren't links, so they shouldn't look tappable */
 .slide {
   position: relative; flex: 0 0 78%; margin: 0; scroll-snap-align: start;
-  display: flex; flex-direction: column; aspect-ratio: 3 / 4;
-  background: #28282b; border-radius: 18px; overflow: hidden;
+  display: flex; flex-direction: column;
 }
-.slide figcaption { padding: 36px 32px 28px; text-align: center; }
+.slide figcaption { padding: 22px 4px 0; text-align: left; }
 .slide h5 { font-size: 1rem; font-weight: 500; line-height: 1.4; color: #f5f5f7; }
 .slide figcaption p { margin-top: 8px; font-size: 0.92rem; line-height: 1.65; color: #a1a1a6; }
-.slide .fw-media { flex: 1; min-height: 0; border: 0; border-radius: 0; clip-path: none; -webkit-clip-path: none; }
+.slide .fw-media { order: -1; flex: none; aspect-ratio: 4 / 3; border: 0; border-radius: 18px; clip-path: none; -webkit-clip-path: none; }
 .project-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 28px; }
 .learn-more { color: #ffa98a; font-weight: 500; } /* peach, to tie the dark gallery to the sorbet palette */
 .learn-more span { display: inline-block; transition: transform 0.2s; }
@@ -210,10 +210,8 @@ strong { color: var(--text-strong); font-weight: 500; }
   .project-title { margin-bottom: 28px; }
   .track { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; overflow: visible; border-radius: 0; }
   .project-foot { grid-row: 1; grid-column: 2; margin: 0 0 28px; }
-  /* No border or hover lift: the cards aren't links, so they shouldn't look tappable */
-  .slide { flex: none; aspect-ratio: auto; background: #28282b; border-radius: 22px; }
-  .slide .fw-media { order: -1; flex: none; aspect-ratio: 4 / 3; margin: 10px 10px 0; border-radius: 14px; }
-  .slide figcaption { text-align: left; padding: 22px 22px 28px; }
+  .slide { flex: none; }
+  .slide figcaption { padding-top: 24px; }
   .car-ctrl { display: none; }
 }
 }
@@ -410,7 +408,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   .work-inner { padding: 0 16px; }
   .foot-inner { padding: 32px 16px; }
   .slide { flex-basis: 86%; }
-  .slide figcaption { padding: 30px 24px 22px; }
+  .slide figcaption { padding: 18px 2px 0; }
   .item { grid-template-columns: 1fr; gap: 8px; margin: 0; padding: 12px 0; }
   .item:hover { background: none; box-shadow: none; }
   .item::before { display: none; }
