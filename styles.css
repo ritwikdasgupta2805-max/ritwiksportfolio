@@ -44,6 +44,18 @@ strong { color: var(--text-strong); font-weight: 500; }
 
 /* ---------- Parallax background ---------- */
 .parallax { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+/* Depth markers live in the page (not fixed) and get pushed down a little
+   as you scroll, so they lag behind the content. Crisp edges make the
+   different speeds readable, which blurry glows alone can't do. */
+body { position: relative; }
+.depth { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.depth-tier { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
+.mk { position: absolute; color: var(--text-strong); }
+.mk.plus { width: var(--s); height: var(--s); translate: -50% -50%; }
+.mk.plus::before, .mk.plus::after { content: ""; position: absolute; background: currentColor; }
+.mk.plus::before { left: 0; right: 0; top: 50%; height: 1px; translate: 0 -50%; }
+.mk.plus::after { top: 0; bottom: 0; left: 50%; width: 1px; translate: -50% 0; }
+.mk.dot { width: var(--s); height: var(--s); border-radius: 50%; background: currentColor; translate: -50% -50%; }
 .layer { position: absolute; will-change: transform; }
 .grid {
   inset: -50% -10%;
@@ -287,7 +299,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .intro .orb { animation: intro-bloom 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .intro .orb-2 { animation-delay: 0.1s; }
 .intro .orb-3, .intro .orb-4, .intro .orb-5 { animation-delay: 0.2s; }
-.intro .monogram { animation: intro-fade 1.6s ease 0.7s both; }
+.intro .monogram, .intro .depth { animation: intro-fade 1.6s ease 0.7s both; }
 .intro .spotlight { animation: intro-fade 1.2s ease 0.6s both; }
 .intro .hello { animation: intro-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s both; }
 .intro .name { animation: intro-focus 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both; }

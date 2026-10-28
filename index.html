@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="stylesheet" href="styles.css?v=20">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -33,6 +33,8 @@
     <div class="layer orb orb-5" data-speed="-0.35" data-mouse="20"></div>
     <div class="layer monogram" data-speed="-0.7" data-mouse="-14">RD</div>
   </div>
+  <!-- Crisp markers at three depths; they scroll slower than the content (script.js) -->
+  <div class="depth" aria-hidden="true"></div>
 
   <a class="skip" href="#content">Skip to content</a>
 
@@ -235,6 +237,6 @@
     </main>
   </div>
 
-  <script src="script.js?v=18"></script>
+  <script src="script.js?v=20"></script>
 </body>
 </html>

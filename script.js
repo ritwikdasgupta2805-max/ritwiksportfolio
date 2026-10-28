@@ -47,6 +47,7 @@ function update() {
   }
   updateFeatured();
   updateReveals();
+  updateDepth();
   ticking = false;
 }
 
@@ -78,6 +79,56 @@ function updateFeatured() {
     art.style.setProperty('--py', clamp((r.top + r.height / 2 - vh / 2) * -0.12, -limit, limit).toFixed(1) + 'px');
   }
 }
+// Depth markers: three tiers of small crosshairs and dots. Farther tiers are
+// smaller, fainter and lag more. Positions come from a seeded random so the
+// layout is the same on every visit.
+const depthBox = document.querySelector('.depth');
+const tiers = [
+  { lag: 0.2, plus: 22, dot: 6, opacity: 0.42 },
+  { lag: 0.42, plus: 15, dot: 4.5, opacity: 0.28 },
+  { lag: 0.65, plus: 10, dot: 3, opacity: 0.18 },
+];
+function seeded(seed) {
+  return () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function buildDepth() {
+  depthBox.replaceChildren();
+  const pageH = document.body.scrollHeight;
+  const maxScroll = Math.max(0, pageH - innerHeight);
+  const rand = seeded(7);
+  for (const tier of tiers) {
+    const layer = document.createElement('div');
+    layer.className = 'depth-tier';
+    layer.style.opacity = tier.opacity;
+    // Spread markers over the range that passes through the viewport
+    const span = pageH - tier.lag * maxScroll;
+    const count = Math.round(span / 210);
+    for (let i = 0; i < count; i++) {
+      const mk = document.createElement('span');
+      const isPlus = rand() < 0.55;
+      mk.className = 'mk ' + (isPlus ? 'plus' : 'dot');
+      mk.style.setProperty('--s', (isPlus ? tier.plus : tier.dot) + 'px');
+      mk.style.left = (3 + rand() * 94).toFixed(2) + '%';
+      mk.style.top = ((i + rand()) / count * span).toFixed(0) + 'px';
+      layer.append(mk);
+    }
+    tier.el = layer;
+    depthBox.append(layer);
+  }
+}
+function updateDepth() {
+  if (reduceMotion) return;
+  for (const t of tiers) t.el.style.transform = `translate3d(0, ${(scrollY * t.lag).toFixed(1)}px, 0)`;
+}
+buildDepth();
+let resizeTimer;
+addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { buildDepth(); requestTick(); }, 200); });
+
 addEventListener('resize', requestTick);
 addEventListener('scroll', requestTick, { passive: true });
 
