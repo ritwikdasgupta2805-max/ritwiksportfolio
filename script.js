@@ -43,6 +43,7 @@ function update() {
     el.style.transform = `translate3d(${mx * mouse}px, ${y * speed + my * mouse}px, 0)`;
   }
   updateFeatured();
+  updateReveals();
   ticking = false;
 }
 
@@ -76,7 +77,6 @@ function updateFeatured() {
 }
 addEventListener('resize', requestTick);
 addEventListener('scroll', requestTick, { passive: true });
-update();
 
 // Highlight the nav item for the section in view
 const navLinks = [...document.querySelectorAll('.nav a')];
@@ -92,19 +92,26 @@ function setActive() {
 addEventListener('scroll', setActive, { passive: true });
 setActive();
 
-// Fade content in as it scrolls into view
-if (!reduceMotion) {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.section > p, .item, .arrow-link').forEach(el => {
+// Apple-style reveal: blocks start faded and slightly low, then darken and
+// rise into place as they scroll up the screen. Tied to scroll position, so
+// it reverses when scrolling back, and nearby blocks stagger naturally.
+const reveals = reduceMotion ? [] :
+  [...document.querySelectorAll('.section > p, .item, .fw-card, .arrow-link')].map(el => {
     el.classList.add('reveal');
-    io.observe(el);
+    return { el, y: 0 };
   });
+function updateReveals() {
+  const vh = innerHeight;
+  for (const r of reveals) {
+    // Undo our own offset so the measurement doesn't feed back into itself
+    const top = r.el.getBoundingClientRect().top - r.y;
+    const p = clamp((vh * 0.98 - top) / (vh * 0.3), 0, 1);
+    const eased = 1 - Math.pow(1 - p, 2);
+    r.y = (1 - eased) * 48;
+    r.el.style.setProperty('--ro', (0.15 + 0.85 * eased).toFixed(3));
+    r.el.style.setProperty('--ry', r.y.toFixed(1) + 'px');
+  }
 }
 
+// First paint: everything above is defined, so run one full frame now
+update();

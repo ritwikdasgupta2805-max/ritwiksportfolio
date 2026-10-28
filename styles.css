@@ -233,13 +233,12 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 
 /* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: none; }
+.reveal { opacity: var(--ro, 1); translate: 0 var(--ry, 0px); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .name a { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { opacity: 1; translate: none; }
   .layer { transform: none !important; }
   .fw-media { --clip: 0% !important; }
   .fw-art { --s: 1 !important; --py: 0px !important; }
