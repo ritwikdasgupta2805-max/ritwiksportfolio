@@ -11,7 +11,6 @@
   --mint: #9ee6c9;
   --card: rgba(255, 255, 255, 0.7);
   --line: rgba(20, 18, 16, 0.08);
-  --band: rgba(140, 105, 70, 0.075);
   --x: 50vw;
   --y: 30vh;
 }
@@ -113,18 +112,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .socials svg { width: 24px; height: 24px; display: block; }
 
 /* ---------- Right column ---------- */
-.section { position: relative; padding: 64px 0; scroll-margin-top: 32px; }
-#about { padding-top: 0; }
-/* Alternating tonal bands, like Apple's white / light-grey chapters: a
-   full-width, slightly deeper wash behind every other section. It's
-   translucent so the background glows still show through. */
-.band::before {
-  content: ""; position: absolute; z-index: -1; inset: 0;
-  background: var(--band);
-  /* full-bleed without widening the page: shadows don't count as overflow */
-  box-shadow: 0 0 0 100vmax var(--band);
-  clip-path: inset(0 -100vmax 0 -40px); /* desktop: from just left of the content column to the right edge */
-}
+.section { margin-bottom: 128px; scroll-margin-top: 96px; }
 .section > p + p { margin-top: 16px; }
 .mobile-heading { display: none; }
 
@@ -343,16 +331,13 @@ strong { color: var(--text-strong); font-weight: 500; }
   .side { position: static; height: auto; width: 100%; padding: 72px 0 24px; gap: 32px; }
   .main { width: 100%; padding-top: 32px; }
   .nav { display: none; }
-  .section { padding: 48px 0; }
-  #about { padding-top: 0; }
+  .section { margin-bottom: 96px; }
   .mobile-heading {
     display: block; position: sticky; top: 0; z-index: 5;
     margin: 0 -24px 24px; padding: 18px 24px;
     font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong);
-    background: rgba(247, 244, 239, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    background: rgba(247, 244, 239, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
-  .band::before { clip-path: inset(0 -100vmax); }
-  .band .mobile-heading { background: rgba(239, 234, 226, 0.8); }
   .spotlight { display: none; }
 }
 @media (max-width: 640px) {
