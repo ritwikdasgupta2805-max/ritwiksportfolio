@@ -94,22 +94,6 @@ addEventListener('resize', requestTick);
 addEventListener('scroll', requestTick, { passive: true });
 
 // Feature carousels: scroll-snapping tracks with dots and arrows
-// Feature images open the project's case study, wherever its "Learn more"
-// points. Projects without a page yet (href="#") stay unlinked. The image
-// link is a duplicate of "Learn more", so it's skipped by keyboard and screen readers.
-document.querySelectorAll('.project').forEach(project => {
-  const href = project.querySelector('.learn-more')?.getAttribute('href');
-  if (!href || href === '#') return;
-  project.querySelectorAll('.fw-media').forEach(media => {
-    const link = document.createElement('a');
-    link.className = 'fw-link';
-    link.href = href;
-    link.tabIndex = -1;
-    link.setAttribute('aria-hidden', 'true');
-    media.append(link);
-  });
-});
-
 document.querySelectorAll('.project').forEach(project => {
   const track = project.querySelector('.track');
   const slides = [...track.children];
