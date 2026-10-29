@@ -70,6 +70,19 @@
 .cs-note span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); }
 .cs-final .cs-step { color: #7fd69a; }
 
+/* Placeholders for sections still to be written */
+.cs-todo { max-width: 46em; margin-bottom: 28px; padding: 18px 20px; border: 1.5px dashed rgba(224, 112, 79, 0.45); border-radius: 14px; background: rgba(255, 169, 138, 0.08); font-size: 0.95rem; line-height: 1.6; }
+.cs-todo span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-tbd { color: var(--faint); }
+.cs-markets-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.cs-markets-grid li { padding: 20px 18px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); }
+.cs-markets-grid h3 { font-size: 0.98rem; font-weight: 600; color: var(--text-strong); }
+.cs-markets-grid p { margin-top: 6px; font-size: 0.85rem; line-height: 1.5; }
+.cs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.cs-two h3 { margin-bottom: 14px; font-size: 1.1rem; font-weight: 600; color: var(--text-strong); }
+.cs-two .cs-todo { margin-bottom: 0; }
+.cs-concept .cs-step { color: #b9a6ff; }
+
 /* Before / after */
 .cs-table { border-top: 1px solid var(--line); }
 .cs-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 0.98rem; }
@@ -95,6 +108,7 @@
   .cs-wrap, .cs-top { padding-left: 24px; padding-right: 24px; }
   .cs-meta { grid-template-columns: repeat(2, 1fr); }
   .cs-stats { grid-template-columns: repeat(2, 1fr); }
+  .cs-markets-grid { grid-template-columns: repeat(3, 1fr); }
   .cs-version { grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 40px; }
   .cs-dark { border-radius: 28px; }
 }
@@ -111,6 +125,8 @@
   .cs-stat { font-size: 1.45rem; }
   .cs-label { margin: 88px 0 24px; }
   .cs-principles { grid-template-columns: 1fr; gap: 12px; }
+  .cs-markets-grid { grid-template-columns: 1fr 1fr; }
+  .cs-two { grid-template-columns: 1fr; gap: 28px; }
   .cs-dark { margin-top: 88px; padding-bottom: 88px; border-radius: 28px; }
   .cs-dark .cs-label { margin-top: 56px; }
   /* The four-up strip becomes a swipeable row */
