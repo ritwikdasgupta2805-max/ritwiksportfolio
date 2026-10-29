@@ -110,7 +110,7 @@
 .cs-dark .cs-todo span { color: #ffa98a; }
 
 /* My role */
-.cs-role { max-width: 46em; margin-top: 48px; padding: 22px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); font-size: 1.02rem; line-height: 1.7; color: var(--text-strong); }
+.cs-role { max-width: 46em; margin: 48px 0; padding: 22px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); font-size: 1.02rem; line-height: 1.7; color: var(--text-strong); }
 .cs-role span { display: block; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
 
 /* Mock annotations: numbered pins on the phone, matching numbered points */
@@ -191,6 +191,7 @@
   .cs-insights { grid-template-columns: 1fr; }
   .cs-two { grid-template-columns: 1fr; gap: 28px; }
   .cs-families { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+  .cs-role { margin: 32px 0; }
   .cs-dark { margin-top: 88px; padding-bottom: 88px; border-radius: 28px; }
   .cs-dark .cs-label { margin-top: 56px; }
   /* The four-up strip becomes a swipeable row */
