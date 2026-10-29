@@ -87,6 +87,9 @@
 /* Research details */
 .cs-body { font-size: 1rem; line-height: 1.7; }
 .cs-mini-stats { display: flex; gap: 12px; margin: 20px 0; }
+.cs-groups { display: grid; gap: 10px; margin: 20px 0; }
+.cs-groups li { position: relative; padding: 14px 16px 14px 34px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.5; }
+.cs-groups li::before { content: ""; position: absolute; left: 16px; top: 22px; width: 7px; height: 7px; border-radius: 50%; background: #e0704f; }
 .cs-mini-stats li { flex: 1; padding: 14px 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font-size: 0.85rem; }
 .cs-mini-stats span { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--text-strong); }
 .cs-two .cs-mini-stats + .cs-todo { margin-top: 0; }
