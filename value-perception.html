@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=55">
-  <link rel="stylesheet" href="case.css?v=14">
+  <link rel="stylesheet" href="case.css?v=15">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -264,9 +264,10 @@
             </ul>
             <div class="cs-sub-block">
               <h4 class="cs-sub">Decision making</h4>
-              <div class="cs-todo"><span>To fill in</span>The key trade-offs in this version: options considered, and why this one won.</div>
+              <p class="cs-sub-text">The open question was whether “Buy for” callouts would work at all. Would customers trust a price the page had worked out for them, and would they understand that a coupon and a bank offer had been stacked to reach it? We also chose to show several “Buy for” callouts side by side, one per combination, so customers could compare them.</p>
+              <p class="cs-sub-text">Research said yes: customers understood the “Buy for” price and the stacking straight away, and valued it. The one wrinkle was the same coupon repeating in each callout, which caused a brief moment of doubt that customers resolved on their own within seconds.</p>
               <h4 class="cs-sub">Tech challenges</h4>
-              <div class="cs-todo"><span>To fill in</span>What made this version hard to build, and how design and engineering solved it.</div>
+              <p class="cs-sub-text">Working out the net effective price: the price after every discount the customer is eligible for and that can be stacked. Each offer has its own rules, such as which cards it applies to and whether it combines with others, so every combination had to be checked for eligibility and stackability before the page could show a single, trustworthy “Buy for” price.</p>
             </div>
             <p class="cs-note"><span>What we learned</span>Leading with the monthly EMI price pushed the real price into second place, and the total still ignored the savings.</p>
           </div>
@@ -289,9 +290,15 @@
             </ul>
             <div class="cs-sub-block">
               <h4 class="cs-sub">Decision making</h4>
-              <div class="cs-todo"><span>To fill in</span>The key trade-offs in this version: options considered, and why this one won.</div>
+              <p class="cs-sub-text">Two questions shaped this version. Would customers actually use the tabs, or scroll past them? And would they understand a “Buy for” price worked out backwards from their own saved card?</p>
+              <p class="cs-sub-text">Both held up. Customers loved the tabs because they made instalment plans easy to discover, and they understood the personalised “Buy for” price straight away.</p>
               <h4 class="cs-sub">Tech challenges</h4>
-              <div class="cs-todo"><span>To fill in</span>What made this version hard to build, and how design and engineering solved it.</div>
+              <p class="cs-sub-text">Two hard problems. First, which tab to open on: the page lands on No Cost EMI for customers likely to pay in instalments, and on pay in full for everyone else. Second, which offers to show first when a product carries many. We ranked them on three signals:</p>
+              <ol class="cs-rank">
+                <li><strong>Personalisation:</strong> offers on cards the customer already has come first.</li>
+                <li><strong>Value:</strong> bigger savings rank higher.</li>
+                <li><strong>Bank popularity:</strong> offers from widely held banks rank above niche ones.</li>
+              </ol>
             </div>
             <p class="cs-note"><span>What we learned after launch</span>Customers loved the tabs because they made instalments easy to discover, so we changed one thing: the tab they land on now depends on how likely they are to pay in instalments. One issue remained: the offer combination on the other tab still went unseen. The 2027 concept puts both side by side.</p>
           </div>

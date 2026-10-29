@@ -107,6 +107,12 @@
 /* Decision making and tech challenges inside a version */
 .cs-sub-block { margin-top: 32px; }
 .cs-sub-block .cs-sub + .cs-todo { margin-bottom: 24px; }
+.cs-sub-text { max-width: 40em; margin-bottom: 14px; font-size: 0.98rem; line-height: 1.7; }
+.cs-sub-text + .cs-sub { margin-top: 28px; }
+.cs-rank { display: grid; gap: 10px; margin: 4px 0 8px; padding-left: 0; counter-reset: rk; }
+.cs-rank li { position: relative; padding-left: 26px; font-size: 0.98rem; line-height: 1.6; }
+.cs-rank li::before { counter-increment: rk; content: counter(rk) "."; position: absolute; left: 4px; top: 0; width: auto; height: auto; background: none; font-weight: 600; color: #ffa98a; } /* plain numbers, so they don't read as the pins on the mock */
+.cs-rank + .cs-sub, .cs-rank + .cs-note { margin-top: 28px; }
 .cs-dark .cs-todo { border-color: rgba(255, 169, 138, 0.4); background: rgba(255, 169, 138, 0.06); color: var(--muted); }
 .cs-dark .cs-todo span { color: #ffa98a; }
 
