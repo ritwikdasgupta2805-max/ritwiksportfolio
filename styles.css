@@ -432,6 +432,10 @@ strong { color: var(--text-strong); font-weight: 500; }
 .ap-media img { position: absolute; left: 50%; top: 0; width: 74%; height: auto; transform: translateX(-50%); }
 .ap-media.pair img { width: 100%; top: 6%; }
 .ap .fw-link { position: absolute; inset: 0; z-index: 1; }
+/* Screens whose action lives at the bottom (a tray, a Pay button): show the phone's lower half,
+   fading in from the black so it doesn't start with a hard edge */
+.ap-media.low { overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 72px); mask-image: linear-gradient(to bottom, transparent, #000 72px); }
+.ap-media.low img { top: auto; bottom: clamp(20px, 2.4vw, 32px); }
 /* Auto-advance: the active dot becomes a pill that fills while playing */
 .project.apple .dot { position: relative; overflow: hidden; }
 .project.apple.playing .dot.active { background: #636366; }

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=63">
+  <link rel="stylesheet" href="styles.css?v=64">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -206,37 +206,29 @@
           </div>
         </div>
       </article>
-      <article class="project" aria-labelledby="p-checkout">
+      <article class="project apple" aria-labelledby="p-checkout">
         <h4 class="project-title" id="p-checkout">One-tap in-context checkout</h4>
         <div class="track" tabindex="0" role="region" aria-label="One-tap in-context checkout: features">
-          <figure class="slide">
-            <figcaption>
-              <h5>Buy without leaving the page you’re on</h5>
-              <p>Checking out right where you decide, with no jump to a separate flow.</p>
-            </figcaption>
-            <div class="fw-media"><div class="fw-art has-media"><img src="assets/work/checkout-anywhere-icons.jpg?v=2" alt="Home, search and cart icons in motion: one-tap checkout follows you across the app" loading="lazy"></div></div>
+          <figure class="slide ap">
+            <figcaption><h5>Buy without leaving the page you’re on. Checkout opens right where you decide.</h5></figcaption>
+            <div class="ap-media"><img src="assets/work/ap-co-context.webp?v=1" width="780" height="1048" alt="A product page with the Place your order sheet open over it: item, delivery time and address" loading="lazy"></div>
           </figure>
-          <figure class="slide">
-            <figcaption>
-              <h5>Checkout wherever you are</h5>
-              <p>One-tap checkout is available literally anywhere — the homepage, search, the cart and every page in between — so customers can buy the moment they decide.</p>
-            </figcaption>
-            <div class="fw-media"><div class="fw-art has-media"><img src="assets/work/checkout-tray.jpg?v=2" alt="Floating checkout tray at the bottom of the screen, above the app navigation: product thumbnails, ₹455 and a Buy button" loading="lazy"></div></div>
+          <figure class="slide ap">
+            <figcaption><h5>Checkout wherever you are: home, search, the cart and every page in between.</h5></figcaption>
+            <div class="ap-media low"><img src="assets/work/ap-co-anywhere.webp?v=1" width="780" height="874" alt="Search results with a floating checkout tray above the tab bar: three product thumbnails, plus 2, ₹455 and a Buy button" loading="lazy"></div>
           </figure>
-          <figure class="slide">
-            <figcaption>
-              <h5>Review details and pay now</h5>
-              <p>Address, payment and delivery date in one compact view, so customers can check everything at a glance and pay with confidence.</p>
-            </figcaption>
-            <div class="fw-media"><div class="fw-art has-media"><img src="assets/work/checkout-sheet.jpg?v=3" alt="Place your order sheet with delivery, address, payment and Pay now" loading="lazy"></div></div>
+          <figure class="slide ap">
+            <figcaption><h5>Delivery, address and payment at a glance. Then one tap to pay.</h5></figcaption>
+            <div class="ap-media low"><img src="assets/work/ap-co-pay.webp?v=1" width="780" height="874" alt="The Place your order sheet: Amazon Pay ICICI card, ₹70 saved, ₹165 total and a Pay now button" loading="lazy"></div>
           </figure>
         </div>
         <div class="project-foot">
           <a class="learn-more" href="#">Learn more <span aria-hidden="true">›</span></a>
           <div class="car-ctrl">
             <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
-            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
-            <button type="button" class="car-btn next" aria-label="Next feature">›</button>
+            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled hidden>‹</button>
+            <button type="button" class="car-btn next" aria-label="Next feature" hidden>›</button>
+            <button type="button" class="car-btn car-play" aria-label="Pause"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/><path class="i-play" d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
           </div>
         </div>
       </article>
