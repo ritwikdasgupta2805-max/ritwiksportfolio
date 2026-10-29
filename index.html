@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=58">
+  <link rel="stylesheet" href="styles.css?v=61">
   <script>
     // Play the entrance animation on first paint, unless the visitor prefers reduced motion
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('intro');
@@ -177,37 +177,32 @@
       <h3 class="mobile-heading">Featured work</h3>
       <h2 class="work-title">Featured work</h2>
       <!-- TODO: projects 02–04 still use placeholder art; swap in real screens and link "Learn more" to their case studies -->
-      <article class="project" aria-labelledby="p-value">
+      <article class="project apple" aria-labelledby="p-value">
         <h4 class="project-title" id="p-value">Fewer offers to read. One price to pay.<span class="project-sub">Redesigning offers on Amazon’s product page for 10 emerging markets</span></h4>
         <div class="track" tabindex="0" role="region" aria-label="Fewer offers to read, one price to pay: features">
-          <figure class="slide">
-            <figcaption>
-              <h5>The price you’ll pay, upfront</h5>
-              <p>Coupons and bank offers combined for you, so the page shows one “Buy for” price, worked out from your own saved card.</p>
-            </figcaption>
-            <div class="fw-media"><div class="fw-art has-media"><img src="assets/work/value-price.jpg?v=1" alt="The launched product page: Buy for ₹20,900 and No Cost EMI ₹2,322 x 9m tabs, with a coupon and the customer’s HDFC card combined" loading="lazy"></div><a class="fw-link" href="value-perception.html" tabindex="-1" aria-hidden="true"></a></div>
+          <figure class="slide ap">
+            <figcaption><h5>The price you’ll pay, upfront. Every offer you’re eligible for, combined into one “Buy for” price.</h5></figcaption>
+            <div class="ap-media"><img src="assets/work/value/ap-price.webp?v=2" width="780" height="1048" alt="The launched product page: Buy for ₹20,900 and No Cost EMI ₹2,322 x 9m tabs, with a coupon and the customer’s HDFC card combined" loading="lazy"></div>
+            <a class="fw-link" href="value-perception.html" tabindex="-1" aria-hidden="true"></a>
           </figure>
-          <figure class="slide">
-            <figcaption>
-              <h5>From offers to decode to one price</h5>
-              <p>The 2023 page listed about six kinds of offer and never added them up. The launched page does the maths and shows the result.</p>
-            </figcaption>
-            <div class="fw-media"><div class="fw-art has-media"><img src="assets/work/value-before-after.jpg?v=1" alt="The 2023 product page with an offers carousel next to the launched page with one Buy for price" loading="lazy"></div><a class="fw-link" href="value-perception.html" tabindex="-1" aria-hidden="true"></a></div>
+          <figure class="slide ap">
+            <figcaption><h5>From six kinds of offer to decode, to one price you can trust.</h5></figcaption>
+            <div class="ap-media pair"><img src="assets/work/value/ap-before-after.webp?v=3" width="1200" height="1155" alt="The 2023 product page with an offers carousel next to the launched page with one Buy for price" loading="lazy"></div>
+            <a class="fw-link" href="value-perception.html" tabindex="-1" aria-hidden="true"></a>
           </figure>
-          <figure class="slide">
-            <figcaption>
-              <h5>Next: both ways to pay, side by side</h5>
-              <p>A 2027 concept: pay in full and No Cost EMI at once, each with its best offers applied in one tap, and the lowest price shown openly.</p>
-            </figcaption>
-            <div class="fw-media"><div class="fw-art has-media"><img src="assets/work/value-concept.jpg?v=1" alt="2027 concept: Pay in full ₹20,800 and No Cost EMI ₹2,311 x 9m rows, each with Apply, and a Buy 3, get 6% off progress bar" loading="lazy"></div><a class="fw-link" href="value-perception.html" tabindex="-1" aria-hidden="true"></a></div>
+          <figure class="slide ap">
+            <figcaption><h5>Next: pay in full or monthly, side by side, with the best offer applied in one tap.</h5></figcaption>
+            <div class="ap-media"><img src="assets/work/value/ap-concept.webp?v=2" width="780" height="1048" alt="2027 concept: Pay in full ₹20,800 and No Cost EMI ₹2,311 x 9m rows, each with Apply" loading="lazy"></div>
+            <a class="fw-link" href="value-perception.html" tabindex="-1" aria-hidden="true"></a>
           </figure>
         </div>
         <div class="project-foot">
           <a class="learn-more" href="value-perception.html">Learn more <span aria-hidden="true">›</span></a>
           <div class="car-ctrl">
             <div class="dots"><button type="button" class="dot active" aria-label="Show feature 1"></button><button type="button" class="dot" aria-label="Show feature 2"></button><button type="button" class="dot" aria-label="Show feature 3"></button></div>
-            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled>‹</button>
-            <button type="button" class="car-btn next" aria-label="Next feature">›</button>
+            <button type="button" class="car-btn prev" aria-label="Previous feature" disabled hidden>‹</button>
+            <button type="button" class="car-btn next" aria-label="Next feature" hidden>›</button>
+            <button type="button" class="car-btn car-play" aria-label="Pause"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/><path class="i-play" d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
           </div>
         </div>
       </article>
@@ -323,6 +318,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=51"></script>
+  <script src="script.js?v=52"></script>
 </body>
 </html>

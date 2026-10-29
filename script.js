@@ -97,6 +97,31 @@ document.querySelectorAll('.project').forEach(project => {
   dots.forEach((d, n) => d.addEventListener('click', () => go(n)));
   track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
   sync();
+
+  // Apple-style auto-advance with play/pause, only where the carousel is in use (phones and tablets)
+  const play = project.querySelector('.car-play');
+  if (!play) return;
+  const DWELL = 5000;
+  let timer = null, visible = false, wanted = !reduceMotion;
+  const usable = () => getComputedStyle(project.querySelector('.car-ctrl')).display !== 'none';
+  const stop = () => { clearTimeout(timer); timer = null; project.classList.remove('playing'); };
+  const tick = () => { timer = setTimeout(() => { const i = current(); go(i === slides.length - 1 ? 0 : i + 1); tick(); }, DWELL); };
+  const update = () => {
+    const run = wanted && visible && usable();
+    if (run && !timer) { project.classList.add('playing'); tick(); }
+    if (!run && timer) stop();
+    if (!run) project.classList.remove('playing');
+    play.setAttribute('aria-label', wanted ? 'Pause' : 'Play');
+  };
+  // Restart the fill and the countdown whenever the slide changes
+  track.addEventListener('scroll', () => { if (timer) { clearTimeout(timer); tick(); } }, { passive: true });
+  play.addEventListener('click', () => { wanted = !wanted; update(); });
+  // Taking over by hand pauses it, like apple.com
+  ['pointerdown', 'keydown'].forEach(ev => track.addEventListener(ev, () => { wanted = false; update(); }, { passive: true }));
+  dots.forEach(d => d.addEventListener('click', () => { wanted = false; update(); }));
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; update(); }, { threshold: 0.5 }).observe(track);
+  addEventListener('resize', update);
+  update();
 });
 
 // Mobile section labels lighten once they stick to the top of the screen

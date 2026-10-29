@@ -422,3 +422,26 @@ strong { color: var(--text-strong); font-weight: 500; }
   .list:hover .item:not(:hover) { opacity: 1; }
   .monogram { top: 40%; right: -10%; }
 }
+
+/* ---------- Featured work, Apple-style cards (projects with real screens) ----------
+   A black card on the dark page: one statement on top, the phone rising from the bottom edge. */
+.project.apple .slide.ap { position: relative; display: flex; flex-direction: column; aspect-ratio: 4 / 5; border-radius: 28px; background: #000; overflow: hidden; }
+.ap figcaption { padding: clamp(28px, 3vw, 40px) clamp(22px, 2.6vw, 34px) 0; text-align: center; }
+.ap h5 { font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-weight: 600; line-height: 1.32; letter-spacing: -0.015em; color: #f5f5f7; }
+.ap-media { position: relative; flex: 1; margin-top: clamp(22px, 2.4vw, 32px); }
+.ap-media img { position: absolute; left: 50%; top: 0; width: 74%; height: auto; transform: translateX(-50%); }
+.ap-media.pair img { width: 100%; top: 6%; }
+.ap .fw-link { position: absolute; inset: 0; z-index: 1; }
+/* Auto-advance: the active dot becomes a pill that fills while playing */
+.project.apple .dot { position: relative; overflow: hidden; }
+.project.apple.playing .dot.active { background: #636366; }
+.project.apple.playing .dot.active::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: #f5f5f7; transform-origin: left; animation: dot-fill var(--dwell, 5s) linear forwards; }
+@keyframes dot-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.car-play { display: grid; place-items: center; }
+.car-play .i-play { display: none; }
+.project.apple:not(.playing) .car-play .i-play { display: block; }
+.project.apple:not(.playing) .car-play .i-pause { display: none; }
+@media (max-width: 640px) {
+  .project.apple .slide.ap { aspect-ratio: 3 / 4; }
+  .ap h5 { font-size: 1.15rem; }
+}
