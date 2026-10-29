@@ -1,24 +1,46 @@
 /* ---------- Case study pages ----------
    Builds on styles.css (colours, type, background, footer). */
 
-.case main, .case .cs-top, .case .foot { position: relative; z-index: 2; }
+.case main, .case .foot { position: relative; z-index: 2; }
+.case { --link: #0066cc; }
 .cs-wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
 .case .foot-inner { max-width: 1080px; } /* line the footer up with the content */
 
-/* Back link */
-.cs-top { max-width: 1080px; margin: 0 auto; padding: 32px 48px 0; }
-.cs-back { display: inline-flex; gap: 10px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); }
-.cs-back span { transition: transform 0.2s; }
-.cs-back:hover span { transform: translateX(-3px); }
+/* Local nav: frosted bar with the name and one blue action, like apple.com */
+.cs-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(245, 245, 247, 0.8); backdrop-filter: saturate(1.8) blur(20px); -webkit-backdrop-filter: saturate(1.8) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.cs-nav-inner { max-width: 1080px; height: 52px; margin: 0 auto; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; }
+.cs-nav-name { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.015em; color: var(--text-strong); }
+.cs-nav-cta { padding: 5px 14px; border-radius: 999px; background: #0071e3; color: #fff; font-size: 0.8rem; }
+.cs-nav-cta:hover { background: #0077ed; }
 
 /* Intro */
-.cs-hero { padding-top: 96px; padding-bottom: 72px; }
-.cs-kicker, .cs-step { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #6e6e73; }
+.cs-hero { padding-top: 80px; padding-bottom: 8px; }
+.cs-kicker { font-size: 1.05rem; font-weight: 600; color: #6e6e73; }
+.cs-step { font-size: 0.9rem; font-weight: 600; color: #6e6e73; }
 .cs-hero h1 {
-  margin-top: 16px; max-width: 14em;
-  font-size: clamp(2.2rem, 5.2vw, 3.8rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--text-strong);
+  margin-top: 10px; max-width: 14em;
+  font-size: clamp(2.3rem, 5.6vw, 4rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.035em; color: var(--text-strong);
 }
-.cs-subtitle { margin-top: 14px; font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 500; letter-spacing: -0.015em; line-height: 1.35; color: var(--text); }
+.cs-subtitle { margin-top: 18px; max-width: 30em; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 400; letter-spacing: -0.015em; line-height: 1.38; color: #6e6e73; }
+.cs-subtitle strong { color: var(--text-strong); font-weight: 600; }
+/* Hero: the work rising out of a white tile, cropped at the bottom like apple.com */
+.cs-hero-tile { position: relative; margin-top: 48px; height: clamp(440px, 52vw, 620px); border-radius: 32px; background: #fff; overflow: hidden; }
+.cs-hero-tile img {
+  position: absolute; left: 50%; top: clamp(40px, 6vw, 72px); transform: translateX(-50%);
+  width: clamp(260px, 30vw, 360px); height: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.18));
+}
+.cs-hero-caption { margin-top: 14px; text-align: center; font-size: 0.88rem; color: #6e6e73; }
+/* Project facts: an iOS Settings-style grouped list */
+.cs-group-title { max-width: 720px; margin: 64px 0 8px 4px; font-size: 0.88rem; font-weight: 400; color: #6e6e73; }
+.cs-list { max-width: 720px; border-radius: 14px; background: #fff; overflow: hidden; }
+.cs-list div { display: flex; justify-content: space-between; gap: 24px; padding: 14px 18px; font-size: 1rem; line-height: 1.4; }
+.cs-list div + div { margin-left: 18px; padding-left: 0; border-top: 1px solid rgba(60, 60, 67, 0.12); }
+.cs-list dt { flex: none; color: var(--text-strong); }
+.cs-list dd { color: #6e6e73; text-align: right; }
 .cs-lede { margin-top: 28px; max-width: 40em; font-size: 1.15rem; line-height: 1.7; }
 .cs-meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 32px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
 .cs-meta dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faint); }
@@ -27,12 +49,14 @@
 
 /* Results */
 .cs-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-.cs-stats li { padding: 28px 24px; border-radius: 20px; background: var(--card); box-shadow: 0 1px 2px rgba(20, 18, 16, 0.04), 0 16px 40px -24px rgba(20, 18, 16, 0.2); }
-.cs-stat { display: block; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text-strong); }
+.cs-stats { margin-top: 56px; }
+.cs-stats li { padding: 24px 22px 22px; border-radius: 20px; background: var(--card); }
+.cs-stat { display: block; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text-strong); }
 .cs-stat-label { display: block; margin-top: 8px; font-size: 0.88rem; }
 
 /* Section labels and prose */
-.cs-label { margin: 128px 0 32px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); }
+/* Section headings: Apple-style headlines in sentence case, not spaced-out capitals */
+.cs-label { margin: 128px 0 28px; font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; color: var(--text-strong); }
 .cs-text p { max-width: 40em; font-size: 1.05rem; }
 .cs-text p + p { margin-top: 18px; }
 .cs-quote {
@@ -189,9 +213,9 @@
 /* Outcome */
 .cs-markets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 .cs-markets li { padding: 6px 14px; border-radius: 999px; background: rgba(20, 18, 16, 0.05); font-size: 0.85rem; font-weight: 500; color: var(--text-strong); }
-.cs-next { display: inline-flex; gap: 6px; margin: 64px 0 128px; font-weight: 600; color: var(--text-strong); }
+.cs-next { display: inline-flex; gap: 6px; margin: 64px 0 128px; font-size: 1.05rem; color: var(--link); }
 .cs-next span { transition: transform 0.2s; }
-.cs-next:hover { color: var(--accent); }
+.cs-next:hover { text-decoration: underline; text-underline-offset: 3px; }
 .cs-next:hover span { transform: translateX(3px); }
 
 /* Scroll reveal */
@@ -200,7 +224,7 @@
 
 /* ---------- Tablet ---------- */
 @media (max-width: 1024px) {
-  .cs-wrap, .cs-top { padding-left: 24px; padding-right: 24px; }
+  .cs-wrap, .cs-nav-inner { padding-left: 24px; padding-right: 24px; }
   .cs-meta { grid-template-columns: repeat(2, 1fr); }
   .cs-stats { grid-template-columns: repeat(2, 1fr); }
   .cs-markets-grid, .cs-insights { grid-template-columns: repeat(3, 1fr); }
@@ -210,13 +234,19 @@
 
 /* ---------- Phone ---------- */
 @media (max-width: 640px) {
-  /* The blobs are sized for desktop; on a phone they'd tint the whole screen,
-     so keep them small and light and let the page read whitish, then green */
-  .case .orb-1 { width: 300px; height: 300px; top: -8%; left: -40%; opacity: 0.45; }
-  .case .orb-2 { width: 280px; height: 280px; top: 72%; right: -40%; opacity: 0.4; }
-  .cs-wrap, .cs-top { padding-left: 16px; padding-right: 16px; }
-  .cs-top { padding-top: 24px; }
-  .cs-hero { padding-top: 56px; padding-bottom: 48px; }
+  .cs-wrap, .cs-nav-inner { padding-left: 20px; padding-right: 20px; }
+  .cs-nav-name { font-size: 1.15rem; }
+  .cs-hero-tile { margin-top: 32px; height: 430px; border-radius: 28px; }
+  .cs-hero-tile img { top: 44px; width: 250px; }
+  .cs-stats { margin-top: 40px; }
+  .cs-stats li { padding: 18px 16px 16px; border-radius: 18px; }
+  .cs-stat { font-size: 1.9rem; }
+  .cs-group-title { margin-top: 40px; }
+  .cs-list div { padding: 13px 16px; }
+  .cs-list div + div { margin-left: 16px; }
+  .cs-list div { flex-direction: column; gap: 2px; } /* stack label over value, like iOS for long values */
+  .cs-list dd { text-align: left; }
+  .cs-hero { padding-top: 40px; padding-bottom: 0; }
   .cs-lede { font-size: 1.05rem; }
   .cs-meta { margin-top: 40px; }
   .cs-stats { gap: 12px; }
@@ -245,5 +275,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cs-pin::after { animation: none; opacity: 0; }
-  .cs-back span, .cs-next span { transition: none; }
+  .cs-next span { transition: none; }
 }
+
+/* Apple-style small labels everywhere on the page: sentence case, no wide tracking */
+.cs-sub, .cs-meta dt, .cs-role span, .cs-pattern span, .cs-todo span, .cs-note span, .cs-across span, .cs-head, .cs-family .cs-step {
+  text-transform: none !important; letter-spacing: -0.005em !important; font-size: 0.9rem !important; font-weight: 600 !important;
+}
+.cs-strip figcaption { letter-spacing: 0; font-size: 0.85rem; font-weight: 600; }

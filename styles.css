@@ -105,7 +105,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .nav a { display: inline-flex; align-items: center; gap: 16px; padding: 12px 0; }
 .nav .line { width: 32px; height: 1px; background: var(--faint); transition: width 0.25s, background 0.25s; }
 .nav .label {
-  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 0.95rem; font-weight: 500; letter-spacing: -0.01em;
   color: var(--faint); transition: color 0.25s;
 }
 .nav a:hover .line, .nav a.active .line { width: 64px; background: var(--text-strong); }
@@ -141,7 +141,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .list:hover .item:not(:hover) { opacity: 0.5; }
 .item { transition: background 0.25s, box-shadow 0.25s, opacity 0.25s; }
 
-.when { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); padding-top: 4px; }
+.when { font-size: 0.85rem; font-weight: 500; color: var(--faint); padding-top: 4px; }
 .item h4 { color: var(--text-strong); font-weight: 500; font-size: 1rem; line-height: 1.4; }
 .co { color: var(--text-strong); }
 .item p { margin-top: 8px; font-size: 0.92rem; }
@@ -152,9 +152,9 @@ strong { color: var(--text-strong); font-weight: 500; }
   background: rgba(20, 18, 16, 0.05); padding: 4px 12px; border-radius: 999px;
 }
 
-.arrow-link { display: inline-flex; gap: 6px; margin-top: 32px; font-weight: 600; color: var(--text-strong); }
+.arrow-link { display: inline-flex; gap: 6px; margin-top: 32px; color: #0066cc; } /* Apple blue: only on things you can tap */
 .arrow-link span { display: inline-block; transition: transform 0.2s; }
-.arrow-link:hover { color: var(--accent); }
+.arrow-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 .arrow-link:hover span { transform: translate(3px, -3px); }
 
 
@@ -168,7 +168,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .work-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; counter-reset: project; }
 /* Type matches the rest of the page: section label like the nav labels,
    project titles like .role, card text like the Experience items */
-.work-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); margin-bottom: 72px; }
+.work-title { font-size: clamp(2rem, 3.4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--text-strong); margin-bottom: 72px; }
 .project + .project { margin-top: 96px; }
 .project-title::before { /* 01, 02, 03 kicker in peach */
   counter-increment: project; content: "0" counter(project);
@@ -193,7 +193,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .slide figcaption p { margin-top: 8px; font-size: 0.92rem; line-height: 1.65; color: #a1a1a6; }
 .slide .fw-media { order: -1; flex: none; aspect-ratio: 4 / 3; border: 0; border-radius: 18px; clip-path: none; -webkit-clip-path: none; }
 .project-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 28px; }
-.learn-more { color: #f5f5f7; font-weight: 500; }
+.learn-more { color: #2997ff; } /* Apple's link blue on dark */
 .learn-more:hover { text-decoration: underline; text-underline-offset: 3px; }
 .learn-more span { display: inline-block; transition: transform 0.2s; }
 .learn-more:hover span { transform: translateX(3px); }
@@ -223,7 +223,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 .foot { position: relative; z-index: 2; font-size: 0.85rem; color: var(--faint); }
 .foot-inner { max-width: 1280px; margin: 0 auto; padding: 48px; }
-.dot:focus-visible, .car-btn:focus-visible, .learn-more:focus-visible { outline: 2px solid #f5f5f7; outline-offset: 2px; }
+.dot:focus-visible, .car-btn:focus-visible, .learn-more:focus-visible { outline: 2px solid #2997ff; outline-offset: 2px; }
 
 .fw-media {
   --clip: 0%;
@@ -272,8 +272,8 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 
 .foot p + p { margin-top: 6px; }
-.foot a { color: var(--text-strong); border-bottom: 1px solid rgba(20, 18, 16, 0.3); transition: color 0.2s, border-color 0.2s; }
-.foot a:hover { color: var(--accent); border-color: var(--accent); }
+.foot a { color: #0066cc; }
+.foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 640px) {
   .project-foot { flex-wrap: wrap; }
@@ -293,7 +293,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   mask-image: linear-gradient(transparent, #000 22%, #000 78%, transparent);
 }
 .hello-word { color: var(--text-strong); font-weight: 500; height: 1.8em; }
-.hello-where { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); height: 1.8em; line-height: 1.8em; }
+.hello-where { font-size: 0.8rem; font-weight: 500; color: var(--faint); height: 1.8em; line-height: 1.8em; }
 .roll, .roll .ch { display: inline-block; white-space: pre; }
 
 /* ---------- Markets map ---------- */
@@ -384,7 +384,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   .mobile-heading {
     display: block; position: sticky; top: 0; z-index: 5;
     margin: 0 -24px 24px; padding: 18px 24px;
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong);
+    font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-strong);
   }
   .mobile-heading.stuck { backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4); }
   /* No band at rest; once the label sticks to the top it gets a frosted,

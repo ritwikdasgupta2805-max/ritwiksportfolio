@@ -16,8 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=57">
-  <link rel="stylesheet" href="case.css?v=19">
+  <link rel="stylesheet" href="styles.css?v=58">
+  <link rel="stylesheet" href="case.css?v=21">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -27,8 +27,12 @@
 
   <a class="skip" href="#content">Skip to content</a>
 
-  <header class="cs-top">
-    <a class="cs-back" href="/#work"><span aria-hidden="true">←</span> Ritwik Dasgupta</a>
+  <!-- Local nav, like the bar on apple.com product pages -->
+  <header class="cs-nav">
+    <div class="cs-nav-inner">
+      <a class="cs-nav-name" href="/">Ritwik Dasgupta</a>
+      <a class="cs-nav-cta" href="mailto:ritwikdasgupta3@gmail.com">Contact</a>
+    </div>
   </header>
 
   <main id="content">
@@ -36,14 +40,33 @@
     <section class="cs-wrap cs-hero">
       <p class="cs-kicker">Case study · Amazon</p>
       <h1>Fewer offers to read.<br>One price to pay.</h1>
-      <p class="cs-subtitle">Redesigning offers on Amazon’s product page for 10 emerging markets</p>
+      <p class="cs-subtitle">Redesigning offers on Amazon’s product page, so shoppers in <strong>10 emerging markets</strong> see the price they’ll actually pay.</p>
 
-      <dl class="cs-meta">
+      <figure class="cs-hero-tile">
+        <img src="assets/work/value/pdp-2026-device.webp" width="866" height="1764"
+             alt="The 2026 Amazon product page on an iPhone: ₹21,900 with tabs for ‘Buy for ₹20,900’ and ‘No Cost EMI ₹2,322 x 9m’, and a combination using the customer’s HDFC card and a coupon">
+      </figure>
+      <p class="cs-hero-caption">The 2026 product page, launched in all ten markets.</p>
+    </section>
+
+    <!-- Highlights -->
+    <section class="cs-wrap" aria-label="Highlights">
+      <ul class="cs-stats">
+        <li class="reveal"><span class="cs-stat">10</span><span class="cs-stat-label">markets launched</span></li>
+        <li class="reveal"><span class="cs-stat">2</span><span class="cs-stat-label">versions shipped, 3 designed</span></li>
+        <li class="reveal"><span class="cs-stat">140</span><span class="cs-stat-label">research participants</span></li>
+        <li class="reveal"><span class="cs-stat">1 tap</span><span class="cs-stat-label">to apply the best price</span></li>
+      </ul>
+    </section>
+
+    <!-- Project facts as an iOS-style grouped list -->
+    <section class="cs-wrap" aria-labelledby="h-about">
+      <h2 class="cs-group-title" id="h-about">About this project</h2>
+      <dl class="cs-list">
         <div><dt>Role</dt><dd>Sole designer, end to end</dd></div>
         <div><dt>Timeline</dt><dd>2023 – 2026, concept for 2027</dd></div>
-        <div><dt>Surface</dt><dd>Product detail page, Amazon Shopping app</dd></div>
-        <div><dt>Reach</dt><dd>10 emerging markets</dd></div>
-        <div class="cs-team"><dt>Team</dt><dd>6 product managers across India, UAE, Mexico and Brazil · 4 researchers · 16 engineers</dd></div>
+        <div><dt>Surface</dt><dd>Product page, Amazon Shopping app</dd></div>
+        <div><dt>Team</dt><dd>6 PMs across India, UAE, Mexico and Brazil · 4 researchers · 16 engineers</dd></div>
       </dl>
     </section>
 
@@ -55,16 +78,6 @@
         across five marketplaces, designed every version from 2024 to the 2027 concept, and took each one
         through review with product, engineering and leadership in every marketplace it launched in.
       </p>
-    </section>
-
-    <!-- Results up front -->
-    <section class="cs-wrap" aria-label="Results">
-      <ul class="cs-stats">
-        <li class="reveal"><span class="cs-stat">Higher</span><span class="cs-stat-label">conversion after launch</span></li>
-        <li class="reveal"><span class="cs-stat">10</span><span class="cs-stat-label">emerging markets</span></li>
-        <li class="reveal"><span class="cs-stat">3</span><span class="cs-stat-label">versions designed, 2 launched</span></li>
-        <li class="reveal"><span class="cs-stat">1 tap</span><span class="cs-stat-label">to apply the best price</span></li>
-      </ul>
     </section>
 
     <!-- Problem -->
