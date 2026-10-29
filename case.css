@@ -83,6 +83,17 @@
 .cs-two .cs-todo { margin-bottom: 0; }
 .cs-concept .cs-step { color: #b9a6ff; }
 
+/* Offers landscape */
+.cs-families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+.cs-family { padding: 28px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
+.cs-family .cs-step { color: #e0704f; }
+.cs-family h3 { margin-top: 8px; font-size: 1.1rem; font-weight: 600; color: var(--text-strong); }
+.cs-family ul { margin-top: 16px; display: grid; gap: 10px; }
+.cs-family li { position: relative; padding-left: 18px; font-size: 0.95rem; line-height: 1.5; }
+.cs-family li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: #e0704f; }
+.cs-across { margin-top: 16px; padding: 20px 24px; border-radius: 20px; background: rgba(224, 112, 79, 0.08); font-size: 0.98rem; color: var(--text-strong); }
+.cs-across span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+
 /* Before / after */
 .cs-table { border-top: 1px solid var(--line); }
 .cs-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 0.98rem; }
@@ -127,6 +138,7 @@
   .cs-principles { grid-template-columns: 1fr; gap: 12px; }
   .cs-markets-grid { grid-template-columns: 1fr 1fr; }
   .cs-two { grid-template-columns: 1fr; gap: 28px; }
+  .cs-families { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
   .cs-dark { margin-top: 88px; padding-bottom: 88px; border-radius: 28px; }
   .cs-dark .cs-label { margin-top: 56px; }
   /* The four-up strip becomes a swipeable row */

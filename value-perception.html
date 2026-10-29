@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=53">
-  <link rel="stylesheet" href="case.css?v=2">
+  <link rel="stylesheet" href="case.css?v=3">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -86,6 +86,47 @@
     </section>
 
 
+    <!-- Offers landscape -->
+    <section class="cs-wrap" aria-labelledby="h-landscape">
+      <h2 class="cs-label" id="h-landscape">The offers landscape</h2>
+      <p class="cs-intro reveal">
+        Across ten markets, a single product can carry more than nine kinds of offer, from different owners:
+        sellers, banks and Amazon itself. Simplified, they all come down to three things.
+      </p>
+      <div class="cs-families">
+        <div class="cs-family reveal">
+          <p class="cs-step">Discounts</p>
+          <h3>Pay less now</h3>
+          <ul>
+            <li>Vendor and seller coupons</li>
+            <li>Gift code coupons</li>
+            <li>Bank card discounts</li>
+          </ul>
+        </div>
+        <div class="cs-family reveal">
+          <p class="cs-step">Cashback</p>
+          <h3>Get money back later</h3>
+          <ul>
+            <li>Cashback rewards</li>
+            <li>Bank card cashback</li>
+          </ul>
+        </div>
+        <div class="cs-family reveal">
+          <p class="cs-step">Points</p>
+          <h3>Earn value to spend</h3>
+          <ul>
+            <li>Diamonds, an Amazon currency</li>
+            <li>Kaiseki, another currency (not in India)</li>
+            <li>Shopping points on the Amazon credit card (UAE, Turkey, Saudi Arabia)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="cs-across reveal">
+        <span>And across all three</span>
+        Instalment plans: interest-free or with interest, with or without a bank discount on top.
+      </p>
+    </section>
+
     <!-- Customer insights (to fill in) -->
     <section class="cs-wrap" aria-labelledby="h-insights">
       <h2 class="cs-label" id="h-insights">Customer insights across markets</h2>
@@ -107,19 +148,19 @@
     <!-- Business view per market (to fill in) -->
     <section class="cs-wrap" aria-labelledby="h-business">
       <h2 class="cs-label" id="h-business">What matters to each market</h2>
-      <div class="cs-todo reveal"><span>To fill in</span>The business view: what each marketplace team was optimising for, and the offer types that drive it there (bank offers, coupons, instalments, cashback).</div>
+      <div class="cs-todo reveal"><span>To fill in</span>The business view: what each marketplace team was optimising for. Key offer types are filled in; the business priorities are still to come.</div>
       <div class="cs-table reveal" role="table" aria-label="Business priorities by market">
         <div class="cs-row cs-head" role="row"><span role="columnheader">Market</span><span role="columnheader">Business priority</span><span role="columnheader">Key offer types</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">India</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">UAE</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Saudi Arabia</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Egypt</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Turkey</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Australia</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Singapore</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Brazil</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Mexico</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">South Africa</span><span role="cell" class="cs-tbd">—</span><span role="cell" class="cs-tbd">—</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">India</span><span role="cell" class="cs-tbd">—</span><span role="cell">Bank card discounts, by far the biggest</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">UAE</span><span role="cell" class="cs-tbd">—</span><span role="cell">Gift code coupons; Amazon credit card shopping points</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Saudi Arabia</span><span role="cell" class="cs-tbd">—</span><span role="cell">Amazon credit card shopping points</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Egypt</span><span role="cell" class="cs-tbd">—</span><span role="cell">Like Turkey: mostly gift code coupons. No bank discounts</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Turkey</span><span role="cell" class="cs-tbd">—</span><span role="cell">Gift code coupons; Amazon credit card shopping points. No bank discounts</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Australia</span><span role="cell" class="cs-tbd">—</span><span role="cell">No bank discounts</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Singapore</span><span role="cell" class="cs-tbd">—</span><span role="cell">No bank discounts</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Brazil</span><span role="cell" class="cs-tbd">—</span><span role="cell">Interest-free instalment plans and gift code coupons</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">Mexico</span><span role="cell" class="cs-tbd">—</span><span role="cell">Interest-free instalment plans and gift code coupons</span></div>
+        <div class="cs-row" role="row"><span role="rowheader">South Africa</span><span role="cell" class="cs-tbd">—</span><span role="cell">Like Turkey: mostly gift code coupons. No bank discounts</span></div>
       </div>
     </section>
 
