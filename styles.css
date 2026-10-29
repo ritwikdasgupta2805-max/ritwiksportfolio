@@ -236,6 +236,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 .has-media { background: #fffaf7; inset: 0; transform: none; } /* real images: full frame, no parallax crop */
 .has-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.fw-link { position: absolute; inset: 0; z-index: 1; cursor: pointer; } /* added by script.js when the project has a page */
 .has-media img { animation: drift-right 11s ease-in-out infinite alternate; will-change: transform; }
 .has-media img[src*="checkout-tray"] { animation-name: float-up; animation-duration: 9s; animation-delay: -3s; }
 .has-media img[src*="checkout-sheet"] { animation-name: push-in; animation-duration: 12s; animation-delay: -6s; transform-origin: 62% 80%; }
