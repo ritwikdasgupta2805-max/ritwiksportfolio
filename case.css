@@ -90,6 +90,12 @@
 .cs-mini-stats span { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--text-strong); }
 .cs-two .cs-mini-stats + .cs-todo { margin-top: 0; }
 
+.cs-sub { margin: 4px 0 14px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); }
+.cs-findings { display: grid; gap: 12px; counter-reset: f; }
+.cs-findings li { position: relative; padding: 16px 18px 16px 52px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.6; }
+.cs-findings li::before { counter-increment: f; content: counter(f); position: absolute; left: 18px; top: 16px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: #fff; background: #3f9f6f; }
+.cs-findings strong { color: var(--text-strong); font-weight: 600; }
+
 /* Offers landscape */
 .cs-families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
 .cs-family { padding: 28px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }

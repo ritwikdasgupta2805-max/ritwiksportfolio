@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=53">
-  <link rel="stylesheet" href="case.css?v=4">
+  <link rel="stylesheet" href="case.css?v=5">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -200,7 +200,13 @@
             <li><span>5</span>marketplaces</li>
             <li><span>140</span>participants</li>
           </ul>
-          <div class="cs-todo"><span>To fill in</span>The two or three findings that shaped the design.</div>
+          <h4 class="cs-sub">What we found</h4>
+          <ol class="cs-findings">
+            <li>Customers understood the <strong>“Buy for” price and the offer combination</strong> straight away, and valued it.</li>
+            <li>They loved the <strong>tabs</strong>, because they made instalment plans easy to discover. So the page now opens on the tab that matches each customer’s likelihood of paying in instalments.</li>
+            <li>Seeing the same coupon repeated in each card caused <strong>a moment of confusion</strong>, but customers worked it out on their own within a few seconds.</li>
+            <li>Customers, especially in the UAE, expect to <strong>apply coupons and offers in the cart</strong>, not on the product page. That led to a separate project on applying offers in the cart.</li>
+          </ol>
         </div>
         <div class="reveal">
           <h3>Alignment with leadership</h3>
@@ -268,6 +274,7 @@
               <li>Tabs for how you pay, pay in full or No Cost EMI, each with savings already included (₹2,322 a month, down from ₹2,433).</li>
               <li>Uses the customer’s own saved card (HDFC ••0424) and shows what each part saves.</li>
               <li>One Apply for the whole combination.</li>
+              <li>Opens on the tab that suits the customer: No Cost EMI for those likely to pay in instalments.</li>
             </ul>
             <p class="cs-note"><span>What we learned after launch</span>Tabs hid one way of paying behind the other, and the nested cards felt heavy on the page.</p>
           </div>
