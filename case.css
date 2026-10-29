@@ -13,7 +13,7 @@
 
 /* Intro */
 .cs-hero { padding-top: 96px; padding-bottom: 72px; }
-.cs-kicker, .cs-step { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-kicker, .cs-step { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #6e6e73; }
 .cs-hero h1 {
   margin-top: 16px; max-width: 14em;
   font-size: clamp(2.2rem, 5.2vw, 3.8rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.035em; color: var(--text-strong);
@@ -36,15 +36,15 @@
 .cs-text p { max-width: 40em; font-size: 1.05rem; }
 .cs-text p + p { margin-top: 18px; }
 .cs-quote {
-  margin-top: 48px; max-width: 22em; padding-left: 24px; border-left: 2px solid var(--peach);
+  margin-top: 48px; max-width: 22em; padding-left: 24px; border-left: 2px solid #d2d2d7;
   font-size: clamp(1.35rem, 2.6vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.02em; color: var(--text-strong);
 }
-.cs-quote em { font-style: normal; color: #e0704f; }
+.cs-quote em { font-style: normal; color: #6e6e73; }
 
 /* Principles */
 .cs-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: pr; }
 .cs-principles li { padding: 28px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
-.cs-principles li::before { counter-increment: pr; content: "0" counter(pr); display: block; margin-bottom: 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #e0704f; }
+.cs-principles li::before { counter-increment: pr; content: "0" counter(pr); display: block; margin-bottom: 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #6e6e73; }
 .cs-principles h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-strong); }
 .cs-principles p { margin-top: 8px; font-size: 0.95rem; }
 
@@ -58,22 +58,22 @@
 .cs-intro { max-width: 34em; font-size: 1.05rem; }
 .cs-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 56px 0 24px; }
 .cs-strip img { display: block; width: 100%; height: auto; }
-.cs-strip figcaption { margin-top: 14px; text-align: center; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #ffa98a; }
+.cs-strip figcaption { margin-top: 14px; text-align: center; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #a1a1a6; }
 
 .cs-version { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 72px; align-items: center; margin-top: 120px; }
 .cs-phone img { display: block; width: 100%; height: auto; }
-.cs-step { color: #ffa98a; }
+.cs-step { color: #a1a1a6; }
 .cs-copy h3 { margin-top: 12px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; color: var(--text-strong); }
 .cs-copy ul { margin-top: 24px; display: grid; gap: 12px; }
 .cs-copy li { position: relative; padding-left: 22px; font-size: 1rem; }
-.cs-copy li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: #ffa98a; }
+.cs-copy li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: #a1a1a6; }
 .cs-note { margin-top: 28px; padding: 18px 20px; border-radius: 14px; background: rgba(255, 255, 255, 0.05); font-size: 0.95rem; }
 .cs-note span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); }
-.cs-final .cs-step { color: #7fd69a; }
+.cs-final .cs-step { color: #a1a1a6; }
 
 /* Placeholders for sections still to be written */
-.cs-todo { max-width: 46em; margin-bottom: 28px; padding: 18px 20px; border: 1.5px dashed rgba(224, 112, 79, 0.45); border-radius: 14px; background: rgba(255, 169, 138, 0.08); font-size: 0.95rem; line-height: 1.6; }
-.cs-todo span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-todo { max-width: 46em; margin-bottom: 28px; padding: 18px 20px; border: 1.5px dashed #d2d2d7; border-radius: 14px; background: var(--card); font-size: 0.95rem; line-height: 1.6; }
+.cs-todo span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #6e6e73; }
 .cs-tbd { color: var(--faint); }
 .cs-markets-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .cs-markets-grid li { padding: 20px 18px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); }
@@ -82,14 +82,14 @@
 .cs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .cs-two h3 { margin-bottom: 14px; font-size: 1.1rem; font-weight: 600; color: var(--text-strong); }
 .cs-two .cs-todo { margin-bottom: 0; }
-.cs-concept .cs-step { color: #b9a6ff; }
+.cs-concept .cs-step { color: #a1a1a6; }
 
 /* Research details */
 .cs-body { font-size: 1rem; line-height: 1.7; }
 .cs-mini-stats { display: flex; gap: 12px; margin: 20px 0; }
 .cs-groups { display: grid; gap: 10px; margin: 20px 0; }
 .cs-groups li { position: relative; padding: 14px 16px 14px 34px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.5; }
-.cs-groups li::before { content: ""; position: absolute; left: 16px; top: 22px; width: 7px; height: 7px; border-radius: 50%; background: #e0704f; }
+.cs-groups li::before { content: ""; position: absolute; left: 16px; top: 22px; width: 7px; height: 7px; border-radius: 50%; background: #6e6e73; }
 .cs-mini-stats li { flex: 1; padding: 14px 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font-size: 0.85rem; }
 .cs-mini-stats span { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; color: var(--text-strong); }
 .cs-two .cs-mini-stats + .cs-todo { margin-top: 0; }
@@ -97,13 +97,13 @@
 .cs-sub { margin: 4px 0 14px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-strong); }
 .cs-findings { display: grid; gap: 12px; counter-reset: f; }
 .cs-findings li { position: relative; padding: 16px 18px 16px 52px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font-size: 0.95rem; line-height: 1.6; }
-.cs-findings li::before { counter-increment: f; content: counter(f); position: absolute; left: 18px; top: 16px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: #fff; background: #3f9f6f; }
+.cs-findings li::before { counter-increment: f; content: counter(f); position: absolute; left: 18px; top: 16px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: #fff; background: #1d1d1f; }
 .cs-link { color: var(--text-strong); text-decoration: underline; text-underline-offset: 3px; }
 .cs-findings strong { color: var(--text-strong); font-weight: 600; }
 
 /* Customer insights */
 .cs-pattern { max-width: 46em; margin-bottom: 28px; padding: 22px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); font-size: 1.05rem; line-height: 1.7; color: var(--text-strong); }
-.cs-pattern span { display: block; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-pattern span { display: block; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #6e6e73; }
 .cs-scope { max-width: 46em; margin: -12px 0 24px; font-size: 1rem; color: var(--muted); }
 .cs-insights { grid-template-columns: repeat(5, 1fr); }
 .cs-insights p { font-size: 0.9rem; line-height: 1.55; }
@@ -115,27 +115,27 @@
 .cs-sub-text + .cs-sub { margin-top: 28px; }
 .cs-rank { display: grid; gap: 10px; margin: 4px 0 8px; padding-left: 0; counter-reset: rk; }
 .cs-rank li { position: relative; padding-left: 26px; font-size: 0.98rem; line-height: 1.6; }
-.cs-rank li::before { counter-increment: rk; content: counter(rk) "."; position: absolute; left: 4px; top: 0; width: auto; height: auto; background: none; font-weight: 600; color: #ffa98a; } /* plain numbers, so they don't read as the pins on the mock */
+.cs-rank li::before { counter-increment: rk; content: counter(rk) "."; position: absolute; left: 4px; top: 0; width: auto; height: auto; background: none; font-weight: 600; color: #a1a1a6; } /* plain numbers, so they don't read as the pins on the mock */
 .cs-rank + .cs-sub, .cs-rank + .cs-note { margin-top: 28px; }
-.cs-dark .cs-todo { border-color: rgba(255, 169, 138, 0.4); background: rgba(255, 169, 138, 0.06); color: var(--muted); }
-.cs-dark .cs-todo span { color: #ffa98a; }
+.cs-dark .cs-todo { border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.04); color: var(--muted); }
+.cs-dark .cs-todo span { color: #a1a1a6; }
 
 /* My role */
 .cs-role { max-width: 46em; margin: 48px 0; padding: 22px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); font-size: 1.02rem; line-height: 1.7; color: var(--text-strong); }
-.cs-role span { display: block; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-role span { display: block; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #6e6e73; }
 
 /* Mock annotations: numbered pins on the phone, matching numbered points */
 .cs-phone { position: relative; }
 .cs-pin {
-  /* A glowing dot on the spot, a hairline out to a number beside the phone */
-  --pc: #ffa98a;
+  /* A dot on the spot, a hairline out to a number beside the phone */
+  --pc: #a1a1a6;
   position: absolute; z-index: 2; height: 0; pointer-events: none;
   border-top: 1px solid color-mix(in srgb, var(--pc) 55%, transparent);
   transition: border-color 0.3s;
 }
 .cs-pin::before { /* the dot */
   content: ""; position: absolute; top: -4px; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--pc); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pc) 30%, transparent), 0 0 12px var(--pc);
+  background: var(--pc);
 }
 .cs-pin::after { /* gentle pulse */
   content: ""; position: absolute; top: -4px; width: 8px; height: 8px; border-radius: 50%;
@@ -154,29 +154,29 @@
 .cs-pin.on { border-top-color: var(--pc); }
 .cs-pin.on i { background: var(--pc); color: #1e1e1e; transform: scale(1.15); }
 @keyframes pin-pulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(3.2); opacity: 0; } }
-.cs-final .cs-pin { --pc: #7fd69a; }
-.cs-concept .cs-pin { --pc: #b9a6ff; }
+.cs-final .cs-pin { --pc: #a1a1a6; }
+.cs-concept .cs-pin { --pc: #a1a1a6; }
 .cs-copy .cs-annotated li[data-n] { padding-left: 34px; }
 .cs-copy .cs-annotated li[data-n]::before {
   content: attr(data-n); top: 0.15em; width: 20px; height: 20px; border-radius: 50%;
   display: grid; place-items: center; font-size: 0.66rem; font-weight: 600; line-height: 1; color: #fff;
-  background: transparent; border: 1.5px solid #ffa98a;
+  background: transparent; border: 1.5px solid #a1a1a6;
 }
-.cs-final .cs-annotated li[data-n]::before { border-color: #7fd69a; }
-.cs-concept .cs-annotated li[data-n]::before { border-color: #b9a6ff; }
+.cs-final .cs-annotated li[data-n]::before { border-color: #a1a1a6; }
+.cs-concept .cs-annotated li[data-n]::before { border-color: #a1a1a6; }
 .cs-copy .cs-annotated li:not([data-n]) { padding-left: 34px; }
 .cs-copy .cs-annotated li:not([data-n])::before { left: 6px; }
 
 /* Offers landscape */
 .cs-families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
 .cs-family { padding: 28px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
-.cs-family .cs-step { color: #e0704f; }
+.cs-family .cs-step { color: #6e6e73; }
 .cs-family h3 { margin-top: 8px; font-size: 1.1rem; font-weight: 600; color: var(--text-strong); }
 .cs-family ul { margin-top: 16px; display: grid; gap: 10px; }
 .cs-family li { position: relative; padding-left: 18px; font-size: 0.95rem; line-height: 1.5; }
-.cs-family li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: #e0704f; }
-.cs-across { margin-top: 16px; padding: 20px 24px; border-radius: 20px; background: rgba(224, 112, 79, 0.08); font-size: 0.98rem; color: var(--text-strong); }
-.cs-across span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-family li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: #6e6e73; }
+.cs-across { margin-top: 16px; padding: 20px 24px; border-radius: 20px; background: var(--card); font-size: 0.98rem; color: var(--text-strong); }
+.cs-across span { display: block; margin-bottom: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #6e6e73; }
 
 /* Before / after */
 .cs-table { border-top: 1px solid var(--line); }
@@ -184,7 +184,7 @@
 .cs-row > :first-child { color: var(--text-strong); font-weight: 500; }
 .cs-row > :last-child { color: var(--text-strong); }
 .cs-head { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faint); }
-.cs-head > :last-child { color: #e0704f; }
+.cs-head > :last-child { color: #6e6e73; }
 
 /* Outcome */
 .cs-markets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
