@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=58">
-  <link rel="stylesheet" href="case.css?v=27">
+  <link rel="stylesheet" href="case.css?v=29">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -67,21 +67,13 @@
         <div><dt>Surface</dt><dd>Product page, Amazon Shopping app</dd></div>
         <div><dt>Team</dt><dd>6 PMs across India, UAE, Mexico and Brazil · 4 researchers · 16 engineers</dd></div>
       </dl>
-    </section>
-
-    <!-- My role -->
-    <section class="cs-wrap" aria-label="My role">
-      <p class="cs-role reveal">
-        <span>My role</span>
-        I owned this work from start to finish. I framed the problem, planned and ran the usability research
-        across five marketplaces, designed every version from 2024 to the 2027 concept, and took each one
-        through review with product, engineering and leadership in every marketplace it launched in.
-      </p>
+      <p class="cs-owner">I owned this end to end: I framed the problem, ran the research across five marketplaces, designed every version and took each one through review in every market it launched in.</p>
     </section>
 
     <!-- Problem -->
     <section class="cs-wrap cs-text" aria-labelledby="h-problem">
       <h2 class="cs-label" id="h-problem">The problem</h2>
+      <p class="cs-statement reveal">The savings were real. Customers just couldn’t see them.</p>
       <p class="reveal">
         On the 2023 product page, savings came in many shapes: a line of text for one card, a carousel of offer
         types, a separate coupon row, exchange and cashback. Each offer was written as a condition, such as
@@ -98,9 +90,11 @@
     </section>
 
 
-    <!-- Offers landscape -->
-    <section class="cs-wrap" aria-labelledby="h-landscape">
-      <h2 class="cs-label" id="h-landscape">The offers landscape</h2>
+    <!-- Context: the offers, then the customers -->
+    <section class="cs-wrap" aria-labelledby="h-context">
+      <h2 class="cs-label" id="h-context">Context</h2>
+      <p class="cs-statement reveal">More than nine kinds of offer. Three owners. Five very different markets.</p>
+      <h3 class="cs-h3 reveal">The offers</h3>
       <p class="cs-intro reveal">
         Across ten markets, a single product can carry more than nine kinds of offer, from different owners:
         sellers, banks and Amazon itself. Simplified, they all come down to three things.
@@ -137,11 +131,8 @@
         <span>And across all three</span>
         Instalment plans: interest-free or with interest, with or without a bank discount on top.
       </p>
-    </section>
 
-    <!-- Customer insights -->
-    <section class="cs-wrap" aria-labelledby="h-insights">
-      <h2 class="cs-label" id="h-insights">Customer insights across markets</h2>
+      <h3 class="cs-h3 reveal">The customers</h3>
       <p class="cs-scope reveal">Research focused on our five largest markets: India, UAE, Saudi Arabia, Brazil and Mexico.</p>
       <p class="cs-pattern reveal">
         <span>True everywhere</span>
@@ -196,6 +187,7 @@
     <!-- Research and leadership (to fill in) -->
     <section class="cs-wrap" aria-labelledby="h-research">
       <h2 class="cs-label" id="h-research">Research and leadership alignment</h2>
+      <p class="cs-statement reveal">Tested with 140 customers. Agreed with every market before it shipped.</p>
       <div class="cs-two">
         <div class="reveal">
           <h3>Research</h3>
@@ -240,7 +232,7 @@
     <section class="cs-dark" aria-labelledby="h-versions">
       <div class="cs-wrap">
         <h2 class="cs-label" id="h-versions">One idea, three versions</h2>
-        <p class="cs-intro reveal">Starting from the page I inherited, each version kept what worked and fixed what the last one got wrong.</p>
+        <p class="cs-statement reveal">Each version kept what worked and fixed what the last one got wrong.</p>
 
         <div class="cs-strip reveal" aria-hidden="true">
           <figure><img src="assets/work/value/pdp-v1.webp?v=4" alt="" loading="lazy"><figcaption>2023</figcaption></figure>
@@ -279,9 +271,11 @@
             <ul class="cs-annotated">
               <li data-n="1">Offers grouped into ready-made combinations, each labelled with its result: <strong>“Buy for ₹X”</strong>.</li>
               <li data-n="2">Every offer type gathered behind one “See all offers &amp; discounts” row.</li>
-              <li>Fewer rows competing for attention.</li>
             </ul>
+            <details class="cs-more">
+              <summary>Read more</summary>
             <div class="cs-sub-block">
+              <p class="cs-sub-text">It also meant fewer rows competing for attention.</p>
               <h4 class="cs-sub">Decision making</h4>
               <p class="cs-sub-text">The open question was whether “Buy for” callouts would work at all. Would customers trust a price the page had worked out for them, and would they understand that a coupon and a bank offer had been stacked to reach it? We also chose to show several “Buy for” callouts side by side, one per combination, so customers could compare them.</p>
               <p class="cs-sub-text">Research said yes: customers understood the “Buy for” price and the stacking straight away, and valued it. The one wrinkle was the same coupon repeating in each callout, which caused a brief moment of doubt that customers resolved on their own within seconds.</p>
@@ -289,6 +283,7 @@
               <p class="cs-sub-text">Working out the net effective price: the price after every discount the customer is eligible for and that can be stacked. Each offer has its own rules, such as which cards it applies to and whether it combines with others, so every combination had to be checked for eligibility and stackability before the page could show a single, trustworthy “Buy for” price.</p>
             </div>
             <p class="cs-note"><span>What we learned</span>Leading with the monthly EMI price pushed the real price into second place, and the total still ignored the savings.</p>
+            </details>
           </div>
         </article>
 
@@ -307,6 +302,8 @@
               <li data-n="3">Offers are applied right inside the widget. In 2024, customers had to leave it to apply them.</li>
               <li data-n="4">Opens on the tab that suits the customer: No Cost EMI for those likely to pay in instalments.</li>
             </ul>
+            <details class="cs-more">
+              <summary>Read more</summary>
             <div class="cs-sub-block">
               <h4 class="cs-sub">Decision making</h4>
               <p class="cs-sub-text">Two questions shaped this version. Would customers actually use the tabs, or scroll past them? And would they understand a “Buy for” price worked out backwards from their own saved card?</p>
@@ -320,6 +317,7 @@
               </ol>
             </div>
             <p class="cs-note"><span>What we learned after launch</span>Customers loved the tabs because they made instalments easy to discover, so we changed one thing: the tab they land on now depends on how likely they are to pay in instalments. One issue remained: the offer combination on the other tab still went unseen. The 2027 concept puts both side by side.</p>
+            </details>
           </div>
         </article>
 
@@ -338,9 +336,11 @@
               <li data-n="3">Both come to ₹20,800, so No Cost EMI clearly costs nothing extra.</li>
               <li data-n="4">“Lowest: ₹20,300 with HSBC Credit Card” shows the best price openly, even on a card the customer doesn’t have.</li>
               <li data-n="5">“Buy 3, get 6% off · add 1 more” turns a quantity deal into a goal, with a progress bar.</li>
-              <li>No box and no nesting, so the module sits naturally in the page.</li>
             </ul>
-            <p class="cs-note"><span>Why this concept</span>Built to make the page simpler and to help customers see the price they’ll pay upfront, with the best bank offer applied in one tap. It solves what remained after 2026: both ways to pay, and their offers, are visible at once.</p>
+            <details class="cs-more">
+              <summary>Read more</summary>
+            <p class="cs-note"><span>Why this concept</span>Built to make the page simpler and to help customers see the price they’ll pay upfront, with the best bank offer applied in one tap. It solves what remained after 2026: both ways to pay, and their offers, are visible at once. With no box and no nesting, the module also sits naturally in the page.</p>
+            </details>
           </div>
         </article>
       </div>
@@ -350,29 +350,34 @@
     <!-- Before / after -->
     <section class="cs-wrap" aria-labelledby="h-changed">
       <h2 class="cs-label" id="h-changed">What changed</h2>
+      <p class="cs-statement reveal">Drag to compare the page I inherited with the one that launched.</p>
+      <div class="cs-compare reveal" style="--pos: 50%">
+        <div class="cs-compare-stage">
+          <img class="cs-after" src="assets/work/value/pdp-v3.webp?v=4" width="866" height="1764" loading="lazy" alt="2026 product page, launched">
+          <img class="cs-before" src="assets/work/value/pdp-v1.webp?v=4" width="866" height="1764" loading="lazy" alt="2023 product page, inherited">
+          <span class="cs-compare-line" aria-hidden="true"><i>‹ ›</i></span>
+          <input type="range" min="0" max="100" value="50" aria-label="Compare the 2023 and 2026 product pages">
+        </div>
+        <div class="cs-compare-tags" aria-hidden="true"><span>2023</span><span>2026 · Launched</span></div>
+      </div>
       <div class="cs-table reveal" role="table" aria-label="Before and after">
         <div class="cs-row cs-head" role="row"><span role="columnheader"></span><span role="columnheader">2023</span><span role="columnheader">2026 · Launched</span></div>
         <div class="cs-row" role="row"><span role="rowheader">How offers are shown</span><span role="cell">Offer types to decode</span><span role="cell">Prices you pay</span></div>
         <div class="cs-row" role="row"><span role="rowheader">Combining offers</span><span role="cell">Left to the customer</span><span role="cell">Done by the page</span></div>
         <div class="cs-row" role="row"><span role="rowheader">Relevance</span><span role="cell">Generic bank offers</span><span role="cell">Your cards and coupons</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Paying monthly</span><span role="cell">A separate offer</span><span role="cell">Its own tab, savings included</span></div>
         <div class="cs-row" role="row"><span role="rowheader">Effort</span><span role="cell">About six formats to scan</span><span role="cell">One combination, one tap</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">The best deal</span><span role="cell">Hard to find</span><span role="cell">Your best combination, ready to apply</span></div>
       </div>
     </section>
 
     <!-- Outcome -->
     <section class="cs-wrap cs-text" aria-labelledby="h-outcome">
       <h2 class="cs-label" id="h-outcome">Outcome</h2>
+      <p class="cs-statement reveal">Conversion went up.</p>
       <p class="reveal">
-        The new offers experience launched on the product page in multiple emerging markets, and
-        <strong>conversion went up</strong>. Customers now see what they’ll pay, with their own cards and coupons
+        The new offers experience launched on the product page in multiple emerging markets.
+        Customers now see what they’ll pay, with their own cards and coupons
         already counted, and can lock in that price with one tap.
       </p>
-      <ul class="cs-markets reveal" aria-label="Markets">
-        <li>India</li><li>UAE</li><li>Saudi Arabia</li><li>Egypt</li><li>Turkey</li>
-        <li>Australia</li><li>Singapore</li><li>Brazil</li><li>Mexico</li><li>South Africa</li>
-      </ul>
     </section>
 
     <!-- Reflection -->
@@ -386,6 +391,19 @@
       <blockquote class="cs-quote reveal">
         My advice to any team attempting this: lay the groundwork years before you build the experience.
       </blockquote>
+    </section>
+
+    <!-- Up next -->
+    <section class="cs-wrap" aria-label="Up next">
+      <a class="cs-upnext reveal" href="/#p-checkout">
+        <div class="cs-upnext-text">
+          <p class="cs-kicker">Up next</p>
+          <h2>One-tap in-context checkout</h2>
+          <p>Buy without leaving the page you’re on. Case study coming soon.</p>
+          <span class="cs-upnext-link">See it on the home page <span aria-hidden="true">›</span></span>
+        </div>
+        <img src="assets/work/checkout-sheet.jpg" alt="" loading="lazy">
+      </a>
       <a class="cs-next" href="/#work">See all work <span aria-hidden="true">›</span></a>
     </section>
   </main>
@@ -406,6 +424,12 @@
       }, { rootMargin: '0px 0px -8% 0px' });
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
     }
+
+    // Before/after: the range input sets how much of the 2023 page shows
+    document.querySelectorAll('.cs-compare').forEach((c) => {
+      const r = c.querySelector('input');
+      r.addEventListener('input', () => c.style.setProperty('--pos', r.value + '%'));
+    });
 
     // Hovering a numbered point highlights its pin on the mock
     document.querySelectorAll('.cs-version').forEach((v) => {

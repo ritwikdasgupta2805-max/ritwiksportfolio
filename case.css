@@ -283,3 +283,110 @@
   text-transform: none !important; letter-spacing: -0.005em !important; font-size: 0.9rem !important; font-weight: 600 !important;
 }
 .cs-strip figcaption { letter-spacing: 0; font-size: 0.85rem; font-weight: 600; }
+
+/* ---------- Apple pass: fewer boxes, bigger statements, bigger numbers ----------
+   Later in the file on purpose, so it overrides the card styles above. */
+
+/* Highlights: huge numbers in plain text, one row */
+.cs-stats { margin-top: 72px; gap: 32px; }
+.cs-stats li { padding: 0; border-radius: 0; background: none; }
+.cs-stat { font-size: clamp(3rem, 6vw, 4.75rem); letter-spacing: -0.045em; line-height: 1; }
+.cs-stat-label { margin-top: 10px; font-size: 1rem; color: #6e6e73; }
+
+/* One-line ownership under the facts */
+.cs-owner { max-width: 720px; margin: 20px 4px 0; font-size: 1rem; line-height: 1.6; color: #6e6e73; }
+
+/* Each section leads with one large statement */
+.cs-statement, .cs-text .cs-statement {
+  max-width: 18em; margin-bottom: 40px;
+  font-size: clamp(1.9rem, 4.2vw, 3.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.035em; color: var(--text-strong);
+}
+.cs-label { margin-bottom: 16px; font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; color: #6e6e73; } /* the label becomes a quiet eyebrow */
+.cs-h3 { margin: 64px 0 16px; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-strong); }
+.cs-intro { max-width: 40em; font-size: 1.1rem; line-height: 1.6; }
+.cs-text p:not(.cs-statement) { font-size: 1.1rem; line-height: 1.65; }
+
+/* Offer families and markets: plain columns separated by hairlines, no cards */
+.cs-family, .cs-markets-grid li { padding: 20px 0 0; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.12); border-radius: 0; background: none; }
+.cs-families { gap: 40px; }
+.cs-family h3 { font-size: 1.3rem; }
+.cs-across { padding: 0; margin-top: 32px; background: none; font-size: 1.05rem; }
+.cs-markets-grid { gap: 28px; }
+.cs-pattern { padding: 0; border: 0; background: none; font-size: clamp(1.2rem, 2vw, 1.45rem); font-weight: 500; line-height: 1.45; letter-spacing: -0.015em; max-width: 34em; }
+.cs-scope { margin: 0 0 20px; }
+
+/* Principles: three big lines */
+.cs-principles { grid-template-columns: 1fr; gap: 0; }
+.cs-principles li { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 28px 0; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.12); border-radius: 0; background: none; }
+.cs-principles li::before { margin: 0; font-size: 1rem; font-weight: 600; letter-spacing: 0; }
+.cs-principles h3 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+.cs-principles p { margin: 0; font-size: 1.05rem; }
+
+/* Research: plain text, big figures, numbered findings without cards */
+.cs-mini-stats { gap: 28px; }
+.cs-mini-stats li { flex: none; padding: 0; border: 0; background: none; font-size: 0.95rem; color: #6e6e73; }
+.cs-mini-stats span { font-size: 2.6rem; letter-spacing: -0.04em; }
+.cs-findings { gap: 0; }
+.cs-findings li { padding: 16px 0 16px 40px; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-radius: 0; background: none; font-size: 1rem; }
+.cs-findings li::before { left: 0; top: 18px; }
+.cs-groups { gap: 0; }
+.cs-groups li { padding: 14px 0 14px 20px; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-radius: 0; background: none; font-size: 1rem; }
+.cs-groups li::before { left: 2px; top: 23px; width: 6px; height: 6px; }
+.cs-two h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+
+/* Versions: bigger phone, bigger headline, detail tucked behind Read more */
+.cs-version { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 88px; margin-top: 160px; }
+.cs-copy h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+.cs-copy ul { margin-top: 28px; gap: 14px; }
+.cs-copy li { font-size: 1.05rem; }
+.cs-note { background: none; padding: 0; margin-top: 24px; font-size: 1rem; }
+.cs-more { margin-top: 24px; }
+.cs-more summary { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; list-style: none; font-size: 1.05rem; color: #2997ff; }
+.cs-more summary::-webkit-details-marker { display: none; }
+.cs-more summary::after { content: "+"; font-size: 1.2rem; line-height: 1; }
+.cs-more[open] summary::after { content: "−"; }
+.cs-more summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cs-more[open] summary { margin-bottom: 4px; }
+.cs-more .cs-sub-block { margin-top: 20px; }
+
+/* Before / after you can drag */
+.cs-compare { --w: clamp(260px, 30vw, 360px); width: var(--w); margin: 8px auto 72px; }
+.cs-compare-stage { position: relative; aspect-ratio: 866 / 1764; }
+.cs-compare-stage img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cs-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.cs-compare-line { position: absolute; top: 2%; bottom: 2%; left: var(--pos); width: 2px; margin-left: -1px; background: #1d1d1f; box-shadow: 0 0 0 1.5px #fff; pointer-events: none; }
+.cs-compare-line i { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #1d1d1f; color: #fff; font-style: normal; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; box-shadow: 0 0 0 2px #fff, 0 6px 16px rgba(0, 0, 0, 0.25); }
+.cs-compare input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.cs-compare input:focus-visible + * , .cs-compare:focus-within .cs-compare-line i { outline: 2px solid #0071e3; outline-offset: 2px; }
+.cs-compare-tags { display: flex; justify-content: space-between; margin-top: 16px; font-size: 0.95rem; font-weight: 600; color: #6e6e73; }
+
+/* Up next: a large card leading to the next case study */
+.cs-upnext { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; margin-top: 128px; padding: 48px; border-radius: 32px; background: #fff; overflow: hidden; color: inherit; }
+.cs-upnext h2 { margin-top: 8px; font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--text-strong); }
+.cs-upnext p:not(.cs-kicker) { margin-top: 14px; font-size: 1.1rem; color: #6e6e73; }
+.cs-upnext-link { display: inline-flex; gap: 6px; margin-top: 24px; font-size: 1.05rem; color: var(--link); }
+.cs-upnext:hover .cs-upnext-link { text-decoration: underline; text-underline-offset: 3px; }
+.cs-upnext img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
+.cs-upnext + .cs-next { margin-top: 32px; }
+
+@media (max-width: 1024px) {
+  .cs-stats { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+  .cs-version { grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 48px; }
+  .cs-markets-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .cs-stats { margin-top: 56px; gap: 36px 20px; }
+  .cs-stat { font-size: 3rem; }
+  .cs-statement { font-size: 2rem; margin-bottom: 28px; }
+  .cs-label { margin-top: 96px; }
+  .cs-families, .cs-markets-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cs-principles li { grid-template-columns: 40px 1fr; row-gap: 8px; }
+  .cs-principles li p { grid-column: 2; }
+  .cs-principles h3 { font-size: 1.6rem; }
+  .cs-version { grid-template-columns: 1fr; gap: 32px; margin-top: 104px; }
+  .cs-phone { width: 82%; }
+  .cs-copy h3 { font-size: 1.9rem; }
+  .cs-compare { --w: 78vw; margin-bottom: 56px; }
+  .cs-upnext { grid-template-columns: 1fr; gap: 28px; padding: 28px; border-radius: 24px; margin-top: 96px; }
+  .cs-upnext img { order: -1; }
+}
