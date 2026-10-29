@@ -2,7 +2,7 @@
    Builds on styles.css (colours, type, background, footer). */
 
 .case main, .case .foot { position: relative; z-index: 2; }
-.case { --link: #0066cc; }
+.case { --link: var(--text-strong); } /* links in the text colour, bold, with an arrow: no blue */
 .cs-wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
 .case .foot-inner { max-width: 1080px; } /* line the footer up with the content */
 
@@ -14,8 +14,8 @@
 }
 .cs-nav-inner { max-width: 1080px; height: 52px; margin: 0 auto; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; }
 .cs-nav-name { display: inline-flex; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text-strong); }
-.cs-nav-name span { font-size: 1.5rem; font-weight: 400; line-height: 1; margin-top: -3px; color: #0066cc; }
-.cs-nav-name:hover { color: #0066cc; }
+.cs-nav-name span { font-size: 1.5rem; font-weight: 400; line-height: 1; margin-top: -3px; color: var(--text-strong); }
+.cs-nav-name:hover { color: #6e6e73; }
 
 /* Intro */
 .cs-hero { padding-top: 80px; padding-bottom: 8px; }
@@ -216,7 +216,7 @@
 /* Outcome */
 .cs-markets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 .cs-markets li { padding: 6px 14px; border-radius: 999px; background: rgba(20, 18, 16, 0.05); font-size: 0.85rem; font-weight: 500; color: var(--text-strong); }
-.cs-next { display: inline-flex; gap: 6px; margin: 64px 0 128px; font-size: 1.05rem; color: var(--link); }
+.cs-next { display: inline-flex; gap: 6px; margin: 64px 0 128px; font-size: 1.05rem; font-weight: 500; color: var(--link); }
 .cs-next span { transition: transform 0.2s; }
 .cs-next:hover { text-decoration: underline; text-underline-offset: 3px; }
 .cs-next:hover span { transform: translateX(3px); }
@@ -342,7 +342,7 @@
 .cs-copy li { font-size: 1.05rem; }
 .cs-note { background: none; padding: 0; margin-top: 24px; font-size: 1rem; }
 .cs-more { margin-top: 24px; }
-.cs-more summary { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; list-style: none; font-size: 1.05rem; color: #2997ff; }
+.cs-more summary { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; list-style: none; font-size: 1.05rem; font-weight: 500; color: var(--text-strong); }
 .cs-more summary::-webkit-details-marker { display: none; }
 .cs-more summary::after { content: "+"; font-size: 1.2rem; line-height: 1; }
 .cs-more[open] summary::after { content: "−"; }
@@ -358,14 +358,14 @@
 .cs-compare-line { position: absolute; top: 2%; bottom: 2%; left: var(--pos); width: 2px; margin-left: -1px; background: #1d1d1f; box-shadow: 0 0 0 1.5px #fff; pointer-events: none; }
 .cs-compare-line i { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #1d1d1f; color: #fff; font-style: normal; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; box-shadow: 0 0 0 2px #fff, 0 6px 16px rgba(0, 0, 0, 0.25); }
 .cs-compare input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
-.cs-compare input:focus-visible + * , .cs-compare:focus-within .cs-compare-line i { outline: 2px solid #0071e3; outline-offset: 2px; }
+.cs-compare input:focus-visible + * , .cs-compare:focus-within .cs-compare-line i { outline: 2px solid #1d1d1f; outline-offset: 2px; }
 .cs-compare-tags { display: flex; justify-content: space-between; margin-top: 16px; font-size: 0.95rem; font-weight: 600; color: #6e6e73; }
 
 /* Up next: a large card leading to the next case study */
 .cs-upnext { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; margin-top: 128px; padding: 48px; border-radius: 32px; background: #fff; overflow: hidden; color: inherit; }
 .cs-upnext h2 { margin-top: 8px; font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--text-strong); }
 .cs-upnext p:not(.cs-kicker) { margin-top: 14px; font-size: 1.1rem; color: #6e6e73; }
-.cs-upnext-link { display: inline-flex; gap: 6px; margin-top: 24px; font-size: 1.05rem; color: var(--link); }
+.cs-upnext-link { display: inline-flex; gap: 6px; margin-top: 24px; font-size: 1.05rem; font-weight: 500; color: var(--link); }
 .cs-upnext:hover .cs-upnext-link { text-decoration: underline; text-underline-offset: 3px; }
 .cs-upnext img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; }
 .cs-upnext + .cs-next { margin-top: 32px; }

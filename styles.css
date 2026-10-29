@@ -152,7 +152,7 @@ strong { color: var(--text-strong); font-weight: 500; }
   background: rgba(20, 18, 16, 0.05); padding: 4px 12px; border-radius: 999px;
 }
 
-.arrow-link { display: inline-flex; gap: 6px; margin-top: 32px; color: #0066cc; } /* Apple blue: only on things you can tap */
+.arrow-link { display: inline-flex; gap: 6px; margin-top: 32px; font-weight: 500; color: var(--text-strong); }
 .arrow-link span { display: inline-block; transition: transform 0.2s; }
 .arrow-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 .arrow-link:hover span { transform: translate(3px, -3px); }
@@ -223,7 +223,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 .foot { position: relative; z-index: 2; font-size: 0.85rem; color: var(--faint); }
 .foot-inner { max-width: 1280px; margin: 0 auto; padding: 48px; }
-.dot:focus-visible, .car-btn:focus-visible, .learn-more:focus-visible { outline: 2px solid #2997ff; outline-offset: 2px; }
+.dot:focus-visible, .car-btn:focus-visible, .learn-more:focus-visible { outline: 2px solid #f5f5f7; outline-offset: 2px; }
 
 .fw-media {
   --clip: 0%;
@@ -272,7 +272,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 }
 
 .foot p + p { margin-top: 6px; }
-.foot a { color: #0066cc; }
+.foot a { color: var(--text-strong); font-weight: 500; }
 .foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 640px) {
