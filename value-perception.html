@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=53">
-  <link rel="stylesheet" href="case.css?v=9">
+  <link rel="stylesheet" href="case.css?v=10">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -49,12 +49,22 @@
       </p>
 
       <dl class="cs-meta">
-        <div><dt>Role</dt><dd>Lead designer, end to end</dd></div>
+        <div><dt>Role</dt><dd>Sole designer, end to end</dd></div>
         <div><dt>Timeline</dt><dd>2023 – 2026, concept for 2027</dd></div>
         <div><dt>Surface</dt><dd>Product detail page, Amazon Shopping app</dd></div>
         <div><dt>Reach</dt><dd>10 emerging markets</dd></div>
         <div class="cs-team"><dt>Team</dt><dd>6 product managers across India, UAE, Mexico and Brazil · 3 directors · 4 researchers · 16 engineers</dd></div>
       </dl>
+    </section>
+
+    <!-- My role -->
+    <section class="cs-wrap" aria-label="My role">
+      <p class="cs-role reveal">
+        <span>My role</span>
+        I owned this work from start to finish. I framed the problem, planned and ran the usability research
+        across five marketplaces, designed every version from 2024 to the 2027 concept, and took each one
+        through review with product, engineering and leadership in every marketplace it launched in.
+      </p>
     </section>
 
     <!-- Results up front -->
@@ -160,24 +170,6 @@
       </ul>
     </section>
 
-    <!-- Business view per market (to fill in) -->
-    <section class="cs-wrap" aria-labelledby="h-business">
-      <h2 class="cs-label" id="h-business">What matters to each market</h2>
-      <div class="cs-table reveal" role="table" aria-label="Business priorities by market">
-        <div class="cs-row cs-head" role="row"><span role="columnheader">Market</span><span role="columnheader">Business priority</span><span role="columnheader">Key offer types</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">India</span><span role="cell" class="cs-tbd">—</span><span role="cell">Bank card discounts, by far the biggest</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">UAE</span><span role="cell" class="cs-tbd">—</span><span role="cell">Gift code coupons; Amazon credit card shopping points</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Saudi Arabia</span><span role="cell" class="cs-tbd">—</span><span role="cell">Amazon credit card shopping points</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Egypt</span><span role="cell" class="cs-tbd">—</span><span role="cell">Like Turkey: mostly gift code coupons. No bank discounts</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Turkey</span><span role="cell" class="cs-tbd">—</span><span role="cell">Gift code coupons; Amazon credit card shopping points. No bank discounts</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Australia</span><span role="cell" class="cs-tbd">—</span><span role="cell">No bank discounts</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Singapore</span><span role="cell" class="cs-tbd">—</span><span role="cell">No bank discounts</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Brazil</span><span role="cell" class="cs-tbd">—</span><span role="cell">Interest-free instalment plans and gift code coupons</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Mexico</span><span role="cell" class="cs-tbd">—</span><span role="cell">Interest-free instalment plans and gift code coupons</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">South Africa</span><span role="cell" class="cs-tbd">—</span><span role="cell">Like Turkey: mostly gift code coupons. No bank discounts</span></div>
-      </div>
-    </section>
-
     <!-- Principles -->
     <section class="cs-wrap" aria-labelledby="h-principles">
       <h2 class="cs-label" id="h-principles">Principles</h2>
@@ -246,14 +238,15 @@
           <figure class="cs-phone reveal">
             <img src="assets/work/value/pdp-v1.webp?v=3" loading="lazy" width="450" height="942"
                  alt="2023 product page: an Offers carousel of No Cost EMI, Bank Offer and Cashback cards, a coupon row, exchange, accessories and protection plans, with a total of ₹23,999">
+            <span class="cs-pin" style="left:91.1%;top:37.4%" data-n="1" aria-hidden="true">1</span><span class="cs-pin" style="left:34.0%;top:39.3%" data-n="2" aria-hidden="true">2</span><span class="cs-pin" style="left:42.0%;top:85.8%" data-n="3" aria-hidden="true">3</span>
           </figure>
           <div class="cs-copy reveal">
             <p class="cs-step">01 · 2023 · When I joined</p>
             <h3>What I inherited: offers to decode</h3>
-            <ul>
-              <li>Savings spread across about six different formats.</li>
-              <li>Offers written as conditions, not prices.</li>
-              <li>The total showed the full price, ₹23,999.</li>
+            <ul class="cs-annotated">
+              <li data-n="1">Savings spread across about six different formats.</li>
+              <li data-n="2">Offers written as conditions, not prices.</li>
+              <li data-n="3">The total showed the full price, ₹23,999.</li>
             </ul>
             <p class="cs-note"><span>Takeaway</span>The page listed offers. It never told customers what they would pay.</p>
           </div>
@@ -263,13 +256,14 @@
           <figure class="cs-phone reveal">
             <img src="assets/work/value/pdp-v2.webp?v=2" loading="lazy" width="450" height="942"
                  alt="2024 product page: offer combinations shown as cards labelled ‘Buy for’ a price, with a single ‘See all offers &amp; discounts’ row">
+            <span class="cs-pin" style="left:5.3%;top:45.4%" data-n="1" aria-hidden="true">1</span><span class="cs-pin" style="left:65.8%;top:59.0%" data-n="2" aria-hidden="true">2</span>
           </figure>
           <div class="cs-copy reveal">
             <p class="cs-step">02 · 2024</p>
             <h3>Show the result, not the offer</h3>
-            <ul>
-              <li>Offers grouped into ready-made combinations, each labelled with its result: <strong>“Buy for ₹X”</strong>.</li>
-              <li>Every offer type gathered behind one “See all offers &amp; discounts” row.</li>
+            <ul class="cs-annotated">
+              <li data-n="1">Offers grouped into ready-made combinations, each labelled with its result: <strong>“Buy for ₹X”</strong>.</li>
+              <li data-n="2">Every offer type gathered behind one “See all offers &amp; discounts” row.</li>
               <li>Fewer rows competing for attention.</li>
             </ul>
             <div class="cs-sub-block">
@@ -286,15 +280,16 @@
           <figure class="cs-phone reveal">
             <img src="assets/work/value/pdp-v3.webp" loading="lazy" width="450" height="942"
                  alt="2026 product page: tabs for ‘Buy for ₹20,900’ and ‘No Cost EMI ₹2,322 × 9m’, with a combination using the customer’s HDFC card and a coupon">
+            <span class="cs-pin" style="left:6.7%;top:34.2%" data-n="1" aria-hidden="true">1</span><span class="cs-pin" style="left:63.5%;top:54.1%" data-n="2" aria-hidden="true">2</span><span class="cs-pin" style="left:71.6%;top:46.9%" data-n="3" aria-hidden="true">3</span><span class="cs-pin" style="left:91.6%;top:34.2%" data-n="4" aria-hidden="true">4</span>
           </figure>
           <div class="cs-copy reveal">
             <p class="cs-step">03 · 2026 · Launched</p>
             <h3>Personal, and organised by how you pay</h3>
-            <ul>
-              <li>Tabs for how you pay, pay in full or No Cost EMI, each with savings already included (₹2,322 a month, down from ₹2,433).</li>
-              <li>Uses the customer’s own saved card (HDFC ••0424) and shows what each part saves.</li>
-              <li>One Apply for the whole combination.</li>
-              <li>Opens on the tab that suits the customer: No Cost EMI for those likely to pay in instalments.</li>
+            <ul class="cs-annotated">
+              <li data-n="1">Tabs for how you pay, pay in full or No Cost EMI, each with savings already included (₹2,322 a month, down from ₹2,433).</li>
+              <li data-n="2">Uses the customer’s own saved card (HDFC ••0424) and shows what each part saves.</li>
+              <li data-n="3">One Apply for the whole combination.</li>
+              <li data-n="4">Opens on the tab that suits the customer: No Cost EMI for those likely to pay in instalments.</li>
             </ul>
             <div class="cs-sub-block">
               <h4 class="cs-sub">Decision making</h4>
@@ -310,19 +305,20 @@
           <figure class="cs-phone reveal">
             <img src="assets/work/value/pdp-v4.webp" loading="lazy" width="450" height="942"
                  alt="2027 concept: two rows, ‘Pay in full ₹20,800’ and ‘No Cost EMI ₹2,311 × 9m’, each with an Apply button, a ‘Lowest: ₹20,300 with HSBC Credit Card’ line and a ‘Buy 3, get 6% off’ progress bar">
+            <span class="cs-pin" style="left:90.7%;top:38.4%" data-n="1" aria-hidden="true">1</span><span class="cs-pin" style="left:8.9%;top:36.1%" data-n="2" aria-hidden="true">2</span><span class="cs-pin" style="left:47.6%;top:39.1%" data-n="3" aria-hidden="true">3</span><span class="cs-pin" style="left:71.6%;top:58.4%" data-n="4" aria-hidden="true">4</span><span class="cs-pin" style="left:56.0%;top:65.8%" data-n="5" aria-hidden="true">5</span>
           </figure>
           <div class="cs-copy reveal">
             <p class="cs-step">04 · 2027 · Concept</p>
-            <h3>Apply the best bank offer in one tap</h3>
-            <ul>
-              <li>Bank offers are applied for you: each way to pay shows the card and coupon it uses, with its own <strong>Apply</strong>.</li>
-              <li>Pay in full and No Cost EMI sit side by side instead of behind tabs, so the best combination for each way to pay is visible at once.</li>
-              <li>Both come to ₹20,800, so No Cost EMI clearly costs nothing extra.</li>
-              <li>“Lowest: ₹20,300 with HSBC Credit Card” shows the best price openly, even on a card the customer doesn’t have.</li>
-              <li>“Buy 3, get 6% off · add 1 more” turns a quantity deal into a goal, with a progress bar.</li>
+            <h3>The price you’ll pay, upfront and simple</h3>
+            <ul class="cs-annotated">
+              <li data-n="1">Bank offers are applied for you: each way to pay shows the card and coupon it uses, with its own <strong>Apply</strong>.</li>
+              <li data-n="2">Pay in full and No Cost EMI sit side by side instead of behind tabs, so the best combination for each way to pay is visible at once.</li>
+              <li data-n="3">Both come to ₹20,800, so No Cost EMI clearly costs nothing extra.</li>
+              <li data-n="4">“Lowest: ₹20,300 with HSBC Credit Card” shows the best price openly, even on a card the customer doesn’t have.</li>
+              <li data-n="5">“Buy 3, get 6% off · add 1 more” turns a quantity deal into a goal, with a progress bar.</li>
               <li>No box and no nesting, so the module sits naturally in the page.</li>
             </ul>
-            <p class="cs-note"><span>Status</span>A concept for 2027, building on what we learned from the 2026 launch.</p>
+            <p class="cs-note"><span>Why this concept</span>Built to make the page simpler and to help customers see the price they’ll pay upfront, with the best bank offer applied in one tap. It solves what remained after 2026: both ways to pay, and their offers, are visible at once.</p>
           </div>
         </article>
       </div>
@@ -375,6 +371,16 @@
       }, { rootMargin: '0px 0px -8% 0px' });
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
     }
+
+    // Hovering a numbered point highlights its pin on the mock
+    document.querySelectorAll('.cs-version').forEach((v) => {
+      v.querySelectorAll('.cs-annotated li[data-n]').forEach((li) => {
+        const pin = v.querySelector(`.cs-pin[data-n="${li.dataset.n}"]`);
+        if (!pin) return;
+        li.addEventListener('mouseenter', () => pin.classList.add('on'));
+        li.addEventListener('mouseleave', () => pin.classList.remove('on'));
+      });
+    });
 
     // Colour journey: the page starts in the home page's peach and ripens into
     // mint green, the colour of savings, as you read down the case study.
