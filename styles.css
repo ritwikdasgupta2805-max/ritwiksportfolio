@@ -454,9 +454,25 @@ strong { color: var(--text-strong); font-weight: 500; }
   .ap h5 { font-size: 1.15rem; }
 }
 
-/* Portrait above the greeting: small, round, with a hairline ring */
-.portrait { display: block; width: 72px; height: 72px; margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08); }
+/* Portrait above the greeting: large, black and white, warming to colour on hover */
+.portrait {
+  display: block; width: 112px; height: 112px; margin-bottom: 28px; border-radius: 50%;
+  filter: grayscale(1) contrast(1.15) brightness(1.02);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 18px 40px -12px rgba(0, 0, 0, 0.35);
+  transition: filter 0.8s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.portrait:hover { filter: none; transform: scale(1.04); }
 .intro .portrait { animation: intro-rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s both; }
-@media (min-width: 1025px) and (max-height: 820px) { .portrait { width: 60px; height: 60px; margin-bottom: 14px; } }
-@media (max-width: 640px) { .portrait { width: 64px; height: 64px; margin-bottom: 16px; } }
+@media (min-width: 1025px) and (max-height: 960px) { .portrait { width: 88px; height: 88px; margin-bottom: 18px; } }
+@media (min-width: 1025px) and (max-height: 960px) {
+  .side { padding: 56px 0 40px; }
+  .side .nav { margin-top: 32px; }
+  .nav a { padding: 9px 0; }
+}
+@media (max-width: 640px) { .portrait { width: 96px; height: 96px; margin-bottom: 22px; } }
 @media (prefers-reduced-motion: reduce) { .intro .portrait { animation: none; } }
+@media (min-width: 1025px) and (max-height: 740px) {
+  .portrait { width: 64px; height: 64px; margin-bottom: 12px; }
+  .side { padding: 40px 0 32px; }
+  .nav a { padding: 7px 0; }
+}
