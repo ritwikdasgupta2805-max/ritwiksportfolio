@@ -116,18 +116,33 @@
 /* Mock annotations: numbered pins on the phone, matching numbered points */
 .cs-phone { position: relative; }
 .cs-pin {
+  /* A glowing dot on the spot, a hairline out to a number beside the phone */
   --pc: #ffa98a;
-  position: absolute; z-index: 2; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%;
-  display: grid; place-items: center; font-size: 0.66rem; font-weight: 600; line-height: 1; color: #fff;
-  background: rgba(22, 22, 24, 0.82); border: 1.5px solid var(--pc);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.25s, color 0.25s;
+  position: absolute; z-index: 2; height: 0; pointer-events: none;
+  border-top: 1px solid color-mix(in srgb, var(--pc) 55%, transparent);
+  transition: border-color 0.3s;
 }
-.cs-pin::after { /* soft halo so the pin reads on busy screens */
-  content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--pc); opacity: 0.35;
+.cs-pin::before { /* the dot */
+  content: ""; position: absolute; top: -4px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--pc); box-shadow: 0 0 0 3px color-mix(in srgb, var(--pc) 30%, transparent), 0 0 12px var(--pc);
 }
-.cs-pin.on { transform: scale(1.25); background: var(--pc); color: #1e1e1e; }
+.cs-pin::after { /* gentle pulse */
+  content: ""; position: absolute; top: -4px; width: 8px; height: 8px; border-radius: 50%;
+  border: 1px solid var(--pc); animation: pin-pulse 2.6s ease-out infinite;
+}
+.cs-pin-r::before, .cs-pin-r::after { left: -4px; }
+.cs-pin-l::before, .cs-pin-l::after { right: -4px; }
+.cs-pin i { /* the number, outside the phone */
+  position: absolute; top: -10px; width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center; font-style: normal; font-size: 0.66rem; font-weight: 600; line-height: 1;
+  color: var(--pc); background: #1e1e1e; border: 1px solid color-mix(in srgb, var(--pc) 70%, transparent);
+  transition: background 0.3s, color 0.3s, transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cs-pin-r i { right: -10px; }
+.cs-pin-l i { left: -10px; }
+.cs-pin.on { border-top-color: var(--pc); }
+.cs-pin.on i { background: var(--pc); color: #1e1e1e; transform: scale(1.15); }
+@keyframes pin-pulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(3.2); opacity: 0; } }
 .cs-final .cs-pin { --pc: #7fd69a; }
 .cs-concept .cs-pin { --pc: #b9a6ff; }
 .cs-copy .cs-annotated li[data-n] { padding-left: 34px; }
@@ -214,5 +229,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cs-pin::after { animation: none; opacity: 0; }
   .cs-back span, .cs-next span { transition: none; }
 }
