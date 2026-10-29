@@ -6,7 +6,7 @@
 .cs-wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
 .case .foot-inner { max-width: 1080px; } /* line the footer up with the content */
 
-/* Local nav: frosted bar with the name and one blue action, like apple.com */
+/* Top bar: frosted, with just the name */
 .cs-nav {
   position: sticky; top: 0; z-index: 20;
   background: rgba(245, 245, 247, 0.8); backdrop-filter: saturate(1.8) blur(20px); -webkit-backdrop-filter: saturate(1.8) blur(20px);
@@ -14,8 +14,6 @@
 }
 .cs-nav-inner { max-width: 1080px; height: 52px; margin: 0 auto; padding: 0 48px; display: flex; align-items: center; justify-content: space-between; }
 .cs-nav-name { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.015em; color: var(--text-strong); }
-.cs-nav-cta { padding: 5px 14px; border-radius: 999px; background: #0071e3; color: #fff; font-size: 0.8rem; }
-.cs-nav-cta:hover { background: #0077ed; }
 
 /* Intro */
 .cs-hero { padding-top: 80px; padding-bottom: 8px; }
