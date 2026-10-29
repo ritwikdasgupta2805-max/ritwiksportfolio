@@ -103,13 +103,11 @@
 .cs-insights { grid-template-columns: repeat(5, 1fr); }
 .cs-insights p { font-size: 0.9rem; line-height: 1.55; }
 
-/* Decisions and tech challenges, split by version */
-.cs-era { padding: 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
-.cs-era .cs-step { color: #e0704f; }
-.cs-era-list { margin-top: 16px; display: grid; gap: 12px; }
-.cs-era-list li { padding-top: 12px; border-top: 1px solid var(--line); }
-.cs-era-list h4 { font-size: 1rem; font-weight: 600; }
-.cs-era-list p { margin-top: 4px; font-size: 0.92rem; }
+/* Decision making and tech challenges inside a version */
+.cs-sub-block { margin-top: 32px; }
+.cs-sub-block .cs-sub + .cs-todo { margin-bottom: 24px; }
+.cs-dark .cs-todo { border-color: rgba(255, 169, 138, 0.4); background: rgba(255, 169, 138, 0.06); color: var(--muted); }
+.cs-dark .cs-todo span { color: #ffa98a; }
 
 /* Offers landscape */
 .cs-families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
