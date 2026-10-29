@@ -193,7 +193,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .slide figcaption p { margin-top: 8px; font-size: 0.92rem; line-height: 1.65; color: #a1a1a6; }
 .slide .fw-media { order: -1; flex: none; aspect-ratio: 4 / 3; border: 0; border-radius: 18px; clip-path: none; -webkit-clip-path: none; }
 .project-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 28px; }
-.learn-more { color: #2997ff; } /* Apple's link blue on dark */
+.learn-more { color: #f5f5f7; font-weight: 500; }
 .learn-more:hover { text-decoration: underline; text-underline-offset: 3px; }
 .learn-more span { display: inline-block; transition: transform 0.2s; }
 .learn-more:hover span { transform: translateX(3px); }
