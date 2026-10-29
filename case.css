@@ -207,6 +207,10 @@
 
 /* ---------- Phone ---------- */
 @media (max-width: 640px) {
+  /* The blobs are sized for desktop; on a phone they'd tint the whole screen,
+     so keep them small and light and let the page read whitish, then green */
+  .case .orb-1 { width: 300px; height: 300px; top: -8%; left: -40%; opacity: 0.45; }
+  .case .orb-2 { width: 280px; height: 280px; top: 72%; right: -40%; opacity: 0.4; }
   .cs-wrap, .cs-top { padding-left: 16px; padding-right: 16px; }
   .cs-top { padding-top: 24px; }
   .cs-hero { padding-top: 56px; padding-bottom: 48px; }
