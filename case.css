@@ -97,6 +97,12 @@
 .cs-link { color: var(--text-strong); text-decoration: underline; text-underline-offset: 3px; }
 .cs-findings strong { color: var(--text-strong); font-weight: 600; }
 
+/* Customer insights */
+.cs-pattern { max-width: 46em; margin-bottom: 28px; padding: 22px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); font-size: 1.05rem; line-height: 1.7; color: var(--text-strong); }
+.cs-pattern span { display: block; margin-bottom: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #e0704f; }
+.cs-insights { grid-template-columns: repeat(5, 1fr); }
+.cs-insights p { font-size: 0.9rem; line-height: 1.55; }
+
 /* Offers landscape */
 .cs-families { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
 .cs-family { padding: 28px 24px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
@@ -133,7 +139,7 @@
   .cs-wrap, .cs-top { padding-left: 24px; padding-right: 24px; }
   .cs-meta { grid-template-columns: repeat(2, 1fr); }
   .cs-stats { grid-template-columns: repeat(2, 1fr); }
-  .cs-markets-grid { grid-template-columns: repeat(3, 1fr); }
+  .cs-markets-grid, .cs-insights { grid-template-columns: repeat(3, 1fr); }
   .cs-version { grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 40px; }
   .cs-dark { border-radius: 28px; }
 }
@@ -151,6 +157,7 @@
   .cs-label { margin: 88px 0 24px; }
   .cs-principles { grid-template-columns: 1fr; gap: 12px; }
   .cs-markets-grid { grid-template-columns: 1fr 1fr; }
+  .cs-insights { grid-template-columns: 1fr; }
   .cs-two { grid-template-columns: 1fr; gap: 28px; }
   .cs-families { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
   .cs-dark { margin-top: 88px; padding-bottom: 88px; border-radius: 28px; }
