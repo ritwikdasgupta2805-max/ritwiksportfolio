@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=58">
-  <link rel="stylesheet" href="case.css?v=29">
+  <link rel="stylesheet" href="case.css?v=30">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -30,7 +30,7 @@
   <!-- Top bar: just the name, which leads back home -->
   <header class="cs-nav">
     <div class="cs-nav-inner">
-      <a class="cs-nav-name" href="/">Ritwik Dasgupta</a>
+      <a class="cs-nav-name" href="/#work"><span aria-hidden="true">‹</span> Ritwik Dasgupta</a>
     </div>
   </header>
 
@@ -393,9 +393,13 @@
       </blockquote>
     </section>
 
-    <!-- Up next -->
-    <section class="cs-wrap" aria-label="Up next">
-      <a class="cs-upnext reveal" href="/#p-checkout">
+    <!-- More work: a separate full-width band, so it doesn't read as part of this project -->
+    </main>
+    <section class="cs-morework" aria-labelledby="h-more">
+      <div class="cs-wrap">
+      <p class="cs-end">End of case study</p>
+      <h2 class="cs-more-title" id="h-more">More work</h2>
+      <a class="cs-upnext" href="/#p-checkout">
         <div class="cs-upnext-text">
           <p class="cs-kicker">Up next</p>
           <h2>One-tap in-context checkout</h2>
@@ -405,8 +409,8 @@
         <img src="assets/work/checkout-sheet.jpg" alt="" loading="lazy">
       </a>
       <a class="cs-next" href="/#work">See all work <span aria-hidden="true">›</span></a>
+      </div>
     </section>
-  </main>
 
   <footer class="foot">
     <div class="foot-inner">
