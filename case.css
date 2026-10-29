@@ -27,13 +27,14 @@
 }
 .cs-subtitle { margin-top: 18px; max-width: 30em; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 400; letter-spacing: -0.015em; line-height: 1.38; color: #6e6e73; }
 .cs-subtitle strong { color: var(--text-strong); font-weight: 600; }
-/* Hero: the top half of the phone, straight on the grey page and cropped at a hairline, like apple.com */
+/* Hero: the top of the phone, down to the offers widget, straight on the grey page and cropped at a
+   hairline, like apple.com. --w is the phone's width; the image is wider because it carries its shadow. */
 .cs-hero-tile {
   --w: clamp(280px, 30vw, 380px);
   display: flex; justify-content: center; align-items: flex-start; margin-top: 56px;
-  height: calc(var(--w) * 1.05); overflow: hidden; border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: calc(var(--w) * 1.565); overflow: hidden; border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.cs-hero-tile img { display: block; width: var(--w); height: auto; flex: none; }
+.cs-hero-tile img { display: block; width: calc(var(--w) * 1.407); height: auto; flex: none; }
 .cs-hero-caption { margin-top: 14px; text-align: center; font-size: 0.88rem; color: #6e6e73; }
 /* Project facts: an iOS Settings-style grouped list */
 .cs-group-title { max-width: 720px; margin: 64px 0 8px 4px; font-size: 0.88rem; font-weight: 400; color: #6e6e73; }
@@ -237,7 +238,7 @@
 @media (max-width: 640px) {
   .cs-wrap, .cs-nav-inner { padding-left: 20px; padding-right: 20px; }
   .cs-nav-name { font-size: 1.15rem; }
-  .cs-hero-tile { --w: 280px; margin-top: 40px; }
+  .cs-hero-tile { --w: 280px; margin: 40px -20px 0; } /* full bleed, so the shadow is not clipped at the sides */
   .cs-stats { margin-top: 40px; }
   .cs-stats li { padding: 18px 16px 16px; border-radius: 18px; }
   .cs-stat { font-size: 1.9rem; }
