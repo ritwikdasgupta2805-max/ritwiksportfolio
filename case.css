@@ -163,6 +163,7 @@
 }
 .cs-pin::after { /* gentle pulse */
   content: ""; position: absolute; top: -4px; width: 8px; height: 8px; border-radius: 50%;
+  box-sizing: border-box; /* same 8px box as the dot, so the ring pulses from its centre */
   border: 1px solid var(--pc); animation: pin-pulse 2.6s ease-out infinite;
 }
 .cs-pin-r::before, .cs-pin-r::after { left: -4px; }
