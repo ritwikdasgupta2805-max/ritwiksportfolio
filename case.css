@@ -334,9 +334,11 @@
 .cs-count { display: inline-flex; }
 .cs-count.ready .cs-n { font-variant-numeric: tabular-nums; }
 .cs-count.ready .cs-cur, .cs-count.ready .cs-unit { opacity: 0; transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
-.cs-count.ready .cs-cur { transform: translateX(0.25em); }
-.cs-count.ready .cs-unit { transform: translateX(-0.25em); transition-delay: 0.35s; }
-.cs-count.done .cs-cur, .cs-count.done .cs-unit { opacity: 1; transform: none; }
+/* The $ starts with no width, so the count sits flush left; it then opens up and nudges the digits right */
+.cs-count.ready .cs-cur { max-width: 0; overflow: hidden; transition: max-width 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s ease 0.15s; }
+.cs-count.ready .cs-unit { transform: translateX(-0.25em); transition-delay: 0.5s; }
+.cs-count.done .cs-cur { max-width: 1em; opacity: 1; }
+.cs-count.done .cs-unit { opacity: 1; transform: none; }
 
 /* Research: plain text, big figures, numbered findings without cards */
 .cs-mini-stats { gap: 28px; }
