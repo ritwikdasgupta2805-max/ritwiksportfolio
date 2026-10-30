@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=50">
+  <link rel="stylesheet" href="case.css?v=51">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -178,17 +178,32 @@
       </ol>
 
       <div class="co-insight reveal">
-        <div class="co-insight-find">
-          <p class="cs-step">What we found</p>
-          <p class="co-insight-text">Customers didn’t realise the payment method had been <strong>selected for them</strong>. They read the card in the sheet as a suggestion, and expected Pay now to take them to a page to choose how to pay.</p>
-        </div>
-        <div class="co-insight-fix">
-          <p class="cs-step">What I changed</p>
-          <ol>
-            <li><strong>Say it while it loads.</strong> The loading state reads “Selecting payment method”, so customers see the choice being made for them.</li>
-            <li><strong>Label the choice.</strong> I added “Pay with” above the payment method in the sheet, so it reads as the card that will be charged, not a suggestion.</li>
-          </ol>
-        </div>
+        <figure class="ix ix-before">
+          <div class="ix-sheet">
+            <b class="ix-title">Place your order</b>
+            <span class="ix-line"></span>
+            <span class="ix-target"><span class="ix-card"><i class="ix-chip"></i>Visa ••0422</span><em class="ix-bubble">Just a suggestion?</em></span>
+            <span class="ix-pay">Pay now</span>
+          </div>
+          <figcaption><span>Customers thought</span>The card was a suggestion, and Pay now would ask them to choose.</figcaption>
+        </figure>
+        <figure class="ix">
+          <div class="ix-sheet ix-loading">
+            <i class="ix-spin"></i>
+            <span class="ix-mark">Selecting payment method</span>
+            <span class="ix-faint">Getting delivery details</span>
+          </div>
+          <figcaption><span>Fix 1</span>Say it while it loads.</figcaption>
+        </figure>
+        <figure class="ix">
+          <div class="ix-sheet">
+            <b class="ix-title">Place your order</b>
+            <span class="ix-line"></span>
+            <span class="ix-target"><span class="ix-mark ix-label">Pay with</span><span class="ix-card"><i class="ix-chip"></i>Visa ••0422</span></span>
+            <span class="ix-pay">Pay now</span>
+          </div>
+          <figcaption><span>Fix 2</span>Label it “Pay with”.</figcaption>
+        </figure>
       </div>
     </section>
 
