@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=51">
+  <link rel="stylesheet" href="case.css?v=52">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -177,33 +177,20 @@
         <li class="reveal"><h3>Tested with customers</h3><p>Two rounds of usability studies brought in the customer insights that shaped the design.</p></li>
       </ol>
 
-      <div class="co-insight reveal">
-        <figure class="ix ix-before">
-          <div class="ix-sheet">
-            <b class="ix-title">Place your order</b>
-            <span class="ix-line"></span>
-            <span class="ix-target"><span class="ix-card"><i class="ix-chip"></i>Visa ••0422</span><em class="ix-bubble">Just a suggestion?</em></span>
-            <span class="ix-pay">Pay now</span>
-          </div>
-          <figcaption><span>Customers thought</span>The card was a suggestion, and Pay now would ask them to choose.</figcaption>
-        </figure>
-        <figure class="ix">
-          <div class="ix-sheet ix-loading">
-            <i class="ix-spin"></i>
-            <span class="ix-mark">Selecting payment method</span>
-            <span class="ix-faint">Getting delivery details</span>
-          </div>
-          <figcaption><span>Fix 1</span>Say it while it loads.</figcaption>
-        </figure>
-        <figure class="ix">
-          <div class="ix-sheet">
-            <b class="ix-title">Place your order</b>
-            <span class="ix-line"></span>
-            <span class="ix-target"><span class="ix-mark ix-label">Pay with</span><span class="ix-card"><i class="ix-chip"></i>Visa ••0422</span></span>
-            <span class="ix-pay">Pay now</span>
-          </div>
-          <figcaption><span>Fix 2</span>Label it “Pay with”.</figcaption>
-        </figure>
+      <div class="co-research reveal">
+        <p class="cr-tag"><span class="cr-dot"></span>Usability finding</p>
+        <blockquote class="cr-quote">“I’ll choose how to pay on the next page.”</blockquote>
+        <p class="cr-note">Customers read the pre-selected card as a suggestion. They didn’t realise Pay now would charge it.</p>
+        <div class="cr-fixes">
+          <figure class="cr-fix">
+            <div class="cr-shot"><img src="assets/work/icc/finding-loading.jpg" alt="Loading state reading Selecting payment method" loading="lazy"></div>
+            <figcaption><b>01</b> The loading state says the card is being chosen.</figcaption>
+          </figure>
+          <figure class="cr-fix">
+            <div class="cr-shot"><img src="assets/work/icc/finding-paywith.jpg?v=2" alt="Payment card labelled Pay with Amazon Pay ICICI Bank Credit Card" loading="lazy"></div>
+            <figcaption><b>02</b> “Pay with” makes it the card that will be charged.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
