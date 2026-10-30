@@ -352,7 +352,7 @@
 
 /* Before / after you can drag */
 .cs-compare { --w: clamp(260px, 30vw, 360px); width: var(--w); margin: 8px auto 72px; }
-.cs-compare-stage { position: relative; aspect-ratio: 866 / 1764; }
+.cs-compare-stage { position: relative; aspect-ratio: 866 / 1648; }
 .cs-compare-stage img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .cs-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 .cs-compare-line { position: absolute; top: 2%; bottom: 2%; left: var(--pos); width: 2px; margin-left: -1px; background: #1d1d1f; box-shadow: 0 0 0 1.5px #fff; pointer-events: none; }
