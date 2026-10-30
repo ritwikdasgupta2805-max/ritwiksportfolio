@@ -437,6 +437,12 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 64px); mask-image: linear-gradient(to bottom, transparent, #000 64px);
 }
 
+.co-journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; counter-reset: jr; }
+.co-journey li { position: relative; padding: 24px 22px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
+.co-journey li::before { counter-increment: jr; content: "0" counter(jr); display: block; margin-bottom: 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; color: #86868b; }
+.co-journey h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; color: var(--text-strong); }
+.co-journey p { margin-top: 8px; font-size: 0.92rem; line-height: 1.55; }
+
 /* Today vs in-context: drawn as tiny phone screens */
 .co-compare { --co-new: #2fb36b; display: grid; gap: 14px; max-width: none; margin-top: 48px; }
 .co-row { display: grid; grid-template-columns: 200px 1fr; gap: 32px; align-items: center; padding: 28px 32px; border-radius: 24px; background: var(--card); border: 1px solid var(--line); }
@@ -519,11 +525,13 @@
 .co-upnext-phone { object-position: top; }
 
 @media (max-width: 1024px) {
+  .co-journey { grid-template-columns: repeat(2, 1fr); }
   .co-model { grid-template-columns: 1fr; }
   .co-arrow { justify-self: center; width: 1px; height: 22px; }
   .co-arrow::after { right: -4px; top: auto; bottom: -1px; transform: rotate(135deg); }
 }
 @media (max-width: 640px) {
+  .co-journey { grid-template-columns: 1fr; }
   .co-row { grid-template-columns: 1fr; gap: 18px; padding: 22px 20px; }
   .co-screens { gap: 10px; }
   .mp-phone { width: 78px; }

@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=48">
+  <link rel="stylesheet" href="case.css?v=49">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -39,7 +39,7 @@
     <section class="cs-wrap cs-hero">
       <p class="cs-kicker">Case study · Amazon</p>
       <h1>Checkout, right where you decide to buy.</h1>
-      <p class="cs-subtitle">Redesigning Amazon’s in-context checkout: a two-step purchase that opens over the page the customer is already on, with every detail on clear cards. Launched on the product page in <strong>UAE, Saudi Arabia, Turkey and Egypt</strong>.</p>
+      <p class="cs-subtitle">Amazon’s in-context checkout: a two-step purchase that opens over the page the customer is already on, with every detail on clear cards. Launched on the product page in <strong>UAE, Saudi Arabia, Turkey and Egypt</strong>.</p>
 
     </section>
 
@@ -66,6 +66,7 @@
     <section class="cs-wrap" aria-labelledby="h-about">
       <h2 class="cs-group-title" id="h-about">About this project</h2>
       <dl class="cs-list">
+        <div><dt>Role</dt><dd>Came up with the idea, won leadership buy-in, aligned checkout teams worldwide and designed it end to end</dd></div>
         <div><dt>Surface</dt><dd>Buy buttons across the Amazon Shopping app</dd></div>
         <div><dt>Launched</dt><dd>Product page Buy Now · UAE, Saudi Arabia, Turkey, Egypt</dd></div>
         <div><dt>Also designed</dt><dd>Cart checkout, basket building, orders with many items</dd></div>
@@ -116,19 +117,6 @@
       <blockquote class="cs-quote reveal">
         The decision happens on the page. <em>Checkout should too.</em>
       </blockquote>
-
-      <h3 class="cs-h3 reveal">An in-context checkout already existed. It wasn’t enough.</h3>
-      <p class="reveal">
-        In some markets, Buy Now could already open a checkout sheet. It was fast, but research showed where it fell short,
-        and why customers either gave up or fell back to the longer full-page checkout:
-      </p>
-      <ol class="cs-findings co-issues reveal">
-        <li><strong>Cards only.</strong> No Pay on Delivery, UPI or pay later, the ways many customers in emerging markets prefer to pay.</li>
-        <li><strong>Hidden edits.</strong> Customers didn’t realise the “Deliver to” and “Pay with” headers could be tapped to change them.</li>
-        <li><strong>Lost in panels.</strong> Changes opened a second panel. Customers didn’t see that their order had updated, closed the sheet by accident, or pressed back on Android and lost it all.</li>
-        <li><strong>No item checks.</strong> No quantity, size or Prime delivery to confirm it was the right product.</li>
-        <li><strong>One item at a time.</strong> No way to buy a phone and its case together, or to reach free delivery.</li>
-      </ol>
     </section>
 
     <!-- The idea: mental model -->
@@ -136,8 +124,7 @@
       <h2 class="cs-label" id="h-idea">The idea</h2>
       <p class="cs-statement reveal">Checkout from anywhere. A bigger basket on the way.</p>
       <p class="cs-intro reveal">
-        The mental model: enable <strong>frictionless checkout from any touchpoint</strong> on Amazon, while surfacing
-        <strong>contextual basket-building</strong> opportunities that drive higher order value.
+        Let customers <strong>pay from any buy button</strong>, and <strong>suggest one more item</strong> when it genuinely helps.
       </p>
 
       <div class="co-model">
@@ -177,6 +164,18 @@
           <p>Delivery, address and payment already filled in. One tap to pay.</p>
         </div>
       </div>
+    </section>
+
+    <!-- From idea to alignment -->
+    <section class="cs-wrap" aria-labelledby="h-journey">
+      <h2 class="cs-label" id="h-journey">From idea to alignment</h2>
+      <p class="cs-intro reveal">This started as my idea. Getting it built meant bringing leadership and checkout teams around the world along.</p>
+      <ol class="co-journey">
+        <li class="reveal"><h3>Wrote the case</h3><p>I wrote a doc setting out the problem, the idea and how it would work across every buy button.</p></li>
+        <li class="reveal"><h3>Won leadership buy-in</h3><p>I presented the idea to leaders and got their backing.</p></li>
+        <li class="reveal"><h3>Aligned checkout worldwide</h3><p>I influenced checkout teams around the world and got them behind one direction.</p></li>
+        <li class="reveal"><h3>Tested with customers</h3><p>Two rounds of usability studies brought in the customer insights that shaped the design.</p></li>
+      </ol>
     </section>
 
     <!-- Principles -->
@@ -223,7 +222,7 @@
               <summary>Read more</summary>
             <div class="cs-sub-block">
               <h4 class="cs-sub">Decision making</h4>
-              <p class="cs-sub-text">The old sheet hid every change behind a header link and a second panel. Two questions shaped the redesign: how to make editing obvious, and how much to show before the customer asks.</p>
+              <p class="cs-sub-text">Two questions shaped the design: how to make editing obvious, and how much to show before the customer asks.</p>
               <p class="cs-sub-text">Cards answered the first: each is one clear, tappable block, so there’s nothing to discover. For the second we explored two ways: reveal other choices only when a card is tapped, or show them upfront as buttons whenever a cheaper or faster option exists.</p>
               <h4 class="cs-sub">Where it hands off</h4>
               <p class="cs-sub-text">The sheet is built for speed, so it doesn’t try to do everything. Adding a new address or card, gift options and scheduled deliveries still go to full-page checkout, where there’s room to do them properly.</p>
