@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=49">
+  <link rel="stylesheet" href="case.css?v=50">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -176,6 +176,20 @@
         <li class="reveal"><h3>Aligned checkout worldwide</h3><p>I influenced checkout teams around the world and got them behind one direction.</p></li>
         <li class="reveal"><h3>Tested with customers</h3><p>Two rounds of usability studies brought in the customer insights that shaped the design.</p></li>
       </ol>
+
+      <div class="co-insight reveal">
+        <div class="co-insight-find">
+          <p class="cs-step">What we found</p>
+          <p class="co-insight-text">Customers didn’t realise the payment method had been <strong>selected for them</strong>. They read the card in the sheet as a suggestion, and expected Pay now to take them to a page to choose how to pay.</p>
+        </div>
+        <div class="co-insight-fix">
+          <p class="cs-step">What I changed</p>
+          <ol>
+            <li><strong>Say it while it loads.</strong> The loading state reads “Selecting payment method”, so customers see the choice being made for them.</li>
+            <li><strong>Label the choice.</strong> I added “Pay with” above the payment method in the sheet, so it reads as the card that will be charged, not a suggestion.</li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <!-- Principles -->
@@ -213,7 +227,8 @@
             <h3>Every detail on a card, in the order you check it</h3>
             <ul>
               <li>Buy Now opens <strong>Place your order</strong> over the product page, instead of two new pages.</li>
-              <li>While details load, the sheet says what’s happening: “Just one step away”, “Selecting payment method”, “Getting delivery details”.</li>
+              <li>While details load, the sheet says what’s happening: “Just one step away”, “Selecting payment method”, “Getting delivery details”, so customers know their payment method is being chosen for them.</li>
+              <li>“Pay with” labels the payment method, so it reads as the one that will be charged, not a suggestion.</li>
               <li>Cards follow the customer’s mental model: what you’re buying, when it arrives, where it goes, how you pay, what it costs.</li>
               <li>Tap anywhere on a card to change it. Cheaper or faster choices, like another delivery day or a card with a better offer, are shown right on the card.</li>
               <li>The saving is shown before paying, with the total and Pay now side by side.</li>
