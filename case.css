@@ -478,20 +478,15 @@
 .co-sheet .co-saved { padding: 6px 8px; border: 0; border-radius: 6px; background: #e8f8f2; color: #067d62; font-weight: 600; }
 .co-sheet .co-pay { margin-top: 8px; padding: 8px; border: 0; border-radius: 999px; background: #ffd814; text-align: center; }
 
-/* Flows: wide boards with steps under them */
-.co-flow { margin-top: 88px; }
-.co-flow-img { border-radius: 24px; background: #f6f6f6; border: 1px solid var(--line); overflow: hidden; }
-.co-flow-img img { display: block; width: 100%; height: auto; }
-.co-flow figcaption { max-width: 46em; margin-top: 24px; }
-.co-flow h3 { margin-top: 8px; font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: var(--text-strong); }
-.co-flow figcaption > p:not(.cs-step) { margin-top: 12px; font-size: 1rem; line-height: 1.65; }
-.co-flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; counter-reset: st; max-width: none; }
-.co-flow figcaption:has(.co-flow-steps) { max-width: none; }
-.co-flow-steps li { position: relative; padding-top: 30px; font-size: 0.92rem; line-height: 1.5; }
-.co-flow-steps li::before { counter-increment: st; content: counter(st); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: #fff; background: #1d1d1f; }
+/* Flows: each one an auto-animated phone with its steps alongside */
+.co-flow { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 72px; align-items: center; margin-top: 104px; }
+.co-flow-media video { display: block; width: 100%; height: auto; }
+.co-flow h3 { margin-top: 8px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: var(--text-strong); }
+.co-flow figcaption > p:not(.cs-step) { margin-top: 16px; max-width: 30em; font-size: 1.02rem; line-height: 1.65; }
+.co-flow-steps { display: grid; gap: 14px; margin-top: 24px; max-width: 30em; counter-reset: st; }
+.co-flow-steps li { position: relative; padding-left: 36px; font-size: 1rem; line-height: 1.55; }
+.co-flow-steps li::before { counter-increment: st; content: counter(st); position: absolute; left: 0; top: 1px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.75rem; font-weight: 700; color: #fff; background: #1d1d1f; }
 .co-flow-steps strong { color: var(--text-strong); font-weight: 600; }
-.co-flow-pair { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
-.co-flow-pair figcaption { margin-top: 0; }
 .co-upnext-phone { object-position: top; }
 
 @media (max-width: 1024px) {
@@ -505,10 +500,6 @@
   .co-paths { grid-template-columns: 1fr; }
   .co-steps { flex-direction: column; }
   .co-steps li + li::before { left: 50%; top: -10px; transform: translateX(-50%) rotate(90deg); }
-  .co-flow { margin-top: 64px; }
-  .co-flow-img { overflow-x: auto; border-radius: 18px; }
-  .co-flow-img img { width: 720px; max-width: none; }
-  .co-flow-steps { grid-template-columns: 1fr 1fr; }
-  .co-flow-pair { grid-template-columns: 1fr; gap: 24px; }
-  .co-flow-pair .co-flow-img img { width: 100%; }
+  .co-flow { grid-template-columns: 1fr; gap: 28px; margin-top: 72px; }
+  .co-flow-media { width: 78%; margin: 0 auto; }
 }
