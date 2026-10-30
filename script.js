@@ -1,6 +1,9 @@
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root = document.documentElement;
 
+// Respect reduced motion: show the poster frame instead of playing work videos
+if (reduceMotion) document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+
 // Hand control back to the normal styles once the entrance has played
 if (root.classList.contains('intro')) setTimeout(() => root.classList.remove('intro'), 2200);
 

@@ -439,7 +439,9 @@ strong { color: var(--text-strong); font-weight: 500; }
 /* Screens whose action lives at the bottom (a tray, a Pay button): show the phone's lower half,
    fading in from the black so it doesn't start with a hard edge */
 .ap-media.low { overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 72px); mask-image: linear-gradient(to bottom, transparent, #000 72px); }
-.ap-media.low img { top: auto; bottom: clamp(20px, 2.4vw, 32px); }
+.ap-media img, .ap-media video { display: block; }
+.ap-media video { position: absolute; left: 50%; width: 74%; height: auto; transform: translateX(-50%); }
+.ap-media.low img, .ap-media.low video { top: auto; bottom: clamp(20px, 2.4vw, 32px); }
 @media (max-width: 640px) {
   .project.apple .slide.ap { aspect-ratio: 3 / 4; }
   .ap h5 { font-size: 1rem; }
