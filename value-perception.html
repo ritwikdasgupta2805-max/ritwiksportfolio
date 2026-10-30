@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=35">
+  <link rel="stylesheet" href="case.css?v=36">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -383,7 +383,7 @@
     <section class="cs-wrap cs-text" aria-labelledby="h-outcome">
       <h2 class="cs-label" id="h-outcome">Outcome</h2>
       <div class="cs-metric reveal">
-        <p class="cs-metric-num">$168M</p>
+        <p class="cs-metric-num"><span class="cs-sr">$168M</span><span class="cs-count" aria-hidden="true"><span class="cs-cur">$</span><span class="cs-n" data-to="168">168</span><span class="cs-unit">M</span></span></p>
         <p class="cs-metric-label">increase in ordered product sales in India alone, from the 2024 and 2026 launches combined</p>
         <p class="cs-metric-sub"><strong>$70M</strong> of it during Great Indian Festival 2026, driven by the new offers experience</p>
       </div>
@@ -441,6 +441,27 @@
         entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
       }, { rootMargin: '0px 0px -8% 0px' });
       document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    }
+
+    // Big metric: count up from 0, then the $ and the M arrive
+    if (document.documentElement.classList.contains('motion') && 'IntersectionObserver' in window) {
+      document.querySelectorAll('.cs-count').forEach((c) => {
+        const n = c.querySelector('.cs-n'), to = +n.dataset.to;
+        c.classList.add('ready');
+        n.textContent = '0';
+        const io = new IntersectionObserver(([e]) => {
+          if (!e.isIntersecting) return;
+          io.disconnect();
+          const t0 = performance.now(), dur = 1800;
+          const tick = (t) => {
+            const k = Math.min((t - t0) / dur, 1);
+            n.textContent = Math.round(to * (1 - Math.pow(1 - k, 4)));
+            if (k < 1) requestAnimationFrame(tick); else c.classList.add('done');
+          };
+          setTimeout(() => requestAnimationFrame(tick), 300);
+        }, { threshold: 0.6 });
+        io.observe(c);
+      });
     }
 
     // Before/after: the range input sets how much of the 2023 page shows

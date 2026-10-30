@@ -330,6 +330,14 @@
 .cs-text p.cs-metric-sub { max-width: 32em; margin-top: 20px; color: #6e6e73; }
 .cs-metric-sub strong { color: var(--text-strong); }
 
+.cs-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cs-count { display: inline-flex; }
+.cs-count.ready .cs-n { font-variant-numeric: tabular-nums; }
+.cs-count.ready .cs-cur, .cs-count.ready .cs-unit { opacity: 0; transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.cs-count.ready .cs-cur { transform: translateX(0.25em); }
+.cs-count.ready .cs-unit { transform: translateX(-0.25em); transition-delay: 0.35s; }
+.cs-count.done .cs-cur, .cs-count.done .cs-unit { opacity: 1; transform: none; }
+
 /* Research: plain text, big figures, numbered findings without cards */
 .cs-mini-stats { gap: 28px; }
 .cs-mini-stats li { flex: none; padding: 0; border: 0; background: none; font-size: 0.95rem; color: #6e6e73; }
