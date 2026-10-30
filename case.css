@@ -479,8 +479,16 @@
 .co-sheet .co-pay { margin-top: 8px; padding: 8px; border: 0; border-radius: 999px; background: #ffd814; text-align: center; }
 
 /* Flows: each one an auto-animated phone with its steps alongside */
-.co-flow { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 72px; align-items: center; margin-top: 104px; }
-.co-flow-media video { display: block; width: 100%; height: auto; }
+.co-flow { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 40px; align-items: center; margin-top: 88px; }
+.co-flow-media { margin: 0 -24px; } /* the video carries the phone's shadow in its margins */
+.co-flow-media video {
+  display: block; width: 100%; height: auto;
+  /* feather the edges so the video's grey melts into the page, whatever the browser's colour handling */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 90%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 90%, transparent);
+  mask-composite: intersect;
+}
 .co-flow h3 { margin-top: 8px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: var(--text-strong); }
 .co-flow figcaption > p:not(.cs-step) { margin-top: 16px; max-width: 30em; font-size: 1.02rem; line-height: 1.65; }
 .co-flow-steps { display: grid; gap: 14px; margin-top: 24px; max-width: 30em; counter-reset: st; }
@@ -501,5 +509,5 @@
   .co-steps { flex-direction: column; }
   .co-steps li + li::before { left: 50%; top: -10px; transform: translateX(-50%) rotate(90deg); }
   .co-flow { grid-template-columns: 1fr; gap: 28px; margin-top: 72px; }
-  .co-flow-media { width: 78%; margin: 0 auto; }
+  .co-flow-media { width: 88%; margin: 0 auto; }
 }
