@@ -577,3 +577,11 @@
   .co-flow figcaption > p:not(.cs-step) { order: 4; }
   .co-flow-steps { order: 5; }
 }
+
+/* Cart offers case study */
+.cs-strip-2 { grid-template-columns: repeat(2, minmax(0, 260px)); justify-content: center; margin-top: 88px; }
+.cs-strip-note { margin: 16px auto 0; text-align: center; }
+.cs-version.cs-light { margin-top: 40px; }
+.cs-light .cs-step { color: #6e6e73; }
+.cs-light .cs-copy li::before { background: #86868b; }
+@media (max-width: 640px) { .cs-strip-2 { margin-top: 64px; } .cs-strip-note { text-align: left; } }
