@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=45">
+  <link rel="stylesheet" href="case.css?v=46">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -90,22 +90,26 @@
 
       <div class="co-paths reveal">
         <div class="co-path">
-          <p class="co-path-label">Today</p>
+          <div class="co-path-head">
+            <p class="co-path-label">Today</p>
+            <p class="co-path-note">Two full pages between deciding and paying</p>
+          </div>
           <ol class="co-steps">
-            <li>The page you’re on</li>
-            <li>Payment selection page</li>
-            <li>Order review page</li>
-            <li>Pay now</li>
+            <li><span class="co-kind">You decide</span>The page you’re on</li>
+            <li class="is-page"><span class="co-kind">Full page</span>Payment selection</li>
+            <li class="is-page"><span class="co-kind">Full page</span>Order review</li>
+            <li class="is-pay"><span class="co-kind">Done</span>Pay now</li>
           </ol>
-          <p class="co-path-note">Two full pages between deciding and paying</p>
         </div>
         <div class="co-path co-new">
-          <p class="co-path-label">In-context checkout</p>
+          <div class="co-path-head">
+            <p class="co-path-label">In-context checkout</p>
+            <p class="co-path-note">Checkout opens over the page, and the page stays where it was</p>
+          </div>
           <ol class="co-steps">
-            <li>The page you’re on</li>
-            <li>In-context checkout</li>
+            <li><span class="co-kind">You decide</span>The page you’re on</li>
+            <li class="is-pay"><span class="co-kind">Sheet over the page</span>Review and pay</li>
           </ol>
-          <p class="co-path-note">Checkout opens over the page, and the page stays where it was</p>
         </div>
       </div>
 
