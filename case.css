@@ -566,6 +566,14 @@
   .co-chev { margin-bottom: 30px; }
   .co-hero-tile { margin-top: 40px; padding-bottom: 48px; }
   .co-hero-tile video { width: 300px; }
-  .co-flow { grid-template-columns: 1fr; gap: 28px; margin-top: 72px; }
-  .co-flow-media { width: 88%; margin: 0 auto; }
+  /* Phones: each flow reads title → video → steps, and flows are separated
+     by a divider so text never looks like it belongs to the next video */
+  .co-flow { display: flex; flex-direction: column; gap: 0; margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--line); text-align: left; }
+  .co-flow .cs-step, .co-flow h3 { align-self: stretch; text-align: left; }
+  .co-flow figcaption { display: contents; }
+  .co-flow .cs-step { order: 1; }
+  .co-flow h3 { order: 2; }
+  .co-flow-media { order: 3; width: 88%; margin: 24px auto 8px; }
+  .co-flow figcaption > p:not(.cs-step) { order: 4; }
+  .co-flow-steps { order: 5; }
 }
