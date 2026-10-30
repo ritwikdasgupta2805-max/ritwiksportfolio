@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=44">
+  <link rel="stylesheet" href="case.css?v=45">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -41,12 +41,16 @@
       <h1>Checkout, right where you decide to buy.</h1>
       <p class="cs-subtitle">Redesigning Amazon’s in-context checkout: a two-step purchase that opens over the page the customer is already on, with every detail on clear cards. Launched on the product page in <strong>UAE, Saudi Arabia, Turkey and Egypt</strong>.</p>
 
-      <figure class="co-hero-tile">
-        <video src="assets/work/co-buynow.mp4?v=2" poster="assets/work/co-buynow.jpg?v=2" width="780" height="1170" autoplay muted loop playsinline preload="metadata"
-               aria-label="Tapping Buy Now on a product page: a sheet slides up, loads payment and delivery details, then shows Place your order with Pay now, without leaving the page"></video>
-      </figure>
-      <p class="cs-hero-caption">Buy Now on the product page. Checkout opens as a sheet, and the page stays where it was.</p>
     </section>
+
+    <!-- Full-width black band for the launched Buy Now video -->
+    <figure class="co-hero-tile">
+        <video src="assets/work/co-buynow-hq.mp4?v=1" poster="assets/work/co-buynow.jpg?v=2" width="1170" height="1756" autoplay muted loop playsinline preload="metadata"
+               aria-label="Tapping Buy Now on a product page: a sheet slides up, loads payment and delivery details, then shows Place your order with Pay now, without leaving the page"></video>
+    </figure>
+    <div class="cs-wrap">
+      <p class="cs-hero-caption">Buy Now on the product page. Checkout opens as a sheet, and the page stays where it was.</p>
+    </div>
 
     <!-- Highlights -->
     <section class="cs-wrap" aria-label="Highlights">

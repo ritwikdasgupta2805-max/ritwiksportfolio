@@ -429,11 +429,11 @@
 
 /* Hero: the Buy Now video on a black tile, fading in at the top like the home page cards */
 .co-hero-tile {
-  display: flex; justify-content: center; margin-top: 56px; padding-top: 24px;
-  height: clamp(440px, 52vw, 620px); overflow: hidden; border-radius: 32px; background: #000;
+  display: flex; justify-content: center; margin-top: 56px; padding-top: 32px;
+  height: clamp(480px, 50vw, 720px); overflow: hidden; background: #000;
 }
 .co-hero-tile video {
-  display: block; width: clamp(300px, 34vw, 420px); height: auto; flex: none;
+  display: block; width: clamp(300px, 30vw, 460px); height: auto; flex: none;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 64px); mask-image: linear-gradient(to bottom, transparent, #000 64px);
 }
 
@@ -505,7 +505,7 @@
   .co-arrow::after { right: -4px; top: auto; bottom: -1px; transform: rotate(135deg); }
 }
 @media (max-width: 640px) {
-  .co-hero-tile { margin: 40px -20px 0; border-radius: 24px; height: 480px; }
+  .co-hero-tile { margin-top: 40px; height: 480px; }
   .co-hero-tile video { width: 300px; }
   .co-paths { grid-template-columns: 1fr; }
   .co-steps { flex-direction: column; }
