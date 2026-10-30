@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=37">
+  <link rel="stylesheet" href="case.css?v=38">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -447,6 +447,7 @@
     if (document.documentElement.classList.contains('motion') && 'IntersectionObserver' in window) {
       document.querySelectorAll('.cs-count').forEach((c) => {
         const n = c.querySelector('.cs-n'), to = +n.dataset.to;
+        const cur = c.querySelector('.cs-cur');
         c.classList.add('ready');
         n.textContent = '0';
         const io = new IntersectionObserver(([e]) => {
@@ -456,7 +457,10 @@
           const tick = (t) => {
             const k = Math.min((t - t0) / dur, 1);
             n.textContent = Math.round(to * (1 - Math.pow(1 - k, 4)));
-            if (k < 1) requestAnimationFrame(tick); else c.classList.add('done');
+            if (k < 1) requestAnimationFrame(tick); else setTimeout(() => {
+              c.style.setProperty('--cur-w', cur.scrollWidth + 'px'); // the $ opens to its exact width
+              c.classList.add('done');
+            }, 200);
           };
           setTimeout(() => requestAnimationFrame(tick), 300);
         }, { threshold: 0.6 });

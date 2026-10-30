@@ -335,9 +335,9 @@
 .cs-count.ready .cs-n { font-variant-numeric: tabular-nums; }
 .cs-count.ready .cs-cur, .cs-count.ready .cs-unit { opacity: 0; transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
 /* The $ starts with no width, so the count sits flush left; it then opens up and nudges the digits right */
-.cs-count.ready .cs-cur { max-width: 0; overflow: hidden; transition: max-width 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s ease 0.15s; }
-.cs-count.ready .cs-unit { transform: translateX(-0.25em); transition-delay: 0.5s; }
-.cs-count.done .cs-cur { max-width: 1em; opacity: 1; }
+.cs-count.ready .cs-cur { width: 0; overflow: hidden; transition: width 1.2s cubic-bezier(0.45, 0, 0.15, 1), opacity 1s ease 0.2s; }
+.cs-count.ready .cs-unit { transform: translateX(-0.15em); transition: opacity 0.9s ease 0.7s, transform 1.1s cubic-bezier(0.45, 0, 0.15, 1) 0.7s; }
+.cs-count.done .cs-cur { width: var(--cur-w, 0.6em); opacity: 1; }
 .cs-count.done .cs-unit { opacity: 1; transform: none; }
 
 /* Research: plain text, big figures, numbered findings without cards */
