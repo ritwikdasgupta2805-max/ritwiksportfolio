@@ -431,7 +431,7 @@ strong { color: var(--text-strong); font-weight: 500; }
    A black card on the dark page: one statement on top, the phone rising from the bottom edge. */
 .project.apple .slide.ap { position: relative; display: flex; flex-direction: column; aspect-ratio: 4 / 5; border-radius: 28px; background: #000; overflow: hidden; }
 .ap figcaption { padding: clamp(28px, 3vw, 40px) clamp(22px, 2.6vw, 34px) 0; text-align: center; }
-.ap h5 { font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-weight: 600; line-height: 1.32; letter-spacing: -0.015em; color: #f5f5f7; }
+.ap h5 { font-size: clamp(0.98rem, 1.2vw, 1.08rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.015em; color: #f5f5f7; }
 .ap-media { position: relative; flex: 1; margin-top: clamp(22px, 2.4vw, 32px); }
 .ap-media img { position: absolute; left: 50%; top: 0; width: 74%; height: auto; transform: translateX(-50%); }
 .ap-media.pair img { width: 100%; top: 6%; }
@@ -442,7 +442,7 @@ strong { color: var(--text-strong); font-weight: 500; }
 .ap-media.low img { top: auto; bottom: clamp(20px, 2.4vw, 32px); }
 @media (max-width: 640px) {
   .project.apple .slide.ap { aspect-ratio: 3 / 4; }
-  .ap h5 { font-size: 1.15rem; }
+  .ap h5 { font-size: 1rem; }
 }
 
 /* Portrait above the greeting: large, black and white, warming to colour on hover */
