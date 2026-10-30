@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=59">
-  <link rel="stylesheet" href="case.css?v=52">
+  <link rel="stylesheet" href="case.css?v=53">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -181,69 +181,27 @@
         <p class="cr-tag"><span class="cr-dot"></span>Usability finding</p>
         <blockquote class="cr-quote">“I’ll choose how to pay on the next page.”</blockquote>
         <p class="cr-note">Customers read the pre-selected card as a suggestion. They didn’t realise Pay now would charge it.</p>
+        <p class="cr-sub">Changes made after the finding</p>
         <div class="cr-fixes">
           <figure class="cr-fix">
-            <div class="cr-shot"><img src="assets/work/icc/finding-loading.jpg" alt="Loading state reading Selecting payment method" loading="lazy"></div>
+            <div class="cr-shot">
+              <div class="cr-ui cr-ui-load"><span class="cr-ui-icon" aria-hidden="true"></span>Selecting payment method</div>
+            </div>
             <figcaption><b>01</b> The loading state says the card is being chosen.</figcaption>
           </figure>
           <figure class="cr-fix">
-            <div class="cr-shot"><img src="assets/work/icc/finding-paywith.jpg?v=2" alt="Payment card labelled Pay with Amazon Pay ICICI Bank Credit Card" loading="lazy"></div>
+            <div class="cr-shot">
+              <div class="cr-ui cr-ui-pay">
+                <div>
+                  <p class="cr-ui-title"><mark>Pay with</mark> Amazon Pay ICICI Bank Credit Card</p>
+                  <p class="cr-ui-meta">Visa ••3006</p>
+                </div>
+                <span class="cr-ui-card" aria-hidden="true"></span>
+              </div>
+            </div>
             <figcaption><b>02</b> “Pay with” makes it the card that will be charged.</figcaption>
           </figure>
         </div>
-      </div>
-    </section>
-
-    <!-- Principles -->
-    <section class="cs-wrap" aria-labelledby="h-principles">
-      <h2 class="cs-label" id="h-principles">Principles</h2>
-      <ol class="cs-principles">
-        <li class="reveal">
-          <h3>Fast, and transparent</h3>
-          <p>Speed only works when nothing is a surprise. The total, delivery charges, savings and any cheaper or faster option are shown before paying.</p>
-        </li>
-        <li class="reveal">
-          <h3>Change it without leaving</h3>
-          <p>Delivery, address and payment come filled in from the customer’s defaults or last choices. Tap anywhere on a card to change it, right there in the sheet.</p>
-        </li>
-        <li class="reveal">
-          <h3>Built for the everyday purchase</h3>
-          <p>Optimised for the simple purchases most people make. Complex ones, like scheduled installation, still go to full-page checkout.</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- What launched: dark sheet -->
-    <section class="cs-dark" aria-labelledby="h-launched">
-      <div class="cs-wrap">
-        <h2 class="cs-label" id="h-launched">What launched</h2>
-        <p class="cs-statement reveal">Buy Now, without leaving the product page.</p>
-
-        <article class="cs-version cs-final">
-          <figure class="cs-phone co-still reveal">
-            <img src="assets/work/icc/launched-sheet.webp?v=2" width="866" height="1488" loading="lazy"
-                 alt="Place your order as a sheet over the product page: Happilo almonds, delivery Tomorrow 4 AM to 8 AM, Deliver to Rohit, previously used Amazon Pay ICICI Bank credit card, ₹70 saved, ₹165 and Pay now">
-          </figure>
-          <div class="cs-copy reveal">
-            <p class="cs-step">Product page · Launched in UAE, Saudi Arabia, Turkey and Egypt</p>
-            <h3>Every detail on a card, in the order you check it</h3>
-            <ul>
-              <li>Buy Now opens <strong>Place your order</strong> over the product page, instead of two new pages.</li>
-              <li>While details load, the sheet says what’s happening: “Just one step away”, “Selecting payment method”, “Getting delivery details”, so customers know their payment method is being chosen for them.</li>
-              <li>“Pay with” labels the payment method, so it reads as the one that will be charged, not a suggestion.</li>
-              <li>Cards follow the customer’s mental model: what you’re buying, when it arrives, where it goes, how you pay, what it costs.</li>
-              <li>Tap anywhere on a card to change it. Cheaper or faster choices, like another delivery day or a card with a better offer, are shown right on the card.</li>
-              <li>The saving is shown before paying, with the total and Pay now side by side.</li>
-            </ul>
-            <details class="cs-more">
-              <summary>Read more</summary>
-            <div class="cs-sub-block">
-              <h4 class="cs-sub">Decision making</h4>
-              <p class="cs-sub-text">Two questions shaped the design: how to make editing obvious, and how much to show before the customer asks.</p>
-              <p class="cs-sub-text">Cards answered the first: each is one clear, tappable block, so there’s nothing to discover. For the second we explored two ways: reveal other choices only when a card is tapped, or show them upfront as buttons whenever a cheaper or faster option exists.</p>
-              <h4 class="cs-sub">Where it hands off</h4>
-              <p class="cs-sub-text">The sheet is built for speed, so it doesn’t try to do everything. Adding a new address or card, gift options and scheduled deliveries still go to full-page checkout, where there’s room to do them properly.</p>
-            </div>
             </details>
           </div>
         </article>
