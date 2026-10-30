@@ -402,3 +402,8 @@
   .cs-morework { margin-top: 96px; padding: 56px 0 72px; }
   .cs-morework .cs-upnext { margin-top: 28px; }
 }
+
+/* One design, every market: localised versions of the launched page */
+.cs-loc { margin-top: 160px; }
+.cs-loc .cs-strip { margin-top: 40px; }
+@media (max-width: 640px) { .cs-loc { margin-top: 104px; } }
