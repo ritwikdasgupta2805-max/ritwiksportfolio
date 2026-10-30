@@ -65,7 +65,7 @@
   margin-top: 48px; max-width: 22em; padding-left: 24px; border-left: 2px solid #d2d2d7;
   font-size: clamp(1.35rem, 2.6vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.02em; color: var(--text-strong);
 }
-.cs-quote em { font-style: normal; color: #6e6e73; }
+.cs-quote em { font-style: normal; color: #e30000; }
 
 /* Principles */
 .cs-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: pr; }
