@@ -585,3 +585,12 @@
 .cs-light .cs-step { color: #6e6e73; }
 .cs-light .cs-copy li::before { background: #86868b; }
 @media (max-width: 640px) { .cs-strip-2 { margin-top: 64px; } .cs-strip-note { text-align: left; } }
+
+/* Results table with just a metric and its change */
+.cs-table[data-cols="2"] .cs-row { grid-template-columns: 1fr auto; }
+.cs-table[data-cols="2"] .cs-row > :last-child { font-weight: 600; text-align: right; }
+.cs-table[data-cols="2"] .cs-head > :first-child { display: block; }
+@media (max-width: 640px) {
+  .cs-table[data-cols="2"] .cs-row > :first-child { grid-column: auto; margin: 0; }
+  .cs-stats-pct .cs-stat { font-size: 2.3rem; white-space: nowrap; }
+}
