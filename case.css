@@ -594,3 +594,20 @@
   .cs-table[data-cols="2"] .cs-row > :first-child { grid-column: auto; margin: 0; }
   .cs-stats-pct .cs-stat { font-size: 2.3rem; white-space: nowrap; }
 }
+
+/* Password gate on case studies */
+.pw-gate { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 20px 80px; position: relative; }
+.pw-back { position: absolute; top: 18px; left: 24px; display: inline-flex; align-items: center; gap: 8px; font-size: 1.05rem; font-weight: 600; color: var(--text-strong); }
+.pw-back span { font-size: 1.5rem; font-weight: 400; line-height: 1; margin-top: -3px; }
+.pw-card { width: 100%; max-width: 420px; }
+.pw-kicker { font-size: 1rem; font-weight: 600; color: #6e6e73; }
+.pw-title { margin-top: 8px; font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; color: var(--text-strong); }
+.pw-note { margin-top: 14px; font-size: 1.05rem; color: #6e6e73; }
+.pw-row { display: flex; gap: 10px; margin-top: 28px; }
+.pw-row input { flex: 1; min-width: 0; height: 48px; padding: 0 16px; border: 1px solid #d2d2d7; border-radius: 12px; background: #fff; font: inherit; font-size: 1rem; color: var(--text-strong); }
+.pw-row input:focus { outline: 2px solid #1d1d1f; outline-offset: 1px; border-color: transparent; }
+.pw-row button { height: 48px; padding: 0 22px; border: 0; border-radius: 12px; background: #1d1d1f; color: #fff; font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; }
+.pw-row button:hover { background: #3a3a3c; }
+.pw-error { margin-top: 12px; font-size: 0.95rem; color: #c4161c; }
+.pw-ask { margin-top: 28px; font-size: 0.95rem; color: #86868b; }
+.pw-ask a { color: var(--text-strong); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }

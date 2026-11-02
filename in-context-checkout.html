@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Checkout, right where you decide — Ritwik Dasgupta</title>
   <meta name="description" content="Case study: one-tap in-context checkout on Amazon. Checkout opens as a sheet over the page the customer is already on, instead of three full pages. Launched on the product page in UAE, Saudi Arabia, Turkey and Egypt.">
@@ -18,330 +19,53 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=73">
-  <link rel="stylesheet" href="case.css?v=58">
+  <link rel="stylesheet" href="case.css?v=59">
   <script>
     // Scroll reveals only run when motion is welcome (see the script at the end)
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
   </script>
 </head>
 <body class="case">
-
-  <a class="skip" href="#content">Skip to content</a>
-
-  <!-- Top bar: just the name, which leads back home -->
-  <header class="cs-nav">
-    <div class="cs-nav-inner">
-      <a class="cs-nav-name" href="/#work"><span aria-hidden="true">‹</span> Ritwik Dasgupta</a>
-    </div>
-  </header>
-
-  <main id="content">
-    <!-- Intro -->
-    <section class="cs-wrap cs-hero">
-      <p class="cs-kicker">Case study · Amazon</p>
-      <h1>Checkout, right where you decide to buy.</h1>
-      <p class="cs-subtitle">Amazon’s in-context checkout: a two-step purchase that opens over the page the customer is already on, with every detail on clear cards. Launched on the product page in <strong>UAE, Saudi Arabia, Turkey and Egypt</strong>.</p>
-
-    </section>
-
-    <!-- Full-width black band for the launched Buy Now video -->
-    <figure class="co-hero-tile">
-        <video src="assets/work/co-buynow-hq.mp4?v=1" poster="assets/work/co-buynow.jpg?v=2" width="1170" height="1756" autoplay muted loop playsinline preload="metadata"
-               aria-label="Tapping Buy Now on a product page: a sheet slides up, loads payment and delivery details, then shows Place your order with Pay now, without leaving the page"></video>
-    </figure>
-    <div class="cs-wrap">
-      <p class="cs-hero-caption">Buy Now on the product page. Checkout opens as a sheet, and the page stays where it was.</p>
-    </div>
-
-    <!-- Highlights -->
-    <section class="cs-wrap" aria-label="Highlights">
-      <ul class="cs-stats cs-stats-pct">
-        <li class="reveal"><span class="cs-stat">+64 bps</span><span class="cs-stat-label">checkout success rate</span></li>
-        <li class="reveal"><span class="cs-stat">+0.11%</span><span class="cs-stat-label">conversion</span></li>
-        <li class="reveal"><span class="cs-stat">4</span><span class="cs-stat-label">markets launched</span></li>
-        <li class="reveal"><span class="cs-stat">2</span><span class="cs-stat-label">steps: Buy now, then Pay now</span></li>
-      </ul>
-    </section>
-
-    <!-- Project facts -->
-    <section class="cs-wrap" aria-labelledby="h-about">
-      <h2 class="cs-group-title" id="h-about">About this project</h2>
-      <dl class="cs-list">
-        <div><dt>Role</dt><dd>Came up with the idea, won leadership buy-in, aligned checkout teams worldwide and designed it end to end</dd></div>
-        <div><dt>Surface</dt><dd>Buy buttons across the Amazon Shopping app</dd></div>
-        <div><dt>Launched</dt><dd>Product page Buy Now · UAE, Saudi Arabia, Turkey, Egypt</dd></div>
-        <div><dt>Also designed</dt><dd>Cart checkout, basket building, orders with many items</dd></div>
-      </dl>
-    </section>
-
-    <!-- Problem -->
-    <section class="cs-wrap cs-text" aria-labelledby="h-problem">
-      <h2 class="cs-label" id="h-problem">The problem</h2>
-      <p class="cs-statement reveal">Deciding to buy took one tap. Buying took three pages.</p>
-      <p class="reveal">
-        Most purchases went through full-page checkout. Tapping <strong>Proceed to buy</strong> takes the customer away
-        from the page they decided on. First comes <strong>Select a Payment Method</strong>, a full page listing every way
-        to pay. Then <strong>Place Your Order</strong>, another full page with the order summary, payment, address and
-        delivery date. Only then is there a Pay now button.
-      </p>
-      <p class="reveal">
-        Customers want to review everything on one screen and pay. Every extra page is a chance to drop off, and in
-        emerging markets far more customers dropped off on these pages than in established ones. Meanwhile, quick-commerce
-        apps had taught customers to check out right from the cart.
-      </p>
-
-      <div class="co-compare reveal">
-        <div class="co-row">
-          <div class="co-row-head">
-            <p class="co-path-label">Today</p>
-            <p class="co-count"><strong>3</strong> screens</p>
-          </div>
-          <div class="co-screens">
-            <figure class="mp"><div class="mp-phone"><div class="mp-screen mp-pdp"><i class="mp-img"></i><i class="mp-line w60"></i><i class="mp-price"></i><i class="mp-btn"></i></div></div><figcaption>Product page</figcaption></figure>
-            <span class="co-chev" aria-hidden="true"></span>
-            <figure class="mp"><div class="mp-phone"><div class="mp-screen mp-list"><i class="mp-title"></i><i class="mp-row"></i><i class="mp-row"></i><i class="mp-row"></i><i class="mp-row"></i><i class="mp-btn"></i></div></div><figcaption>Payment page</figcaption></figure>
-            <span class="co-chev" aria-hidden="true"></span>
-            <figure class="mp"><div class="mp-phone"><div class="mp-screen mp-list"><i class="mp-title"></i><i class="mp-block"></i><i class="mp-line w80"></i><i class="mp-line w60"></i><i class="mp-line w70"></i><i class="mp-btn mp-pay"></i></div></div><figcaption>Review and pay</figcaption></figure>
-          </div>
-        </div>
-        <div class="co-row co-row-new">
-          <div class="co-row-head">
-            <p class="co-path-label">In-context checkout</p>
-            <p class="co-count"><strong>1</strong> screen</p>
-          </div>
-          <div class="co-screens">
-            <figure class="mp mp-new"><div class="mp-phone"><div class="mp-screen mp-pdp mp-dim"><i class="mp-img"></i><i class="mp-line w60"></i><i class="mp-price"></i><div class="mp-sheet"><i class="mp-line w60"></i><i class="mp-line w80"></i><i class="mp-line w70"></i><i class="mp-btn mp-pay"></i></div></div></div><figcaption>Pay on the same page</figcaption></figure>
-          </div>
-        </div>
+<!-- protected:start -->
+  <div class="pw-gate">
+    <a class="pw-back" href="/#work"><span aria-hidden="true">‹</span> Ritwik Dasgupta</a>
+    <form class="pw-card" id="pw-form" autocomplete="off">
+      <p class="pw-kicker">Case study · Amazon</p>
+      <h1 class="pw-title" id="pw-title"></h1>
+      <p class="pw-note">This case study is password protected.</p>
+      <div class="pw-row">
+        <input id="pw-input" type="password" placeholder="Password" aria-label="Password" autofocus required>
+        <button type="submit">View</button>
       </div>
-
-      <blockquote class="cs-quote reveal">
-        The decision happens on the page. <em>Checkout should too.</em>
-      </blockquote>
-    </section>
-
-    <!-- The idea: mental model -->
-    <section class="cs-wrap" aria-labelledby="h-idea">
-      <h2 class="cs-label" id="h-idea">The idea</h2>
-      <p class="cs-statement reveal">Checkout from anywhere. A bigger basket on the way.</p>
-      <p class="cs-intro reveal">
-        Let customers <strong>pay from any buy button</strong>, and <strong>suggest one more item</strong> when it genuinely helps.
-      </p>
-
-      <div class="co-model">
-        <div class="co-node reveal">
-          <p class="cs-step">01 · Intent</p>
-          <h3>Purchase-intent buttons</h3>
-          <div class="co-ctas" aria-hidden="true">
-            <span class="co-btn co-orange">Buy now</span>
-            <span class="co-btn co-yellow">Proceed to buy (2 items)</span>
-            <span class="co-btn co-blue">Add to delivery</span>
-          </div>
-          <p>Any button that says “I want this” can open checkout, wherever it sits.</p>
-        </div>
-        <span class="co-arrow" aria-hidden="true"></span>
-        <div class="co-node co-optional reveal">
-          <p class="cs-step">02 · Optional</p>
-          <h3>Adaptive basket building</h3>
-          <div class="co-mini" aria-hidden="true">
-            <strong>Before you go</strong>
-            <span>Add 1 more item, <em>Save 5%</em></span>
-            <i><b></b></i>
-          </div>
-          <p>Contextual and need-aware: a saving one item away on the product page, the everyday things you might have missed in the cart.</p>
-        </div>
-        <span class="co-arrow" aria-hidden="true"></span>
-        <div class="co-node reveal">
-          <p class="cs-step">03 · Checkout</p>
-          <h3>In-context checkout</h3>
-          <div class="co-sheet" aria-hidden="true">
-            <strong>Place your order</strong>
-            <span>Delivery time</span>
-            <span>Deliver to</span>
-            <span><small>Previously used</small>Payment method</span>
-            <span class="co-saved">₹60 saved</span>
-            <span class="co-pay">Pay now</span>
-          </div>
-          <p>Delivery, address and payment already filled in. One tap to pay.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- From idea to alignment -->
-    <section class="cs-wrap" aria-labelledby="h-journey">
-      <h2 class="cs-label" id="h-journey">From idea to alignment</h2>
-      <p class="cs-intro reveal">This started as my idea. Getting it built meant bringing leadership and checkout teams around the world along.</p>
-      <ol class="co-journey">
-        <li class="reveal"><h3>Wrote the case</h3><p>I wrote a doc setting out the problem, the idea and how it would work across every buy button.</p></li>
-        <li class="reveal"><h3>Won leadership buy-in</h3><p>I presented the idea to leaders and got their backing.</p></li>
-        <li class="reveal"><h3>Aligned checkout worldwide</h3><p>I influenced checkout teams around the world and got them behind one direction.</p></li>
-        <li class="reveal"><h3>Tested with customers</h3><p>Two rounds of usability studies brought in the customer insights that shaped the design.</p></li>
-      </ol>
-
-      <div class="co-research reveal">
-        <p class="cr-tag"><span class="cr-dot"></span>Usability finding</p>
-        <blockquote class="cr-quote">“I’ll choose how to pay on the next page.”</blockquote>
-        <p class="cr-note">Customers read the pre-selected card as a suggestion. They didn’t realise Pay now would charge it.</p>
-        <p class="cr-sub">Changes made after the finding</p>
-        <div class="cr-fixes">
-          <figure class="cr-fix">
-            <div class="cr-shot">
-              <div class="cr-ui cr-ui-load"><span class="cr-ui-icon" aria-hidden="true"></span>Selecting payment method</div>
-            </div>
-            <figcaption><b>01</b> The loading state says the card is being chosen.</figcaption>
-          </figure>
-          <figure class="cr-fix">
-            <div class="cr-shot">
-              <div class="cr-ui cr-ui-pay">
-                <div>
-                  <p class="cr-ui-title"><mark>Pay with</mark> Amazon Pay ICICI Bank Credit Card</p>
-                  <p class="cr-ui-meta">Visa ••3006</p>
-                </div>
-                <span class="cr-ui-card" aria-hidden="true"></span>
-              </div>
-            </div>
-            <figcaption><b>02</b> “Pay with” makes it the card that will be charged.</figcaption>
-          </figure>
-        </div>
-            </details>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- The wider system -->
-    <section class="cs-wrap" aria-labelledby="h-system">
-      <h2 class="cs-label" id="h-system">One checkout, every buy button</h2>
-      <p class="cs-statement reveal">The same sheet, from the product page, the cart and beyond.</p>
-
-      <figure class="co-flow reveal">
-        <div class="co-flow-media"><video src="assets/work/icc/icc-dp.mp4?v=6" poster="assets/work/icc/icc-dp.jpg?v=5" width="640" height="1098" autoplay muted loop playsinline preload="metadata"
-             aria-label="Product page: tapping Buy now slides up a Before you go sheet offering ‘Add 1 more item, save 5%’. Adding Tata Soulfull muesli flies it into the header and unlocks the discount, then Buy 2 items turns the sheet into Place your order with ₹60 saved, and Pay now opens the order placed page"></video></div>
-        <figcaption>
-          <p class="cs-step">Product page · Buy now with basket building</p>
-          <h3>A saving one item away, then straight to pay</h3>
-            <ol class="co-flow-steps">
-              <li>Buy now on the product page.</li>
-              <li><strong>Before you go:</strong> “Add 1 more item, save 5%”, with a progress bar and items that fit.</li>
-              <li>Adding one unlocks the discount, and the sheet says so: “You save ₹30”.</li>
-              <li>The sheet becomes Place your order with both items, ₹60 saved in total.</li>
-              <li>Pay now, and the order is placed right there on the product page.</li>
-            </ol>
-        </figcaption>
-      </figure>
-      <figure class="co-flow reveal">
-        <div class="co-flow-media"><video src="assets/work/icc/icc-cart.mp4?v=4" poster="assets/work/icc/icc-cart.jpg?v=4" width="640" height="1098" autoplay muted loop playsinline preload="metadata"
-             aria-label="Cart: tapping Proceed to buy slides up Place your order over the cart with Amazon Pay UPI, then Pay now opens UPI biometrics and the order is placed, still in the cart"></video></div>
-        <figcaption>
-          <p class="cs-step">Cart · One item</p>
-          <h3>From the cart to paid, without a new page</h3>
-            <ol class="co-flow-steps">
-              <li>Proceed to buy (1 item) in the cart.</li>
-              <li>Place your order slides up over the cart, with the previously used Amazon Pay UPI.</li>
-              <li>Pay with biometrics.</li>
-              <li>Order placed, and the customer is still in the cart.</li>
-            </ol>
-        </figcaption>
-      </figure>
-      <figure class="co-flow reveal">
-        <div class="co-flow-media"><video src="assets/work/icc/icc-cart-basket.mp4?v=5" poster="assets/work/icc/icc-cart-basket.jpg?v=4" width="640" height="1098" autoplay muted loop playsinline preload="metadata"
-             aria-label="Cart: tapping Proceed to buy slides up a Need anything else? sheet; adding muesli flies it into the header, then Buy 2 items turns the sheet into Place your order"></video></div>
-        <figcaption>
-          <p class="cs-step">Cart · With basket building</p>
-          <h3>Need anything else?</h3>
-            <ol class="co-flow-steps">
-              <li>Proceed to buy from the cart.</li>
-              <li>A short <strong>Need anything else?</strong> step suggests everyday items to add.</li>
-              <li>Adding is one tap: the item joins the order at the top, and the button becomes Buy 2 items.</li>
-              <li>The sheet becomes Place your order with everything in it.</li>
-            </ol>
-        </figcaption>
-      </figure>
-      <figure class="co-flow reveal">
-        <div class="co-flow-media"><video src="assets/work/icc/icc-many.mp4?v=5" poster="assets/work/icc/icc-many.jpg?v=4" width="640" height="1098" autoplay muted loop playsinline preload="metadata"
-             aria-label="Place your order for a basket arriving in two deliveries: tapping the first shipment expands it, its round thumbnails growing into product cards with a choice of delivery day, and tapping again collapses it"></video></div>
-        <figcaption>
-          <p class="cs-step">Cart · Many items</p>
-          <h3>When an order arrives in more than one delivery</h3>
-            <ol class="co-flow-steps">
-              <li>Items are grouped by when they arrive, each shipment with its own date.</li>
-              <li>Tap a shipment to open it: the thumbnails grow into product cards.</li>
-              <li>Pick a delivery day right there, then collapse it again.</li>
-            </ol>
-        </figcaption>
-      </figure>
-    </section>
-
-    <!-- Before / after -->
-    <section class="cs-wrap" aria-labelledby="h-changed">
-      <h2 class="cs-label" id="h-changed">What changed</h2>
-      <div class="cs-table reveal" role="table" aria-label="Before and after">
-        <div class="cs-row cs-head" role="row"><span role="columnheader"></span><span role="columnheader">Today</span><span role="columnheader">Now</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Steps to pay</span><span role="cell">Four</span><span role="cell">Two</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Where you are</span><span role="cell">Taken away</span><span role="cell">Same page</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Payment</span><span role="cell">Choose every time</span><span role="cell">Already filled in</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Adding items</span><span role="cell">Go back</span><span role="cell">Add before you pay</span></div>
-      </div>
-    </section>
-
-    <!-- Outcome -->
-    <section class="cs-wrap cs-text" aria-labelledby="h-outcome">
-      <h2 class="cs-label" id="h-outcome">Outcome</h2>
-      <p class="cs-statement reveal">More customers finished checkout, from the page they decided on.</p>
-      <p class="reveal">
-        In-context checkout launched on the product page in UAE, Saudi Arabia, Turkey and Egypt. Customers who tap
-        Buy Now now pay from a single sheet over the page they decided on, with their delivery, address and payment
-        already filled in. Across the Middle East and North Africa, over 28 days, checkout success rose by 64 basis
-        points and conversion by 0.11%.
-      </p>
-      <div class="cs-table reveal" role="table" aria-label="Results across the Middle East and North Africa, 28 days" style="margin-top:40px" data-cols="2">
-        <div class="cs-row cs-head" role="row"><span role="columnheader">Middle East and North Africa · 28 days</span><span role="columnheader">Change</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Checkout success rate</span><span role="cell">+64 bps</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Conversion</span><span role="cell">+0.11%</span></div>
-        <div class="cs-row" role="row"><span role="rowheader">Units sold</span><span role="cell">+0.11%</span></div>
-      </div>
-    </section>
-
-    </main>
-    <!-- More work: a separate full-width band, so it doesn't read as part of this project -->
-    <section class="cs-morework" aria-labelledby="h-more">
-      <div class="cs-wrap">
-      <p class="cs-end">End of case study</p>
-      <h2 class="cs-more-title" id="h-more">More work</h2>
-      <a class="cs-upnext" href="cart-offers.html">
-        <div class="cs-upnext-text">
-          <p class="cs-kicker">Up next</p>
-          <h2>Every saving, right where the basket is.</h2>
-          <p>Offer discovery and application in the Amazon cart, in two phases across eight markets.</p>
-          <span class="cs-upnext-link">Read the case study <span aria-hidden="true">›</span></span>
-        </div>
-        <img class="co-upnext-phone" src="assets/work/cart/hero.webp?v=2" alt="" loading="lazy">
-      </a>
-      <a class="cs-next" href="/#work">See all work <span aria-hidden="true">›</span></a>
-      </div>
-    </section>
-
-  <footer class="foot">
-    <div class="foot-inner">
-      <p>Let's talk — <a href="mailto:ritwikdasgupta3@gmail.com">ritwikdasgupta3@gmail.com</a></p>
-      <p>Designed by Ritwik Dasgupta. © <span id="year"></span></p>
-    </div>
-  </footer>
-
+      <p class="pw-error" id="pw-error" role="alert" hidden>That password isn’t right. Try again.</p>
+      <p class="pw-ask">Need access? <a href="mailto:ritwikdasgupta3@gmail.com">Ask me for the password</a></p>
+    </form>
+  </div>
+  <script id="pw-data" type="application/json">{"v":1,"iter":250000,"salt":"RUNz7RoMQaCb/ubLtda6bQ==","iv":"q5JJbBdLaIQUEzc3","ct":"07lKwSR7LPOsOHJd6lszujGqh5147NjsHgXypoOQpZf2zqVhxQVQPAiADAm33KAhARPiKxD/toVk9hsQtgTO9974L1adl+P6smtwcENNSkEur5QAF0nBe04x1Vd/guwSu9Ea9NY+RSHEl7iaSY9JiPw/W1Dp2uHDxkhY7owWVBBozm3bbeIaeBfbNZ6mj54EqmQwD43lkgBfVYfD8H7oyRkcNu3gA3TiSGGhUH4AJJb3efAKsowu8jKAgSuSiHB+/ibQxfGcglC+FxiFiTjOs/RBaeRZcBg21/f6mnJBR6pYbt12gR4Ync+tVzA9GbQBn99BtLEyY7QVaP/YxnvGiFlqmZ/RIfMR5Z/OIByirX3HECHP2c9LeTYtlvExfDd6X9WtbPBBwEJIfgTrdmeSzLCdmWY3SysEVMfMOUKHdhCgF8Jet7OQP6mZX4KukXnxYcLSJWANedzsjf/EHM8jMEXgVz89DJ+LctcQBA1tOT54ssewyySXdtYZguswaPCJAt0e7KUbZmjT6ffF1e+gZMuOCSAJ51cGG9xoDB8/IcJ9Eu4/vnqf0IjIaXrvuqd+fi7KIgwp0vrWSI3h70Bnrf4gykwi2rM6Gb+cXnXkG55X5rUk1rSINnA3GjkQvkiW7pTHHgaPR8lrctEhVeZ8nxbL1eOpf6lKNsOxdM3mdJh5Q12zzElOSMP86TiTgWV0012dytApbZiKGUR1wDfF8zdf2HgpOHkTKUVe+97vRTh1BiK1Uv2rMMG84YirCZmhJzSLYCpvkHEnLzmz+H/qV+oN1u0SW5DafSmFGne3OFRb22BNjkoTTzPMOwdBP0GuKqDBAafH7vKXT+BWdcQFYF+H4xRvT4K4FNIXvbk+/3sxodSIQI/IxYCklrEvDA6DJTDDsZUQhUTprwGUMx+U2852ET0qGKoTUuqcA0Aflq63J3SqWj6Qmnm9hihLCIpMvFq2sar1xJ9dBDwbkRbyg03bLgSTv0MK8OP8OtLINQtfjPGUpheuwWM3qJM1bwx454yE4uL2GX7YYnocExdpihy0wwefsCBDeSLuZOcTFr68lO6TB2CpdTDMTvVqnGEz/6wYgluFs9h+VfCV5xn7/o/8C3cJFmdzfU2wCU7/+zd2wP+cX8rWUmAuEMt7/FqAiIfUN2U9BlqaoHgWy4/3kUKoI5cstWQFDe/oSTdbCgHv2wZ5qfCvDutkvcjnehUifiUaN9k2TxOzUXVA+hN74qpUrE0NuSbXX7HfOquYlqWtREQ/Sg6MQVFcMuj/m3+2E8MdFqIZpe3dTqR2qnrIaEWyHwf3+N0zf+BRPRV4vDdrwf43SO0D5EI/ym3OxsOZOOJlLcDM6mFlWtzy5+BvDrHJk62OgUgp3a9ETMt20p8sdxvCd0mj4apCXyS3RUETQja+BMlaFO76CwT5wPIGrD3A+VFGsIZjFqKtUoUEUbeHW1bwojR768wViITGhKTqUdSlRqtqu9FGCBDX4YplH5X1yTS1RpeuCFObPcj2i/mDVPq7Zpxk3ETtzRZqKHFQaoxoLPkkRj5DIBDtyHKi5J6IjiDMOw8+8FBkbn48lJkTmg6fP4WiCu2VWGkkzsdFKH+PA+NuargB6R0T8Qz3faHgfBa3mvKM4jTpk+v/qpEmTD8yi0EO+R4ARn26nFJSUqKWv9BNXWuT0e7o+t5aM88FGoLjNjwOiiGsnKEsEju3ck+ebghrL32ZcL5c2nesE8OWlAwgOKHP5eDiah/rJxZ6WIAy/WxsmHey6jDctg01kny5/WVMBcGLp2ELmZgP4sCoA7ILjFkC5yuI5gUJDXD7YTYIRZmBBahcWfhMUV2H9xDDBUjdu7R244F0k1NUo3cJ7upgfcLuzvBH2U05EI74RCzXaUcWerIx370XIX7RhTy5zmCoVbEhSOETnFgDx5w5rxC3OazArQvJ89bbBmdSrCgLyn+FmPYTAeDZma8ENBKMTXnNOll/85TjnK9ycvUSOtnW+grdJxFhLUqW6iuKrY6O6hzNMW0mX8nBpJGOPNjGHSzMSUfHL7mllBMEYe3F7sf8sl4dYCBfzAicXC6eHO9ahEQ9tPzEQR8gPR0zhhw1YytuM6dxOp248wZfCyNOfit/DYKfaXa8KJ58dg0Rweye1D6dr9b3PXagaGDwB2+cZiooBUOjS8hUbOSIsxAtnoX/EmYfW3d95XIPPaupAlfcEJV15JO4R2CVDHVge8PQ0W0a9F8qVWSL3xPkCO2kJR6c66vBbu/iyErVkOwCKhwbdz/JglJpFxB+BoK/rmJiC+giaWCUFVZaPYOSO6F3g9FbaLEqJ1hFpQQg9AHeBe4J27ez/yCGvVzVzdYBRxhAHzuG9GTq6Y4FN/0F01iIcw9VRXCufDaJf2bOIuXl9ZuAczO12hmWa2Sm7lW+gi2sVoX1rCGYmsh7UN540vM7FKCWSxHfaQPUe5qf4GskVkJ1tT+o63EQj8lGhp+0bp3Nk7mK4K97eVgdPPPNez+QqxTCj9VWgkj4J0MVxabB2nGL/K0bDAPL0VDxekBiMx8sB9lb78qv46m99ASW7flSsElldFBmdWF9CJTwHjTl6vPn7fhe9dZvPLbGoov/HCUW0bPFMaGHEhnY8ZuFGFtrbjQy7q/xWLFD2MD6YdTy/nIwFnlUPd8cs00qCzWfwO6S6fK/DA6e7Yj3k2Flto52v2X56q5nj9aAPIHIZMDvU5P/AysZY+NyL0oeq45FC3Lmi8VM3SxLVB9PTiNARPcObGPcv3RkYI9Y0goZ0W98YVWOBuF6rxaItVuG/1YreAJq+WZauJV4oskk1flU++S2qcucO6kde1A5fvvo9RPdAOz9FIy3lA9BY0SQNGkhYrGiHXD2ru9vB+UeQu2E61qjVZ9KLBc7fDFNX8OzxMAEAmzbAuBAGxvcmk5k4JRh9N/1kVBza31rosUl7vHe/JvJAuQ4Lqexacs5spcczStcAN4QD7l6krzUloeVEWiz61Kx0Xjx48Dol6n7IibC8R8wVOYRPe7Jz1xP0huZrnSNW4FPHHEhH4N3VDK+1W1Snf2DB2JDmp3ExEqOm3QMyofYYy8CMSOi6jXMzLPwCEpiTCleaeS3FCO3VDF090jDNdRofOkRvNskJt2lw5eHockn3ugt8w+1EHfxBtMwCtN47D8Qbg6TKqd1ux/vUhENhIJfQQRAprbSQSVFUSwPQldOgZWfhuxMlFB7FLDeUyusEOH2old8KlKEvZ42c4WLOJefuDt4XbLERlXmcL1aekud3eVAz3nSy0VdVw02TUa72xBaN1Z15l9Svyy5eEdBQRqkLmk0tTklRJFO/BswfC4JbHp76dHl+yCEIAnrbKlmTsrOSSyLE2UFtuu7mtocsbFf0w/zl0gT5vyVe02XYAaWKT7Xqp5FV9kTjEb2uGWb0c6Xo5nycsc3yCbUpEeLg08qupQ2cHZwHYMfpyu4XVY0ROO2RjQRAMYjf8afFhCKK23hZC5/H6EWl5A1kTbue7DO3XX7rSXBK/FjdMGys7eC9+6YmFnE/LtcyvHiuo7EqL3bg6C8HU4u0WwvUQvO1YcBKvxtMs9O35Uvxon9tNc3sJL2NQY7WASfhEevdiRAlHOMz1LwUlP2SQYWxOXoW5qRZNOnMTvEZXhC7W27H4doOTdcEKb68L2g24SssuYODqsu+FcLM2RnCpRsT412kJmhqI3bAXZP3XVjU7GIKeKOchhfzffNlk2IPKClmCT+vTMrJ8Khcg00Rg4N9/FkT5bTly2fqpdKoox0AhSxiW7amkU/RYodZ3Mwoup9aKODcvSUQSUym4uGDkZHQBfOe8TRvvIlc73L+REqPfr62Q8v4CzUJhwRZhUk7oD2Co83CnJAJVXcYrheudbmhGo9MfSxNokQWse2YI6F+VbOrg8q2dNb+HcfMJwPO88mAFmXMmu7yfzjXS6+81yXzEyosFvj9WNBx2LGTqqbpm/c9gR2Z81zA49pyOeJLJwlgRM+lHStPv9Wf9ILCyNJOSiRTbIqICRXmPmobX1ZjuOIk8ts3nSKriaOnzIuEqYBBCN1Nglfg8UIDrMpXTDrbKmK7meLBrStof4DLWofKR5f0ZapoJ4fjtrHFVnm618mMZ3zhdgvZWjOhg3voljGmosYzqr0mi5ARyNO70lppbYlW+eNIEBimr+KTyj17tsAdUvtEdKv7ZebiqBQ9wUKVFs4OCyZvm1cuuRCw8QdWb9i3vMMHvd8c8ANFakuWqYsGkbJSlti6jmWvb3LckKlzll2hoy9yHZQmrPsgflr6m/6SwaYnRMswDeBxLhn5Ck96Xz/3Qfub0w5P2g3WXwDp0N71ueCBha40lbGAlyFS3z86/wUcGN033LdR89Mdd30BbLTzooPMgwLHhy/K0qUSqXWIWZMDLvQ2igmDZ3kXNwuYTRPuVrjHlCqAXp6xuZiAbBpehIsOVqNXbH0p5bwXGARI9htBgMySGKNoPZpmf8CE0B/AxNVEFAgzOd82yuyVevV7jn62EL7/Zp5AFionneAR2LlQ2ljOmS9p3elT0jn28Fm32FDajgxCp51f+XwKqS6YLpkz5fVfXWSBhHV+bUCdpLyTGcjqWcDfSWkDVbcB1A1M1N3jxsNZ6t9SDkcv1+KlXpo5GC9uc+n0DsKaoeV07h3he8oNdubyRgGLSEw6NZTWDBUdv4EZfF3Y+HnDGW1D42MQikkq8iNhiT6cPV3UIIc1Uxj7Ly6jreRKBN6OIAyhETgVcq6BAVLnLGis+Zfpjxeo4qh1JvHXyDwMjmf6Li8aYz6sZ/x8pAOzoGEims9x/6/o8vgPtFL9mlJqe+NDdG2r8La4ekJelX99UWvnRQdkMm8D//INtL4ncYDCwE8zAWyft+4v8EVkpCvyPMMyVNFvq29zd72V5bzflj1SemCjJ0yX9+gQtm3GzwbN/qb5qTuMtM6ZvrgiKPyH3KZLsl0BAgZCcjfmAa9Tgv5QpHH0Kj+WAsDhl+kHm4kKYbVSjUgqdhUm0f4kM+w1iSk37N0gArSrKSLOUa+1sbUW10FrZxK9QxJUnKpmbEjRYR36nVsZ6nZmkV6xyDf/OWJicsULQoUODeSogApGuAcGnKp9/JZ2z6J86DrpstJ0U1IrkNPzWbZW8NEAyEY8hb23brxvIiQctl+e8UTqQCIwho4noDQarn5CCTGbw06mHuSsHmfN+jlCEBGBiMcE2Mx03Dg+WtC9AqT0JGwG/A7wQq+6YWNm9YrwlsGyPqpXhC9sSmZLjw0FprzQQXU+KqnxdqJasejVamADZAH17T9+hqIcNNpaWBKjMvBmJlhlouacyUCo9bGf7emMPb93EOchd6KPndMzUdqwxWdBBzX/dbUjpkymfg1tn2xkEQT1FyuJHJmoHjHilxy0kewerCgM8dM1oPkG/WR2NEBfkN+3GAWs6S7O25fKwXpOTN0WQrLDGQP9ewcUQBWegTYYSPTlGaLLInKGFlwwIus7szfTKG86m+MDm8ycWp0rQInqIFMU+eo+UqbzQqX70bQGMwpxy3AMaIiDWG5kE1b8El51DehEgpmjvy0f/qIhRKsHF8VIm0g2jwCx/u8OfJy1MMTXXFrjzRWMh8Pu5aREHLd7F1eSuCd8T2DDIkCVHaa+cbWGCvqjk6MOGhEqQDwoL4arxyzWP0Ysllm6DKwfkuzn19R3hoblRH9gqzNC87nCAOn1/YktQlED1byzaZfRUmwqy8SmaPwjlGfzb2R0bHkc/Lm9heTX6LAdTPikleFSqVzdf+YSKortwAox9hc7DquXtYq8ud6RixXV8FD0dpu7qluU2yUeh9wXde+7dGIkinPQa95BR30vMAgMVGKtkJxECcUqaDwwN5kn8nBKzrTfWMtHMBybvPb5DjHzmZIi+tar65/gtILsYvFI1wfw0fgf6BzFH7lcDoIC1CglyjUsBxBMeSD5dvUGT9CGpv1AiK0JhxEknvidkTIPVHs/02BDsckPkDmHC+inbItdcbWfUaYIYGJS4emP/R87R00vQUL4D83gtykPJnOV8NaJ0IO//sqp+amkigY+WAD2AoSvXepOSEXlraBaE17YaLagmZ4qLtgC0ehi091g2s3Dqg/oPzi/2xZCo/Ks2t98mp1ZPeii7vIf7xzT1/ABzg3UGl/YhGMK0VAP11x2YHHLwYJ7V2kxvHQ1bkJAv0a66OkHrM/L6eroBsQz+Vf6nNnCz5Tva77N1E1c8vJP22tbbX3ItB23I7MH9rFtpk+3FW+gYsnFAm1rE2sAdaJ2yuYPmzSJ2Y4qm7yAvrklH+lUqkRJN7SFzWOE+xPoPknZTtvDIp8j5wmkNyI7SC1TK8kVqHijv8StjJU9R6MGy8PRdqXHyJesd7nc96kBXJ05DgrUIVkbZmcMrQtPp5YkK0dVUCsPEezoVvfjIQXJA4y9qJ9F2sHDLTaC/5o+Ldby0j81xUZDjDtM2tie2tI1HJLBq6dElZoX70CbNNw1WhizJF9C1aN5eGoaSQltIJAyfJGDtAPP0Fd7UgYdjlADtby3mFWMQs/TYN3//NV0Fz2Cn3Ah3iP/z9/QdLYVA4fTT/KeIDq7+fefcMqasnjNeX3bIkiXj0XBsy8bY1cLKw+0RKfp6chFvpCdWdBUXgSdWaftfdL2yicUoP95VOftZySpl+a+h2j0aWIil/vr+WVOYj6osRHtVUllcY15l/aAIjHaalOdSG/iouE6J7Ly8lTTgi2ONB44lXFe1oWPwxZb5KXi3TDIoEjuakYXN9WPo65yWqqFTbBXHWLWMoP0b2mmjPhi157SNTWsL2UYjPt5WZ483k5WoDK/cpYgC036O6T/6vEn04bkpqqO2kGvYXV5FrqIzcYwArjb1F4dmSYrHISBP6ZWMCGpgY50w4CLGSurCGkSYTKcSQy/Uwjy19ZC1o00SLZZSMQQ8OTyT9pCD2fAca5lJR6BYLdMQ7SO7rUTn5S+NK3ixyWAbfV3cSiXq1j//ZdZmqh+AyISv/T0gL1tKxAIS4lcSGB68z4/kOL0pOXeu6g1RFQbXEDldeqQRrO6iQbSBQX+ekqBRyL4bXgYkdIk0DALONO1H+Fuc20BOHeMcxKQ+7dvwtvXWNx80rEod5I6xnumTG7InYXfgJ4KOHz0+DEVP3EZNUV2Bc8MPiyM8SgZY0c9pAnPvLra8LkGTpoVjARSNl9aevau2DcEf2PInWxKlg6hzlVufuDaJMkcqf24LvANXwpFD4epS44eKy/NKE8/c5ZWFm0JYOXcb1SBBG62c568K0XkraNkTJah35StTOPV+e2zPZo/ZksO3dt8PrwkwR8ndm0+PUl947XRGD4pIo5nL2QHBNd3l8Oh4FS1m5X3qu24il5iUyTPK4czJQ5p4Haxg195VLcgb8Ae8CEYbfCn8W23EmQDIMtEezy5iGA0UqKexmNzI4dapXRmt7HU1sxzdVJ3f8qkwhexFpddsB6tvlJpXG/PTSvFpuHwClStqpfoOszjJ4+SNI0j/MJOyPrOGcR1YYlQ5fOi/d+2A9rwp534BMOowNFJICmkutwZ/IOUEnsOTf6is7K5ng/P70dfYQCTIW7xOow8e9gR1JhOQSjoNj7WPFpEgcgolZZLDAykT5zHdG7MzAndf2b5BL0ggQn14KPUQJibjVpC92EGzHLXI8SBjVbnS098B4LSpsdYd3LUvJ426bd72G4gGYoC7ugbXBUzKXRSd+mIaxsZXB4X71wMXlvmtqV5zlx+UTCdg40NyHfGW1Z5oIYW0tTXgBXrS2ixxPCo7M0hC4EvX9ZdJAPLzArqMUhx7QPNGbu4tpWmDUsa/yZOR6TPflK+TYLSz1iKlfH+aDS1TVz4TfVnu1Kl+fOFGVB5FZZhkOOLn8PRVgl0UkSqaGMNhkG73RU3lu40MQZfuL3RJbZpK284Oovz5hUCdnllkGZchFlxxz3lYLBVqX2PQ403TZt+JCDgKxEZFzQ2C0CwgABUiEeXju9Ef0e8CpS8CDJ1Myw0t7ZwyImiba641mYKo5ArwihPpfIeu1GLcO+KWm2raAICA6OQbE6g2RdtPJ4FYxu/ugra0oqevjyDaRn62eegwix9sUno/KWFAAWScSml2v5gp+9t6y+WIt8B45OrX4roAalJJZwVl2z8+8s6p1z3/ivY9bCWpyiZf91BzXtjPxa/9TFNY6hXlvtwsPEHnc+sfdim6Jmnnd8pzz//0GpCw6t1OVNCNvDtWQiHw2eVg73jmAl0x/bYRx4GRgQLCsUjhf2WwHTdXueHG/8lQAQbFYr8bQg8hpDbWBy5Sc/rcKTQcrf+jvJklLogn2Fh10iDu0QcnDO15DJ3ptMScJd1iiMZBhAnj9qhrkNN+ig8Of4/GA7hl31EUrBb96M77rwfdTf3h8ZMdwIPepHqYeYsygDilSLdT26sDTb07e2j/8rZPeMqTRYlHLoNcDRkEGXMHD94bbJVrCzoqxTr/jPv3pwHb5oDNhX6zp4QBlAtB/3HKIVXEKpwZtc/XXuY0roswbwRreavo4kEZQnVvSkgL7rUbcNtxQj9s8LizZ93bpyIchDUqQMsDjm3XgL0g2XQuz+WKzs+pDFC++SxrpL/CDGgEEzYwNSCQJrg53gbux9wnWdo27IteaEmRvjhori9rFk5Ia2+vwW1IpZ7PGXy7qyszq5xyE1nF7Los6Ca7nGmAi/RLUfmq2iiTfnLjBPXwQCCwz9Az5XG40f2H9TXmOXysbawSZ6f7qvMG5J1/ry8QY04T9UB4D0QwzGKMzFj0a5lolFdK916u3N1R8MRRso6wwNM00LEK0pXoa48G0Tr1KiHuJpJECmTk9Z4dfYC2UJVeuo9g3o4hOMdaWyaWWQA6NPT4XYAkVszBXjCXJcGDsKHugD8tOlz4hEB5gGLBA9aMrRUfMPjOg8/lrgs8/GoBv+Jxv1CfqtxBNf8Ke3e6Q0hIIxCzzUyZM+BoRxeVpvkqSxGb/KSzl14ESRQEC8tZx6ghnrLR2VArvf/AcHcC5cWCDcIPSqBXHzVKwlnstgWO8tQEyjJ5OBXWIuPe7c87i0Sj2+lrM7mx1ReZcWkIFJuO1Ue6gr+IWOzMdWo95Mb1XfUpAjKXTx3qHAe7kFw5sSPAYpXwGsWPT2oGZVVrWmGJePM88NVvbjl8IBC6AjkVvnmzw398C7+hMthqRtJJyZ8lqs/hHx6Ohxke4R7Rwjr+Fjl1tiCZUoiby+RwtnP5cPNatuskLv18BbLUUPhf7AHtYAMPZuyc44dQOa3IlTBnf6Gn3Ap422zvBJltdF4xhwqi0b450+usuUBppqo0//3TM4MG3MLepSkEzDsTm/mS2zbY0dqxFcEuzajzUCYWcOsY5+NEPuXuCpW2QO9YVv+Juzoc5aEV78/HfswcY1a8fKt04VbRp0MsiAu2AAbBkBCCdehgAnkI465zoegrCem/iCy7LHelO1r0BGgmWUOvPeTMgBgUVVVcDc1zdi2sr7ob2DjY2SILiYFbEyBqwr/H2sDbNik8fgfguJmxzU1t0XBAl+KOFM7mv7gkalJNtsa+OvS4HkiK6rLm2rAtfReIg9nwcbOBiVsX2iFBnrv5CS3YEPrd12sR1nQk8W9bgxBdhp7G83QxrjDeJrbaol44Qs+4Ess2rYufcz5TA+Vh6Gy0VGGdOMQS4qV07irnc3fvF4+QD3couMiADUThVyl38TGhz7l+8xf++H17/gN/mgq/0hSQ1NQ+cMacX7O6+oOhs+ZZyl7qmcks7zofTr0mZJmpA9ksOg+UDJQWGObTSN+gE7+u54zColYPuM0q0w4JkPlOD9i1WXNJHtUeq25ewAFt48n8iz2QPTksJ8FvIVWUeWf2cNDtuhC+UdEiGhiCKfJdQfeIdb/p2PqSGt9BolFi4azJw+4WroVSbStME2LvIxtlE5VF/MUpvHTz3z8zYG4SNC0jfdLVqtVUM9uq5sARzKa/0Rbl/cdUFbbtBIe7Ixx2tMJaoh8TS6u692dww9g38iM2jBa+jpySFfc2/j8CAgz/IQCOExYalFCGmJs1huex88YZml00ZHnzmJIjO4yqg/SyhiR7neVM4Esw60LmIKBxj5MmvUmcy/g838CbEoM2v+lZmbdPJO6m6NPHZ2soLrbFudQHyXraO3DCIdncnva3xUVwAfExkYXtRZ5DxhdfbqivxBBBMF7iB4GXmHhgW8DTyXBzSbD4wcKF2ZjgTo9CkembeTCv53qaCK+i9/VkGjmDlZN4/ze5QMxCWzH1e6tihvGfW2zRsO9hnRye1gYlBI6ul2/A9UIEzeHLDupKLmzwMl/9qp9TOoLUx5mviGpNHbgr97dasFxW+gwbtFWYUz8GzxU3i9tedEfV/SaON/ZBPAP7GRj7HzA56yCfdQqpRI9XtEAsokjss1LwDUkK61Vv0q+b7nMu/y77MgfndILI6l2kkiXrdquISoE0xv5c9OdWRjjP2mmIAiAf/njyHU2lQ9TReARhch3z9Z8pEBuP5PPB1N2IOGKpJaN9tPIaA1hnb56NG7OgZw0XEB2ZJpqtW1k70Vf/OmXDtbvKsgOj3/j83aXN0oqhDSiNMPni/eFX7UVYNwjCVVkCWc7z80lZSFoUfXdolIukM81ZU0KDra02sZS+wRnixQPbAmIL+ELjlcpj7jYQP/leBrYhi6xMmJhMpF8uy+DrnGhONxlGH1rzpivyDgPp38kWc9ADiPEFKwd0/LDYDF2KqzyB4NY7xw9mqaXvSrhRW4VkboE0KeXavL/k917AVKgruqq6IxjRsC/EaDiuKF9fxp70MBm/Y6x35t0SqC9Rgfj0QQlc0Vsjei+kQRyOJFdwxiHSoaApNWevEMYN0ZHotlxSpvHgvUWCPef5Xf59gtG8bN61ZPJ+5sqyviStDRTSikyMZBsrqD/Gzd8KHZji0hCpxiERR0o21hjRd4xjHjwaQHv06PAx7bYeDCC6nsM2JNU8J1qclv1wXOXM/NRYBLOhmI2WPgoMbkxPesY3v2arDj6h35LlcCNKyVmrKFNZzRC47XArEjQ2U1s/CEKf4MwFltrC1vaGGaA8hRAsqqjSXJjpBU4/ocikBaX2h++MTZaHnVCACFabnnpnoTfFyMys7A2no3rqwU4zPscl4nAZOQ4QINJ6017fiaPiejkvhrDhyWoGGFh0PRZ6O0THCsje0G+AASvRNj42W6sWxXw/q/zNQJqtjlC61AfvWSipqU3/asgUeCLb74I7U8fglAc+BdDzTDuN+FwXXHrGq5ZG3ankUnKBTGmz8xepL2PBWomCDsJtBMjHT20OlSyJi/1FjUHsDnCjeZeeeenVt7BMJy4UqLE5GlbLQQKr7Soa5Yv0Hb+C0ecsZMzHP95GzVOcrblRBHwWue73eK+4XfbJnF1YFc3CekXArCFSGH8XY5q/YnxFhqyduLl5Zma8R15hR4vhoWHO0w5O9IFAZnT4lxVud0Tye3sEE4DZ5M+03o/465LyxJFe+F9g1cYBiS8zig1HHkV+j5IjvCSYj1g4+Nmh+PbocCNGzOozcO2+bkOApWsvoKKxjZElJRJ5bgFajOa/SUhv3ncJgSmsjcjD4x/nHWFVLlI49323GI9hGWvCu0IaApNQHiIR1LUDB8g6lyt4ZeWRN/ZBpl8terxxyKw2t6bfcaUS1y8jRzHUrOc8QCZ2MUL6Ni4FyxEmr8r33BYUYXWxULjnt18zyvdntWYAyhaU0Ao1QvvFSibfwyPCuBnpsCwIL09QRlwy08KVeNm72oE4dffSjLY2sFZKt6CDK0Cs0CBKzeEEBoh2RgQrvDTVk49amJhEhvjFSk9c1BsxxRVLijt7+ZGS5KkEA1ZtWwvB3NeeXVdVD6mnCdZjU7CYdhEggVbdQaWlDTPf7z61UzjQKOfu6irk0wXCpXwR1cxrVZsLQyS6eVquiwwQiFhpxEHyM2KIWj9EYRulX8IkykxByKZpaqpIpeIMtiJ8HA1b59vskLmGUql3bUlcJPJTgJPsq8S0moboxoQd9GYuXCzHD6Vvj64uRrqKLmNhVDiPYOcdJwR6K40qDl5Xn6kiZ39kQWshwlaqE9h5GhKKc8wD6erRnY6GzxnG38DMrR4DqD2v8hhr3uBsf2hHYzzCqXTTipnqJafr2/L8oNXrZPoWiOxto5O/juytFpWBjrT1EZg/2jpmMZahmfWI1Ec72HdaaNsgXNyPvvQIQekD26H0hxKCE7CvyBTaay0lwW/Ht3Die7JVQK1I8vie8hHPYuTHb2yoeGzOfx4vCMKv1OVI5MbvwzHYwLPClntqOHVjakGrTBcYaPpmkMpxnwAMbLwvtnbWU2tOnW7oncJUbDap/u0/5B+JqGKZ+we8sxGT9qjLYepnYxXnigMHM4lcHV1zKk2hA5q2LEZPDtSRpu8cXTyewyytpFLkZEpQooT/J3KzxP0kCiqSGR7bxGub/eyq0ClyxBFQLOQCxIYxzhj65UtT1kBCUki4FmCDBUGIy42+gSVGhzEkk7M67Vjs+iIL5GNG/t9bQQyUVqBWTIhg15qeS7VHLWi0xe8Ow/kHDxPzD2xyA6ouDVAozbOtaSjOjhq6hLLVtLmE5pFAsXT95vqAM4g2spnSwLY+M/F2bk8moHIEIQugOwQ1nm5rVMkwtcvbCCFi6iQslhAaokrOhJLidheDRHQeBRJzq1eDNU+54u7GpMr0VoqHb54JGdhcCNLxdE1DI8uo2tsE7qV0+hp2PkbJIe1bR0gJkJ/vY3eScUXfuzO7GDeWObYvsv0fx3S6pwYF9vvLR45ZdciaNUItUuXrG0oYlt5rNCSZUXbHubN/myCL3okhbgDrLVOt7fHpkzWWdq2DNBksHc2QHyoiK9H6dMMy4tNoRkNoiRZHfzcTxCw4IOB+JKh8PbsOSKsviPIqTrK6hguaTmfNjIf2bch9hTrBCs6F0hhvk+RxnkL2dbHF4Xwn/pNyCkpaWWXOGftogS4IOfhYWinffzW1twYSDMpxaS8qRbxPP3AedaW2cVa7G+l/BAprfS1Wo4j/WAO2C4YON4ORNBaQmg34pYZ8t1aC88gpT0c6iQUuqoRnL5PFGSaCMUkj/o654r/0erYyXYYQViQLi2+obAm7JOS6oqB5ZzXVtVS/VCeWUTIE1Ot073LT5TmlhKU0a7+F6+awTwc+ixuhrJTEYvMmc4xvUYjdJBFfHs37fQVbyDD8QOMXElSHIHCs8OjAz3qUfta9Vr5vEwu2++4vODjwk2FGZpwmQl+XC026SS0KWL0nITHNunp6k63MV1xLlEt6RCeonpH9pdWDFbdHE1fiSI9dT6eM/4/LWTTD44SbRK6BZuGTrEydmRcnkyNc/br59wIPfFv6x4i5re8u00SObN/8uXlfVaDe0xeuqMy+UdkuQYF5E8vp7hz1KKl8FiJwOTxI2o1+pk1PpKAJ79w1Dy8vWm3G+5Xj9dZQOaEp/vKg5pKcKRPciRlrvjBfJuLkN3ZmV8WpF2mxTw/RKkQGw79AF63GxJRREKnXxUQr4ppywNBm+AxKsbqGkXvBf60I4IzdSeTVZXvk7ndT/6/9i5jYfrzNSW/wGJBVHHAvuzwZY5I+mjZJTjFEsntyMl8zqDxfYPRzLL+BxTpAIMl3NOS2BEUShwWmmySgB0TSiFbAJix10vwOLO1iA9bJKMNvvPsbPEyWc+jKdKEUvDs1I4sSFh1y29wyodAtRqTkgHgStjdCz8gp7j5iftoiDxEj4+YfZZAhjpudD4xmJUGI4wp5Ffl4cgWbGefQhIuf5zfa2YrWVHqMGzFCIxwC1bZkHtKe/jwq82iXMv3NCaDZLWYthQUJvy0OwogHHgEzHPluXkKezSIdJiyxgUj3YW5krZH1TIN1+E9l9FbOKdU8uogqbvhDL+jPCa5kPDQ8vcwaruptqltOAKK3bkgTZjlJu7HOtfS9cdmpceDv3W6GuyH9oBYUk5vxR+pP6YNEIjxeproUpCGE+nD4GXYY5kCOpVfQGz4erCMDkZ0w63O9oOldFuv10xL6q7OHqAxQSaJe0mIOXeXsv8A/0DqmKuZxuNCSEFyuDSmFodklJAzhx6VNmTrcibbKtU3qlAiFRRaDZ/SolKhGhLX+sBD0wA6C9YiNvOGwNPDj3hjv+P+QKZ80m7wKEwrY7yAMvqslZPuIutfZrhubm9T0SehOZq37+tNunNrhs2LD99O4b5/cAYqN0r4Snjy+b0fihhHQMRzE9i1kFjbmSuygb0yISiOGQOEW0C7BkMnLf+5+XfWo8uZVznhlfQG0pvISH06h+GWgq6cY2pO095OmAYEMq+M9ZsLUDGDG5ub+eczrBrJCILUlx7mlsKD9ZsYlKlzrqsUz+9zL1Sa3G72zPNfw7BjkstlO/I8q3sD9sTYzs9HajSYiI8BuKah38LhPOgXQg2pNSGbBAzGr8MpcwqQfyH3PjagtG9EoxgIrg0lg3po2sN+7hVjo6fLvD9bKvpkuGdr6YsBnOnfZlWP55z4cm+etwZveSx17IkVJbndMFtD/wGOXkhhaCSxTxeCJ3YV5ZmacV7RUy/6V07Wkugt3uNaKs9C1i0a5VNNgjZ05sIynre1LJNkRWeauQbGSWPVI/0hhPowc5bdQHIF7m6E5f/zuKbo1F02S/wBkvTC7DbWDQYiE8jRJwVjWYs5L+DuShAoTGlmGpUWGEdGh0H1INmeha1i6vvLxYDYlT6aWxQMIGuWQiac1N6jsiNcSg8ICEQD7oylnmb5YmaVztmUKd0C2GzqhirynGB01bWXvG8CssrGG/zR3pgqJo78zFgs4+XQNlPw1AF+/aGjc6jXJ+29FQcGqNbMpZVpbgzhkxec/qwQ2RtMtArsa5B0vGraera6TV6Tn5FI9L7mF1TdmPw54N1UAduteZIwLSLuPkxGWnkS7zsEWOY8F2F0VJFq3sTBHyu96TAcR2R6OM2iMcSmjJM0kY4LXvhXt2l2+vOp5om+Iy/1Xalfdp2+6bo7lYo82nJ/CZsAAnnEb8mXnvhiBUC9SdJfoqQkPdMor2osHqwfq/E7q1VNPCTpxgefd82rgD/KyPALFkDcHl8lD7Wi/uKEj1p1Kq2E9uZfBgF5h8S/VC3K5LFTlwG6MU3G8nSYNy8zZuEkuO4AlFQIKbbBzdGT+iOMFSGuQdanPChPG04H8CvsfjlkEx+fK1KrUC8R8//n/CYJGdaOxpKVcSn4+dnACq0guLLLe9phcdjA/pudImWW6/mERl/nPu0gVWs44kBn67AURviDwza2fF3i02cz//PQMMELclnZ+aESMR6oqiJZWUfB9YZq4e8PKW/UtL+FnUVHJOvGjWBn+pnFtaS61K4pphVh/eqfM4+ijtmaWzfKcA3nNkNGBhH6Rawt7g2DsJMaSBQsKKKnXfdGP59CNy4CvwrRsYICskcn42tVDy0F08Ldgax60bHyNbVO9trhLFNZct8CHTyX5dAqYX0+UdHVF2uVQDe9M7akFRqXBkYEEZ19vnIVeEV6YEbqKmGShuNTs9PTdKdFIBH3OgOlPYJhxZ5ke0NTB6ZYJ3fgFatH6WcboindgO7E+6e8COIU9VKeMU/w5pvNppWtdtzQ/u0tDhh48ygXwMBebr1/47xTS5P+Zlre7hOIqey4t3jH6M2RFrlnrrtoBJGEeIxZExR40BBfcSfd5hiDdoRizcNtysV+jo65MigaLFGa1FHH+6dU3q44UJhmTB6NpN4Ph8ta9sOKqPObTCwsrEHOQzWXdTO9e5ufW0Re962d0RPHqPF2biOu2uRp0RDEkEe27wsU7xokkWRJRC2mMxhC+iWAA6ZtuXfzvnV6LzdpoojSAdwgdQycCRuY2w+7R64ZRYaeTHPe3KQEe5tY7JI4O4Ke0kT9UJGDjGWLTk876c6ut1Moxbb6XUEJj9kEKKGO8AUFy1n9DSslsAVvi1VjoUqH3gwYYZ4NwV0XtISf9hA9DFQGdi8lpxVs5iB7X+h5KgaAaQqV9u7OOSHwyM0Aujh+f9fHSUyj3fn0kwqY8ZeK14XHDClCahC0oAK19yhF665L48U+29r47XtVF2a0I1QjNwb98iXE3qS3JGgFRDCgi9+hWlVSnARhwDcLc2o12ttR8tqpMZKEg98tcbYAlekVFAQHUg6EuvhGxPvrGNZurlhh36v5fGCSDhAK7FLR6uTtovVQfhuECK67f+5dQ29cyHR/bK2tP9EagZ4kprGKIEgkM54fL/v8PDx39jadPSQHxtRWqV4aAD7egky3XM3lF2n/fdmjhB3iAbHtJIdsRiuWYVGbbiJJtPNRdJv2H3f6SH08C1jOTLLVfQMnWUOohURWLssolW+0au3Ef36BO0jonJORb0rx2+HQD9Nb+Qnq+c4GUUD2NezCf7bA+xR58ncKEmW5nsre/bG29FzpKKsyfhtYZx0S89uTf5Cyzxnsny4zEkM5jHiq7A+q9HNREDB/OtVATWFsqS3QSpR803JZexpRWWGb8RfeqRd69GsdPYSXMt02cDty9Qj5VttJ/tHNhwE3on9FRsOK9AXj9pl8hniS8HoPpaXl6Qsq/ZdZ1HPnvTZfQysqHkNSXD4rCr5o0swSJm0xOudIhXGI7103sYcuSgc+1VJR3lK1oprw6ZROKYQM9lNR97lv35+yfTwrv0+AcfORz3dTT17slTqWMDmCuur6c01Fv2d66tAetzsuiTQcvxMFac2T/1gerE8SeBNna2AYrBv8lCONtSyHRWJhjjhNylp0tGGc7hI3WiaM6IUAXluLo/5uFph9GTuqP6DHR+BZBsOJQ2PX+s0+AsqpbLKKwDPYfzq4Xyyu06uavqW+yYWhbmth7RNGcTPCrfVjXOy6/+AeEsGCZELzOMACQPKD4iFH4I8Ns3Tke12LorvrfcZM8Gw8AI6CfyLIAThcKtNtdbTBD/rz2p4omsB/yczTqHrdn+dbiWq8/tBKYlSJVYjFb4bH3l1ERdiLdNIOMYjOR1PJR9cI76dDEOsM/SN3pXMLuk83f9hp1LvMwzeb0u7Iz6VQM+XTK+hCWE1Fx2g1NH8p1jt3vqyCRIvWIvpQWMSeKBqjmRConBBcWDjh/scOHaiDGo8RZgRoO+JYl5IZlxjCquhLvGhowRVBybagOEkIFUfg6wJFW8i5+UoNGVO+aLkc+CiUrKS3oIv4B2xa4x2Aov+D4aYief6UdR3Zeprx5/PD8wpuXdvKdPaEPhqkOccZTJpkBZQuAT92Ahu+MFl7yXt9Ar5k4mCekB0UTUPIuofkye8HzBQDt3TR5yjq9GQvSrrQcSGF871mBYv6Fyxh2H9ZX3dY1S+v+vL/WTf4pFzLqbpZCkHtau8pF8hzaTJSWsrxuk1JFx9yNOZyPtiOE2Y9F8+MkGiLcvbUh7Mhg7xvJVLeEkHXm2aUePm4Hbe9HjATauy6e32cAz3rGJuOfdrWFxzjiXq6XdpiYTkLwOGYG2kKRbh4UyvMPER83n0Uo5LcCv07cx+n9hW7qYsmUcYR//9hSZAxAU9EwJu9bmBbSgsHWjt+UrANZ0i1rvd02IC1LWHEKSIx18BuS9/wdggYB1LOaTySCGtiJxjEaO4OOlzkuLjFB7oWBw9E/1CwuFSCjBXUGi8cj42CbpJL2prTGp0UNpmimxgotUnMVIpahT694CGU7apcz8OXZ1uSjHlOHDmxeheRHZ0xUC2+ld2P8MdAh5ofyugGN8Nl3/RHLIMjGzya3U1bBYi0tyQ2fpYxdMpYbRe/y0uMn7PBWApvagPa+iClbAzmg5loj6tx28nrcuv2oGLyIJSRxn2sXjvnI7TVliUy2p2/M3VdABMHXW4ul0s8CRhl1+6og4F1d60WmzFXzlz59ewF3RhD0RgtK8sDYzD+ejFciXZIsn+97yKlJJQXy4TctQ+T1mUoGixq+9ziuI3IYTfvB8vPSZshcqas7kW6S3uYaXhVCYKysVye4nv4z13Fnuy0rdWJWNBw/a3LkOECGkkF425pW9EmGZdXuCuMJlWxxihGKDmtEkJTHqmo2HTWskwWa3y3RILqoXYknx6yrzcS/FvMLye+VVGG+LSdAXpdnHdCr6uo7VDu61Z41S1JkWIhe1GkF5QXoiC7lLY4uKWj4eM2NT+hX+a6bSj8wvU/oP6cxiebtQVj6CJozD3M3na3ix9iU9VN8T2G9HYYJ2bw12HswScRJXnX6CEhMI0tBZA3R0I6RiQ2KaeyZ0o08SmQK8U3UOEdh8j5cJCcu1nre+iQTpo3qZRipCvkiFUqaqiRJhGDGkbYlSduoP0U0k0ZV2wqcymwkv3k3fS25Rt+vsCbs5S5RBXnyMe3gX/6wMasxCsbaTYCYgwjTdLYBenQEUmZcSJnlqmw1rlnwZtAr0STzG5ybU0PYDDoeb9ixfGK4b/a5cDVPk9wQtpOtZe5LSBDWPppsfC3ycnfk0vSoEAPVwVBjrqSKBiXsZXGsIp2ZDNNbVG9u5i9dDHjuE0Jur654q9YF6klpHLwTVhoCQqZyPaLoSIBNNucsjlDRyp+lT38VCdh311GEYNGaSawgkbmdd6imV8j8y8DZ0OM4b+53uox2lvGUHnjtfmhdjbEXFrDmO+biTXps028OJIgCz78mRpbFu5/pDsvYVk2J2SJoKgZyFhtdAIwYEASBCbzKI6/smsQK4cmgjlkjV5aGsjAoEtm7tEgmQDO/F3IfMY5KGvU2Oj1uGKziwnmAJi11SoOt8SxC3IQs4IATFXXE3M+gH5ZcNn5Z61iJuJ5HSXxA3kY26ovIjHZNov3tevlR8VvKkCb4vidPvu3vEET+YuMBNfyPBG1PVTeNl0FOeEP9bgOvjdo5ywyfQ/YDyWjVWQnl7WHPvN/38h9Bkw5Tmh4xG8kYYQUejROCilyz+xvSVzj2OMF8MEJjiCqwagCn0YOC18fP2jZwc7ePIjhIIrlpphAIZ3CNIwt3AaEXhPGPeuCl0zsgs0rnAFrs+/vr0nBA3rh2UivhxPHMTYoPL2C56rBkcBW+wI5YPqAvKUORCFprbw/EvmgJmoUs7BKMFED0arcSaMMlMx5524hYwpoy6U6XuAPOfTN/bLxkKT8VdI2TnERFuQ6rmoYlCRg3+hylLCbZgwznDK8lVRtum6bst+Ex4THovhjaq0juedEeksg6PkY4BCIDb9FLb5YMuGKMzOQP5dvxUANj1HIAjYzmI3vIqZdIYvd4jMGtIMJPCT4XSCHi2pKfvwQ+5c4dc19iuqCrxpvhTE1YdaBS9zcLtBHIAfOpu3JBzv/T7tnag5lN0GK+Qy55cgajjHUZjMDHxg0Q/zb2dx8fHaLbrbddqeoyKM+CZ/8N8+xwk56OU6bX7dgy9WnHHqern5OZEjKFBtKEYUm/aP0EJJXz7dsyeLY0oMufeVmqzBhIrC+wtvbE6nhIsddC90EAUut69VlHPtHIZhTR+XzbHiLXLUDEnJzmHaEME6QSE2W/QCyDp6Oxr9XSeAv10JjWp5hqub4sWnexuJaN8gbEwx/MiWpSDqCj/2YJoKWvSASIkj4jB47Hb3PFkru8Ve9NSugAwl6NF1Ii8TFNoHGnFPD/YVngPDAxYoh/SqNpphVhlK/quszi5psopYnKhfwAiFSPilbh7/Xi9hhwq8cdrOPefdrK/KpLVJ+L+5i5MrEC1PX6n87tRmQPHAe3ydp5jtNx0wblMtX2HUbdipIfwKFJoQ6RK+0bgE/LijY3RlMqC/ZNMZhllsEGNNH5N2McpY97mnMzYC/KcWQX9zsR55YMHZWLTd3+eWoqmvqJl6QGMEWifhqZGBCDCL6tDmTGX150f8g6Hl0SqpxNnEqy074vgGPO/WaKEfliUH0A6O3V9HrfC//OzLQLlB3t4bQAQQ486Om9bGrAle/u4k77QVcTUN3LUhsKbE0wZ6++lmkjvJOwd5ZjLeVrI8kiSSE9r2nEHj/g9W+8lwBG1NP5T6EDu/S8UYYIUzqNR8UUGd1vP/LNeL4XKiHdHtqEEWr0ntmMQCbSNLMBUYjarKHngTECiIYgrBBwRiPr447LRUyzTI9Hk4hkQhjuNWvvupmeGhCzJtdbh5K/BU8TBT/geTdjp/LPHr1AwUuVkWMFsjzgRF4Kv4sn4kPLOHuLII4Y+jyCrNmIwOMT0P1kJKuGvxRSPVL9Z6+rAcSuaKPG+3VjPDukDOorUDiNl21AxXPo9i3wagIvBbNCXvtqW0zXvZDgHavitXug2S74EGhFfyQ2rp6vuu5jMkU1i4LUaYbZw6sFRU/4jI3ZxHeu6mO4EahFBO3MVD+7OcyXbPnB2cDJPUxAELbWm1nkudrOfjLT5oIqScX0mzszrIFvSnjyAsa5QxUr/8bhAm2toKiCS7+GX2XkKPrwaq8x70TzUj98DhsAJY4pPFo5u+Ujkiq0pA+/sF/VwPeSv+fTx3kGglOpie/K6jQDItgZHAedxCS8xglh0xkRH9TszRG/Po/I4poROSWptRZsyOA5uKQlHKseuqufGgUm04FXhzXH9kiU+HUvwtEi4zWQLMoKjtHsDQSlU2J8G8prDha54zc+X2jqdhdja0WfB3t+IYiGoDttHmGk91eYM0fcLVgFmUqSjIwsblMA34EILOtdPQ786cI4xsfoG2DRd6Ki3RfsR7ENuEFqOnZz3Tolh9UKC9eESx/pQiWdfOzUZEU/utb+0hCMuiMKVuqvVksVL8AAv8gX9cNkwWK0L30ObUFgEk+I0qq/XBiY2cnhT/GWsEr/wP/g+N75bWPTSHRyX+BhRmRWxFvoS3JkQ3GICG4IGrIds1yq7uh2S30j6yQzae0L88n2P8xOg6znGi6lidxvSU/D1+r/Ak1382TOeunVfWGQfiWb17FK5KG80qDVWHJMKIsYC0679RNgUlgJ69OOVCCtTsXX43laJsSHTD1xwopSf9yc/eYHWZSbgOUfIlRncsiEeB177txVqnTC4TL5ti4W4x6tIvmCrTSpcc1hwO2DqeAiLtRlyDVYiY+nHhcFef5j2XO8GNJM8m50odeTAn3vQwsiUAnWhoTLR1UnUl9O1jvXq7SKQ/0pUEqrUZgbPINsQDw5B5H9HdaiA4v7s4/ixl3qE6EWH1AkBPfOL3D20QXbtMaKxImxVtgeKdZDzaa5f9Ui80bjpo1nUZE/sEUDNFqIWJ4fVKhkKDxsWWfWzlD4Av5CsJ90y+UDJsz9L8dow14hCSZKDCiGWYyBUGoL7Mr+xx6QvY2vpHGjCgqxA+Az6bck8x4zWQf+B0DWTBexoIhR5A4Z56QpJPbDuLFv8Jq8f2wbIJiAZX4Qw/4zrWXHw6vdJ3/PIXimWm8NKjjiX15xguq3GrvdH6dKG+3rSXZ72lBFD7HdsrVSu5WAVc4npdgCrPQuAPbhBd1eYvF1f68kMCrU8lkwIr1VMMR1wmzrA3OSawnSDHsPueNV6QhHvZU0FrOBaygvj4gSM/btTsg/HOEkXhJtVnThnwCFUyyvDVWdvxVz1Nz6Dx1vTMW4pGGeBoVJbyEj/YkMSFclip5Ik8Nb5V1caryAVtc40WGCBWJZaQqnjMAMHZibnxMrDaFvh4443qONuX7pW6Heiusa6qN5R3BDR1h2u07pOGTH/9glQ24xyH1bflwKR2KOJ/basHBDEXSIM84MUnIgl37i+97wildk5XQxGqGY+z8KQIoKfgvuULnDifkSuNvoYpOTLZ7GCvLU9bBEiQaIpEeTNDfjkXZITFx97iaPTBpq2UVh4ykHaDbv3ivJ04JAmxCisl4UGTtwEGRxCYNCZOfWtdXWz+oJLW84eDz/oSZaNS420R9OxM4aiPcKm5fuHbiHjsCpIiauPk4Du6NdYoBz//VrnNQxDxRkfN2j553qeluVPojTVcx3oAAKv5heM1/ebxL3RyXMqF3xH5DTOgwEJfr1wAwKMcg3yyGJhSCFIQyraWVVMYUCl+K4s7sV/DV4GXldaMeO+82pUECqq3OGaATLKTQV6byT/1xQ8FLy/IorutuyCzHvDXIFoVrJRnxjAIGhqEHJLePGIR5W/Z3HLEL8tkTGXJ6OMVoxjN66l3PKTnCnOtPdagQ+8ntPswcdOowlg8NyqpEtV3xbn+94YLa+idAnAbaBZW3Myj9+bzSnIa6FSzrrrzVZfqIBWz4cI02HylfARR7Vqka28bjLzIjgs/09SLH2tHSqNRybvgg+ma37a+6cnvWvcBQrzbL5uIOEM10SSZnTQSYM4Jgu72631IHn89RFZyj0YAc8sMf/abETRsRrTNh1zgdiNeAgvO/LsvB7E1DrOCyhIF584PGPUb/TNkgHNfK/S+Rj3gpQQKNk6Pp6m7vOvQdDvCL+k9DzS20Ye0d19dUuCOgrU7Hqtte8sXMN4aCbBcIKLNbs7VF1ToqQ3H+6WjW3t9RT4SS+ULNvjTd5ZNlPRcU2gRBenCOC6uRQs4HHsAi3dCiopmqP0u1yhA2dJJwUmm+yZ9YjeVXUwAe5fEztYGVv1nKiSSw3I0sgaJ5tTpERqG6k5FI4/JurGzsUDmmaYfLIW0e5/scNAZT6c5PZESRJGDPCatvAlBH9AM9PLILKtppnsxfNiAdQoVXEG29hGE3nomHPQu5lUIHDhi/2t2JYwUfChr5wIG8vYZ8TYDHl2lB0TI6vX62uhq7LpuVscNF9XwP+iVLIzFDMbOQbUkdiQzBI0dJZb4Mz8iiMNjZsKSce6LxlwwxeFc1W7Ok8spNj1XWPz0QxZ0TiXRDpC3HPKcvmdcJ/5ASXJm/dS5TPznUS/mQjsGVcR6sZEZTdUSDOxKR4zy/OoxiOd5Me7dlTGJAWx1u75Y9s0F/ctPYrR21IP0y55Q0B33FpdaYer3Kfv4nl6wtzYGB5mgaLIfUEjLGg/OAdpRfmgwD0qtudRufyPpKnfY4EqYwPCz5YdR+6kvlQFf8YwdBhRNZQulJCmW28FPH7Q5skmdDbmJZLckk6GYNbzxrYP9euK/QhoOLeTFN6V3zGhg+dThWB6yE3pCd1exwP7GQb+Fua21zewEqH6D6ZPtdPOR7/+soVPLnIzckNO4nNOla9I1/KYwgm6trLTC+3XeDoJEYvPdDku0odYD99VN7eU4g4b9SuOHaNa8+z1zpDJVikZtQ4EkmkieNNnQyqsHqHXdwnPYLGixdeSXODIQcORPlkWI53UPkbu+81a+S99tFYzFtc4rJ/ospIPFf83lklxu9GjAvyPYZR5HoLIpWTzYvheBiEtIwmtKkvhZHdpJoKtBcW617Z0/w+C15UwSzYqCGR4fXCoPv/GKFIYNGZEFHheWn6n6ufjCOZ0uxXGJSbD0kHkX54dpR2Ey24v+WEkuqiRZmApgo6VPTarLbpm5UQgJIQ44pvCIGZEPa0la8Vetthfa2f1n3eeZCREzr7k1498grKr89draIx8A+j9mbThVE//H8WCx2D2JgOZZM8WNu92Ck9s48BxFsphxf90UYYWWUvi6NoYeYovAwDf5Kh6qCGzJlc8ocvrxya+Bj1wE5p3IqSSNuyE//IrUrMr2X067+Dpe7nFplZhldYvj79WTlPzkNjtRQ0Io61o2Tq1OoCj9tCIkkHfMtYSMCaZPf6OWRGZU+EtVwEqJT36gq54aGnyQfQj72ZvTQlQYcjhyB0AtkFhj8vvdOujz2Hog3h379fBJIYsGyLvsnxcGbTTdCLGvF9oNTYZxWRulydw4/05uxxU/2TUBmQ1UTUcoFjzCgpHAZDvF0W2IH7mOpM/CoZOV/SdkWDUf8Vl0YflsnUvKYPTVfPHFsI3NKHaFLlkNYAwP5UV2rTtvUZwpq4c4vK+YahZU5zCPa9XtWhwP940Jdj5WUbOMsTpnTBTrPZLXrciXHeGk+zvooUIvpmUD8Wvc5/Cyb00przD1aZAPQdcuUolDN9q9M0z4z5TyuoNaGAu+4gS26qH8VnmHG6KZ0igJZdloXIKuWf8JqV5Q5VCAcvZbMo/7TksHWyYs0icPHZwPGj9RtrzP38Nyy90BQCugsi2I6Q1TFLLbJpBliVOobWF2mnpdXo1a3nCirMAhZHoxKN9FihTm7ankbU08VbUoC702YISuaKe4sNuzhqly4qxYEQZQl4qLkSdXIWP3CWtgpt5Ij5d/GSQjRg1dBXj9Lm4FtK7dSnZx5MVFBOZ2OtsaCe2yYMzxe3dFDmfm860wCCxVTcRILbg0n02CIUIoi2UmTW+c3+hk6xR8khTO9470J1R9zMlpqzYWdrb2CGdoL47H7pLxzqLL6nkVFAFEpPps4adhn7LNB2l70GZ1c+7XAKPfPD8vKXEvVxA4RcNH8PSmqwa/PR8rlEnyZZsW8Ym/edE/Mcxc5aAexNEWs3+b664UcXCphQYsnJLa+iU2dcUVHCeM2qf+85nMUoG8tYKhXPGMAzQtcaz+NJac1Rbj8/fHAbxFD4pU3RPeeBKwOju/Acfljk6fjf+5IZQa8rf3sN7TOCfxlXbrJWAR+NLGNHqD6dBcbmHVORqxGBxdxTQIYCz+TmdqAxqQNf1S1lxY0JiUvRgU9EA2I8m1vbhwZfH2mLDZpW1SfJ4uDNGAClHlSThAYHgdxDBTTMoKt9ZBNGAqCLKr5PtdFWIeJAQneR8xD68enSbl8wOnkH+rBnDjzGJMpjwkbSUYsntH00bTSpNBQ65gWrHFBhjG4eNKaVOtawLcH537JESBu+DiIqLLLE0fqIkI2mEroeoJDrkBycL7mmNrg+Ypiu1oakPRj167C5AzUZZezkEjOc7+cIWnF/aJkw1jV+mvL2z2B7VdpdOpwWI31jCi1lsrjtf3OTz7mi/Z1Y2Xmi9Wo5jXGXAwKUgU2Y1S+Yy3+YQOddNldGajyMSwMeKyVkIZAYmeFAUmHByKknEB1Ncx9465RVdcx/XcBxblZR4jvyyngLKejagufFQxz9Usu0T7gsgqCWqT+UWBntq2VnmWeT99K/j1Iz6HRQ3Gr3IgASCrWQ9qGky6wdfjWHUD7sh1W4syN5lbPWclyeyOD96Nf+CBE5WgSEw6538s2rMNLjvvq3oJ3/Gera7RDSmQQzcVCKKvuPpDNyxJT2AH4BvXSru2Nk4hSMwBpyqDnUbJAHZcajflxBOzjToxwifaJFRtpimJhn0oju414aMef2jSq7hTYlVqTazoCDHpsRYv3ceoeo/byeu/+ZXbk/MioJliBH29eVsF/vK0IopLg9ZW/BmldJZbh40fozByFnwxIHoK8ysjYjZTq+aVrjm7d/MFH8oZuHs2dQPymj2jZn7VGpdJ16fwCCasIyMpCDDYQe5iS7KHe6h9Javnhp5soleopwpGYo5AJnFkF0IsnVFQCIT5um6zhI9OKPG73ktvN7LW92j1xdkcWvjZj8cIXMvoRCIIxgfgCOW1dFQXqquUo15XusbEHgGyUkKLFbsPJ6Xn2b2PuNGSWZCwsJILxhW6gjqPheOYP/AnvYPgMGHCXLab6gjpEMCF/koZcPXSnmTIkQEwJfaajSR7zRIZmepnWTimUmnmSKR9vf3OfNJJ29Xi9irLkaVXcF4/PpZ7frsWprwTQxDdnun+MSoufCqHSMmsqNdTcHbCfrEofymVVglZsozWXDfgKZIju7WSsNsV2gtlKFX9cR9SmiuF1a2TyU1FXtO11gLFrROzMz13gc4IfAuZwm2BMHdVzQ7ueqKyTahSiD7w2FG0xYTJuCtw5d38vT5nbZYeW26uYI767CoE7OS3RFz7frQDrxQW3rpFngFY550Z0bp4TsVcRQJy0fo8OInmS8VxSabcReisfwXO0Cu8bcZLHF2WgF/UZZE="}</script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Fade sections in as they scroll into view
-    if (document.documentElement.classList.contains('motion') && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-      }, { rootMargin: '0px 0px -8% 0px' });
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    }
-
-    // Respect reduced motion: show the poster frame instead of playing the videos
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('video[autoplay]').forEach((v) => { v.removeAttribute('autoplay'); v.pause(); });
-    }
+    (() => {
+      const d = JSON.parse(document.getElementById('pw-data').textContent);
+      document.getElementById('pw-title').textContent = document.title.split(' — ')[0];
+      const u = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+      async function open(pw) {
+        const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+        const k = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: u(d.salt), iterations: d.iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+        const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: u(d.iv) }, k, u(d.ct)));
+        document.body.innerHTML = html;
+        // Scripts inserted with innerHTML don't run, so re-create them
+        document.body.querySelectorAll('script').forEach((old) => { const s = document.createElement('script'); s.textContent = old.textContent; old.replaceWith(s); });
+        try { sessionStorage.setItem('pw', pw); } catch (e) {}
+      }
+      const form = document.getElementById('pw-form'), input = document.getElementById('pw-input'), err = document.getElementById('pw-error');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try { await open(input.value); } catch (x) { err.hidden = false; input.select(); }
+      });
+      // One password unlocks every case study for the rest of the visit
+      let saved = null; try { saved = sessionStorage.getItem('pw'); } catch (e) {}
+      if (saved) open(saved).catch(() => { try { sessionStorage.removeItem('pw'); } catch (e) {} });
+    })();
   </script>
+  <!-- protected:end -->
 </body>
 </html>
