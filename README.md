@@ -21,3 +21,9 @@ make the change, then lock it again before committing (the password is not store
 
     node tools/protect.mjs unlock <password> value-perception.html
     node tools/protect.mjs lock   <password> value-perception.html
+
+## Survey report portal
+
+`surveyor/` (ritwiksportfolio.com/surveyor/) is a standalone tool for Chhatrapal Sao's valuation and pre-inspection
+reports. The four templates are described as data in `surveyor/templates.js`; the on-screen form, the PDF export and
+the Word export are all built from that file. Libraries live in `surveyor/vendor/`. It is not linked from the home page.
