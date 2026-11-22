@@ -105,6 +105,10 @@
       '- Keep words in the case printed on the document.',
       formFields.length ? '- The "form" object holds the fields of the surveyor\'s report form. Fill it ONLY if this document is itself a filled-in inspection or valuation form (for example a handwritten one). For an RC or policy, leave every "form" value empty. For choice fields, return the option that is ticked, circled or written, exactly as listed.' : '',
       '- documentType: one short phrase, e.g. "smart-card RC", "RC", "insurance policy", "handwritten inspection form".',
+      '',
+      'Reply with JSON only, in exactly this shape (every value a string):',
+      JSON.stringify({ documentType: '', vehicle: Object.fromEntries(Object.entries(VEHICLE).map(([k, d]) => [k, d])), ...(formFields.length ? { form: Object.fromEntries(formFields.map((f) => [f.key, f.opts ? `${f.label} (one of: ${f.opts.join(' | ')})` : f.label])) } : {}) }, null, 1),
+      'The text inside quotes above describes each field; replace it with the value, or an empty string.',
     ].filter(Boolean).join('\n');
   }
 
@@ -134,7 +138,7 @@
     const part = await fileToPart(file);
     const body = JSON.stringify({
       contents: [{ role: 'user', parts: [{ text: prompt(formFields) }, part] }],
-      generationConfig: { temperature: 0, responseMimeType: 'application/json', responseSchema: schema(formFields) },
+      generationConfig: { temperature: 0, responseMimeType: 'application/json' },
     });
     let lastErr;
     for (const model of await candidates()) {
@@ -143,11 +147,15 @@
         const out = await call(`models/${model}:generateContent`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
         const text = (((out.candidates || [])[0] || {}).content || { parts: [] }).parts.map((p) => p.text || '').join('');
         if (!text) throw new AiError('The AI returned nothing.', 'other');
-        const json = JSON.parse(text.replace(/^```(?:json)?|```$/g, ''));
+        const json = JSON.parse(text.trim().replace(/^```(?:json)?\s*|\s*```$/g, ''));
+        // drop any field where the model echoed the description back instead of a value
+        const desc = new Set([...Object.values(VEHICLE), ...formFields.map((f) => f.label), ...formFields.map((f) => f.opts ? `${f.label} (one of: ${f.opts.join(' | ')})` : f.label)]);
+        ['vehicle', 'form'].forEach((g) => Object.keys(json[g] || {}).forEach((k) => { if (desc.has(json[g][k])) json[g][k] = ''; }));
         ls.set(MODEL_STORE, model);
         return { json, model, text };
       } catch (e) {
         lastErr = e;
+        e.message = `${model}: ${e.message}`;
         // try the next model when this one isn't available or is out of free quota
         if (e.kind === 'key' || e.kind === 'network') throw e;
       }
