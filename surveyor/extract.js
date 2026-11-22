@@ -261,7 +261,9 @@
     ['ignore', /battery(?:\s*:)?\s*make|tyres?\s*details|paint\s*\(\s*internal\s*\/\s*external\s*\)|s\s*\/\s*w\s*\/\s*d\s*o(?:f)?|son\s*\/\s*wife\s*\/\s*daughter\s*of|father(?:'?s)?\s*name|husband(?:'?s)?\s*name/],
     ['address', /adr?d?ress|(?:present|permanent|communication|owner(?:'?s)?|insured(?:'?s)?|correspondence)?\s*address/],
     ['makeModel', /make\s*\/\s*model(?:\s*\/\s*variant)?|maker\s*\/\s*model|vehicle\s*make\s*(?:&|and)\s*model|make\s*(?:&|and)\s*model/],
-    ['maker', /maker(?:'?s)?(?:\s*name)?|manufacturer(?:'?s)?(?:\s*name)?|vehicle\s*make|make/],
+    ['maker', /maker(?:'?s)?(?:\s*name)?|manufacturer(?:'?s)?(?:\s*name)?|vehicle\s*make/],
+    ['make', /make/],
+    ['refMfg', /ref\.?\s*mfg\.?/],
     ['model', /maker(?:'?s)?\s*model|model(?:\s*name)?|vehicle\s*model|variant/],
     ['vehicleClass', /class|vehicle\s*class|class\s*of\s*vehicle|veh\.?\s*class|vehicle\s*category/],
     ['bodyType', /body\s*type|type\s*of\s*body|vehicle\s*description/],
@@ -276,7 +278,7 @@
     ['insUpto', /insurance\s*(?:valid\s*)?(?:up\s*to|upto|till|validity|expiry)|policy\s*(?:valid\s*)?(?:up\s*to|upto|expiry|end\s*date)|period\s*of\s*insurance/],
     ['policyNo', /policy\s*(?:no\.?|number)/],
     ['insurer', /insurer(?:'?s)?(?:\s*name)?|insurance\s*company(?:\s*name)?|insurance\s*details/],
-    ['ignore', /seat(?:ing)?\s*capacity|cubic\s*capacity|engine\s*capacity|(?:gross|unladen|laden)\s*(?:vehicle\s*)?weight|gvw|ulw|rlw|wheel\s*base|no\.?\s*of\s*cyl(?:inders)?|tax\s*(?:valid\s*)?(?:up\s*to|upto|paid\s*upto)|registering\s*authority|issuing\s*authority|report\s*no\.?|inspection\s*date\s*(?:&|and)\s*time|inspected\s*at|standing\s*capacity|sleeper\s*capacity|horse\s*power|norms|mobile(?:\s*no\.?)?|phone|e-?mail|pin\s*code|state|rto|date|place|time|type\s*of\s*vehicle|validity|status|remarks?|ref\.?\s*mfg|unladen\s*wt\.?|no\.?\s*of\s*cyl\.?|seating\s*cap\.?|standing\s*cap\.?|tax|purpose|trfr\.?\s*date|valid\s*up\s*to|cc|wef|non\s*transport|transport/],
+    ['ignore', /seat(?:ing)?\s*capacity|cubic\s*capacity|engine\s*capacity|(?:gross|unladen|laden)\s*(?:vehicle\s*)?weight|gvw|ulw|rlw|wheel\s*base|no\.?\s*of\s*cyl(?:inders)?|tax\s*(?:valid\s*)?(?:up\s*to|upto|paid\s*upto)|registering\s*authority|issuing\s*authority|report\s*no\.?|inspection\s*date\s*(?:&|and)\s*time|inspected\s*at|standing\s*capacity|sleeper\s*capacity|horse\s*power|norms|mobile(?:\s*no\.?)?|phone|e-?mail|pin\s*code|state|rto|date|place|time|type\s*of\s*vehicle|validity|status|remarks?|unladen\s*wt\.?|no\.?\s*of\s*cyl\.?|seating\s*cap\.?|standing\s*cap\.?|tax|purpose|trfr\.?\s*date|valid\s*up\s*to|cc|wef|non\s*transport|transport/],
   ];
   // Split each pattern into its top-level alternatives so the longest one can win.
   function alternatives(src) {
@@ -309,13 +311,13 @@
       if (best) {
         const start = i, end = i + best.len;
         const before = str.slice(0, start), after = str.slice(end);
-        const wordEnd = /^($|[^a-z])/i.test(after) || /[.:]$/.test(str.slice(start, end));
+        const wordEnd = /^($|[^a-z])/i.test(after) || /[.:]$/.test(str.slice(start, end)) || (/^COLOU?R$/.test(str.slice(start, end)) && /^[A-Z]{3}/.test(after));
         const okBefore = /(^|[\s¦|:,(])$/.test(before);
         const lab = str.slice(start, end);
         // A label is trusted when followed by a separator, when it starts a segment, when it is an
         // abbreviation or several words (photo readers often drop the colon), or when a number follows.
         const okAfter = /^(\s*[:\-–=¦|]|\s*$)/.test(after) || /(^|¦\s*)$/.test(before) || /[.:]$/.test(lab)
-          || /[.\s]/.test(lab.trim()) || /^\s*\d/.test(after) || /^[A-Z][a-z]{3,}$/.test(lab);
+          || /[.\s]/.test(lab.trim()) || /^\s*\d/.test(after) || /^[A-Z][a-z]{3,}$/.test(lab) || /^[A-Z]{4,}$/.test(lab);
         if (wordEnd && okBefore && okAfter) { out.push({ key: best.key, start, end }); i = end; continue; }
       }
       i++;
@@ -411,7 +413,7 @@
     return parts.length ? parts.join('/') : (v || '');
   }
   const title = (v) => (v || '').toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
-  const respace = (v) => (v || '').replace(/([A-Za-z])(LTD|LIMITED|MOTORS?|FINANCE|BANK|SOLUTIONS?|INDIA|PVT|SERVICES)\b/g, '$1 $2').replace(/\b(MR|MRS|SMT|SHRI)\.(?=[A-Z])/g, '$1. ');
+  const respace = (v) => (v || '').replace(/\bSTA TE\b/g, 'STATE').replace(/BANK(?=OF\b)/g, 'BANK ').replace(/([A-Za-z])(LTD|LIMITED|MOTORS?|FINANCE|BANK|SOLUTIONS?|INDIA|PVT|SERVICES)\b/g, '$1 $2').replace(/\b(MR|MRS|SMT|SHRI)\.(?=[A-Z])/g, '$1. ');
   function cut(v, n = 120) { return (v || '').slice(0, n).trim(); }
 
   function normalise(raw, allText) {
@@ -435,6 +437,9 @@
     x.ownerName = (owner.replace(/[^A-Za-z]/g, '').length >= 5 ? owner : '').toUpperCase();
     x.address = address;
     x.makeModel = respace(cut(raw.makeModel));
+    const ref = /^others?$/i.test(raw.refMfg || '') ? '' : raw.refMfg;
+    if (!raw.maker && ref) { raw.maker = ref; if (!raw.model && raw.make) raw.model = raw.make; }
+    else if (!raw.maker && raw.make) raw.maker = raw.make;
     x.maker = /paint|exide|internal|external|\d{6}/i.test(raw.maker || '') ? '' : respace(cut(raw.maker));
     x.model = cut(raw.model);
     if (x.maker && x.model && x.model.toUpperCase().startsWith(x.maker.toUpperCase())) x.model = x.model.slice(x.maker.length).trim();
