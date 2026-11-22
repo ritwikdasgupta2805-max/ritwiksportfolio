@@ -94,10 +94,17 @@
         logger: (m) => { if (m.status === 'recognizing text' && progress) progress(`${label || 'Reading text'}… ${Math.round(m.progress * 100)}%`); },
       });
     }
-    // Sparse-text mode: find every word, then rebuild rows ourselves (more reliable on photos of forms)
-    await tessWorker.setParameters({ tessedit_pageseg_mode: '11' });
-    const { data } = await tessWorker.recognize(prep(canvas));
-    return { rows: ocrRows(data) };
+    // Two passes: sparse-text mode (finds scattered labels) and block mode (keeps rows together).
+    // Each finds things the other misses; results are merged later.
+    const img = prep(canvas);
+    const passes = [];
+    for (const [i, psm] of ['11', '6'].entries()) {
+      progress && progress(`${label || 'Reading text'}… pass ${i + 1} of 2`);
+      await tessWorker.setParameters({ tessedit_pageseg_mode: psm });
+      const { data } = await tessWorker.recognize(img);
+      passes.push({ rows: ocrRows(data) });
+    }
+    return passes;
   }
 
   // Tesseract follows tilted and curved lines well, but splits a printed row into pieces
@@ -163,6 +170,7 @@
     } catch (e) {
       src = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('That image could not be opened. Try a JPG or PNG.')); i.src = URL.createObjectURL(file); });
     }
+    // Small photos are enlarged: the text reader needs letters at least ~25px tall.
     const s = Math.min(1, 2600 / Math.max(src.width, src.height));
     const c = document.createElement('canvas');
     c.width = Math.round(src.width * s); c.height = Math.round(src.height * s);
@@ -198,32 +206,32 @@
   /* ---------- Labels ---------- */
   // Order matters only for ties; the longest match at a position wins.
   const LABELS = [
-    ['ownerSerial', /owner\s*s(?:e)?r(?:ial)?\.?\s*(?:no\.?|number)?|ownership\s*(?:serial|sr\.?)\s*(?:no\.?)?|owner\s*serial(?:\s*no\.?)?/],
+    ['ownerSerial', /owner\s*srl\.?(?:\s*no\.?)?|owner\s*s(?:e)?r(?:ial)?\.?\s*(?:no\.?|number)?|ownership\s*(?:serial|sr\.?)\s*(?:no\.?)?|owner\s*serial(?:\s*no\.?)?/],
     ['regDate', /(?:date\s*of\s*)?reg(?:istration|n|d)?\.?\s*(?:date|dt\.?)|date\s*of\s*reg(?:istration|n)?\.?|registered\s*on|date\s*of\s*first\s*registration/],
-    ['regNo', /(?:vehicle\s*)?reg(?:istration|n|d)?\.?\s*(?:no\.?|number|num)|registration\s*mark|vehicle\s*(?:no\.?|number)|veh\.?\s*no\.?/],
-    ['chassisNo', /chass?is\s*(?:no\.?|number|num)?|vin(?:\s*no\.?)?/],
-    ['engineNo', /engine\s*(?:\/\s*motor\s*)?(?:no\.?|number)|motor\s*(?:no\.?|number)/],
-    ['ownerName', /registered\s*owner(?:'?s)?(?:\s*name)?(?:\s*(?:&|and)\s*address)?|owner(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?(?:registered\s*)?owner|insured(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?insured|name\s*(?:&|and)\s*address\s*of\s*registered\s*owner/],
+    ['regNo', /(?:vehicle\s*)?reg(?:istration|n|d)?\.?\s*mark\s*(?:no\.?)?|(?:vehicle\s*)?reg(?:istration|n|d)?\.?\s*(?:no\.?|number|num)|registration\s*mark|vehicle\s*(?:no\.?|number)|veh\.?\s*no\.?/],
+    ['chassisNo', /ch\.?\s*no\.?|chass?is\s*(?:no\.?|number|num)?|vin(?:\s*no\.?)?/],
+    ['engineNo', /e\.?\s*no\.?|eng\.?\s*no\.?|engine\s*(?:\/\s*motor\s*)?(?:no\.?|number)|motor\s*(?:no\.?|number)/],
+    ['ownerName', /name|registered\s*owner(?:'?s)?(?:\s*name)?(?:\s*(?:&|and)\s*address)?|owner(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?(?:registered\s*)?owner|insured(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?insured|name\s*(?:&|and)\s*address\s*of\s*registered\s*owner/],
     ['propOwner', /proposed\s*owner(?:\s*(?:&|and)\s*address)?|proposer(?:'?s)?(?:\s*name)?/],
     ['ignore', /battery(?:\s*:)?\s*make|tyres?\s*details|paint\s*\(\s*internal\s*\/\s*external\s*\)|s\s*\/\s*w\s*\/\s*d\s*o(?:f)?|son\s*\/\s*wife\s*\/\s*daughter\s*of|father(?:'?s)?\s*name|husband(?:'?s)?\s*name/],
-    ['address', /(?:present|permanent|communication|owner(?:'?s)?|insured(?:'?s)?|correspondence)?\s*address/],
+    ['address', /adr?d?ress|(?:present|permanent|communication|owner(?:'?s)?|insured(?:'?s)?|correspondence)?\s*address/],
     ['makeModel', /make\s*\/\s*model(?:\s*\/\s*variant)?|maker\s*\/\s*model|vehicle\s*make\s*(?:&|and)\s*model|make\s*(?:&|and)\s*model/],
     ['maker', /maker(?:'?s)?(?:\s*name)?|manufacturer(?:'?s)?(?:\s*name)?|vehicle\s*make|make/],
     ['model', /maker(?:'?s)?\s*model|model(?:\s*name)?|vehicle\s*model|variant/],
-    ['vehicleClass', /vehicle\s*class|class\s*of\s*vehicle|veh\.?\s*class|vehicle\s*category/],
+    ['vehicleClass', /class|vehicle\s*class|class\s*of\s*vehicle|veh\.?\s*class|vehicle\s*category/],
     ['bodyType', /body\s*type|type\s*of\s*body|vehicle\s*description/],
     ['mfgYear', /(?:month\s*(?:&|and|\/)?\s*)?year\s*of\s*(?:manufactur\w*|mfg\.?)|mfg\.?\s*(?:date|month|yr\.?|year)(?:\s*\/\s*year)?|manufactur\w*\s*(?:date|month|year)(?:\s*(?:&|\/)\s*year)?|month\s*\/\s*year\s*of\s*mfg|yom/],
     ['ignore', /(?:fuel\s*|emission\s*)norms|bharat\s*stage/],
     ['fuel', /fuel(?:\s*(?:type|used))?|type\s*of\s*fuel/],
     ['colour', /colou?r/],
     ['odometer', /odometer(?:\s*reading)?|kms?\.?\s*reading/],
-    ['hypothecation', /hypothecat\w*(?:\s*details)?(?:\s*\(\s*if\s*any\s*\))?|financ(?:er|ier)(?:'?s)?(?:\s*name)?|hp\s*with|financed\s*by|hypothecated\s*to/],
+    ['hypothecation', /hyp\.?\s*by|hypothecat\w*(?:\s*details)?(?:\s*\(\s*if\s*any\s*\))?|financ(?:er|ier)(?:'?s)?(?:\s*name)?|hp\s*with|financed\s*by|hypothecated\s*to/],
     ['fitnessUpto', /fitness\s*(?:valid\s*)?(?:up\s*to|upto|till|validity)|fitness\s*valid|fit\.?\s*upto/],
     ['permitUpto', /permit\s*(?:valid\s*)?(?:up\s*to|upto|till|validity)|permit\s*valid/],
     ['insUpto', /insurance\s*(?:valid\s*)?(?:up\s*to|upto|till|validity|expiry)|policy\s*(?:valid\s*)?(?:up\s*to|upto|expiry|end\s*date)|period\s*of\s*insurance/],
     ['policyNo', /policy\s*(?:no\.?|number)/],
     ['insurer', /insurer(?:'?s)?(?:\s*name)?|insurance\s*company(?:\s*name)?|insurance\s*details/],
-    ['ignore', /seat(?:ing)?\s*capacity|cubic\s*capacity|engine\s*capacity|(?:gross|unladen|laden)\s*(?:vehicle\s*)?weight|gvw|ulw|rlw|wheel\s*base|no\.?\s*of\s*cyl(?:inders)?|tax\s*(?:valid\s*)?(?:up\s*to|upto|paid\s*upto)|registering\s*authority|issuing\s*authority|report\s*no\.?|inspection\s*date\s*(?:&|and)\s*time|inspected\s*at|standing\s*capacity|sleeper\s*capacity|horse\s*power|norms|mobile(?:\s*no\.?)?|phone|e-?mail|pin\s*code|state|rto|date|place|time|type\s*of\s*vehicle|validity|status|remarks?/],
+    ['ignore', /seat(?:ing)?\s*capacity|cubic\s*capacity|engine\s*capacity|(?:gross|unladen|laden)\s*(?:vehicle\s*)?weight|gvw|ulw|rlw|wheel\s*base|no\.?\s*of\s*cyl(?:inders)?|tax\s*(?:valid\s*)?(?:up\s*to|upto|paid\s*upto)|registering\s*authority|issuing\s*authority|report\s*no\.?|inspection\s*date\s*(?:&|and)\s*time|inspected\s*at|standing\s*capacity|sleeper\s*capacity|horse\s*power|norms|mobile(?:\s*no\.?)?|phone|e-?mail|pin\s*code|state|rto|date|place|time|type\s*of\s*vehicle|validity|status|remarks?|ref\.?\s*mfg|unladen\s*wt\.?|no\.?\s*of\s*cyl\.?|seating\s*cap\.?|standing\s*cap\.?|tax|purpose|trfr\.?\s*date|valid\s*up\s*to|cc|wef|non\s*transport|transport/],
   ];
   // Split each pattern into its top-level alternatives so the longest one can win.
   function alternatives(src) {
@@ -326,9 +334,11 @@
   const REG = /\b([A-Z]{2})[\s-]?(\d{1,2})[\s-]?([A-Z]{0,3})[\s-]?(\d{1,4})\b|\b(\d{2})[\s-]?BH[\s-]?(\d{4})[\s-]?([A-Z]{1,2})\b/;
   function reg(v) {
     if (!v) return '';
-    const m = v.toUpperCase().match(REG);
+    v = v.toUpperCase().replace(/\b([A-Z]{2})([0-9OI]{2})([A-Z]{1,3})([0-9OI]{4})\b/g, (m0, a, b, c, d) => a + b.replace(/O/g, '0').replace(/I/g, '1') + c + d.replace(/O/g, '0').replace(/I/g, '1'));
+    const m = v.match(REG);
     return m ? m[0].replace(/[\s-]/g, '') : '';
   }
+  reg.fixAll = (t) => t.toUpperCase().replace(/\b([A-Z]{2})([0-9OI]{2})([A-Z]{1,3})([0-9OI]{4})\b/g, (m0, a, b, c, d) => a + b.replace(/O/g, '0').replace(/I/g, '1') + c + d.replace(/O/g, '0').replace(/I/g, '1'));
   const ident = (v) => (v || '').toUpperCase().replace(/[^A-Z0-9*]/g, '');
   function fuel(v) {
     const s = (v || '').toUpperCase();
@@ -347,7 +357,7 @@
   function normalise(raw, allText) {
     const x = {};
     x.regNo = reg(raw.regNo) || reg(allText.match(/(?:reg(?:istration|n)?\.?\s*(?:no|number)\.?|vehicle\s*no\.?)\s*[:\-]?\s*([A-Z0-9 -]{6,14})/i)?.[1] || '');
-    if (!x.regNo) { const m = allText.toUpperCase().match(new RegExp(REG.source, 'g')); if (m) x.regNo = m.map((s) => s.replace(/[\s-]/g, '')).find((s) => /^[A-Z]{2}\d{1,2}[A-Z]{1,3}\d{3,4}$/.test(s) || /BH/.test(s)) || ''; }
+    if (!x.regNo) { const m = reg.fixAll(allText).match(new RegExp(REG.source, 'g')); if (m) x.regNo = m.map((s) => s.replace(/[\s-]/g, '')).find((s) => /^[A-Z]{2}\d{1,2}[A-Z]{1,3}\d{3,4}$/.test(s) || /BH/.test(s)) || ''; }
     const idOk = (v) => /^[A-Z0-9*]{6,25}$/.test(v) && /\d/.test(v) && /[A-Z]/.test(v);
     x.chassisNo = ident(raw.chassisNo).slice(0, 25);
     if (!idOk(x.chassisNo)) x.chassisNo = '';
@@ -367,7 +377,7 @@
     x.maker = /paint|exide|internal|external|\d{6}/i.test(raw.maker || '') ? '' : cut(raw.maker);
     x.model = cut(raw.model);
     if (x.maker && x.model && x.model.toUpperCase().startsWith(x.maker.toUpperCase())) x.model = x.model.slice(x.maker.length).trim();
-    x.vehicleClass = cut(raw.vehicleClass);
+    x.vehicleClass = /\bltd\b|limited|motors\b|\d{4}/i.test(raw.vehicleClass || '') ? '' : cut(raw.vehicleClass);
     x.bodyType = cut(raw.bodyType);
     x.mfgYear = mfg(raw.mfgYear);
     x.regDate = date(raw.regDate);
@@ -375,8 +385,8 @@
     x.colour = title(cut((raw.colour || '').replace(/^[^A-Za-z]+/, ''), 40));
     const odo = ((raw.odometer || '').match(/\d[\d,]*/) || [''])[0].replace(/,/g, '');
     x.odometer = odo ? odo + ' km' : '';
-    x.ownerSerial = (raw.ownerSerial || '').match(/\d+/)?.[0] || '';
-    x.hypothecation = cut((raw.hypothecation || '').replace(/^.*?details\s*(\(\s*if\s*any\s*\))?\s*:?\s*/i, ''));
+    x.ownerSerial = (raw.ownerSerial || '').match(/(?:^|\D)([1-9])(?:\D|$)/)?.[1] || '';
+    x.hypothecation = cut((raw.hypothecation || '').replace(/\s*w\.?e\.?f\.?.*$/i, '').replace(/^.*?details\s*(\(\s*if\s*any\s*\))?\s*:?\s*/i, ''));
     if (/not\s*provided/i.test(x.hypothecation) && !/ltd|bank|finance/i.test(x.hypothecation)) x.hypothecation = '';
     x.fitnessUpto = date(raw.fitnessUpto);
     x.permitUpto = date(raw.permitUpto);
@@ -402,6 +412,12 @@
     return { raw, text, x: normalise(raw, text) };
   }
 
+  function merge(p, q) {
+    const x = { ...q.x };
+    Object.entries(p.x).forEach(([k, v]) => { if (v) x[k] = v; });
+    return { raw: { ...q.raw, ...p.raw }, text: p.text + '\n\n— second pass —\n' + q.text, x };
+  }
+
   async function fromFile(file, progress) {
     const isPdf = /pdf/i.test(file.type) || /\.pdf$/i.test(file.name);
     let result, how;
@@ -411,19 +427,21 @@
       how = 'text';
       // Scanned PDFs, or PDFs whose text is unreadable, go through OCR instead
       if (fieldCount(result.x) < 3 || looksGarbled(result.text)) {
-        const pages = [];
+        const passA = [], passB = [];
         const n = Math.min(doc.numPages, 3);
         for (let i = 1; i <= n; i++) {
           progress && progress(`Reading page ${i} of ${n}…`);
-          pages.push(await ocr(await renderPage(doc, i), progress, `Reading page ${i} of ${n}`));
+          const [a, b] = await ocr(await renderPage(doc, i), progress, `Reading page ${i} of ${n}`);
+          passA.push(a); passB.push(b);
         }
-        const o = analyse(pages);
+        const o = merge(analyse(passA), analyse(passB));
         if (fieldCount(o.x) > fieldCount(result.x)) { result = { ...o, x: { ...o.x, ...result.x } }; how = 'ocr'; }
         else if (!result.text.trim()) { result = o; how = 'ocr'; }
       }
     } else {
       progress && progress('Reading the photo…');
-      result = analyse([await ocr(await imageCanvas(file), progress, 'Reading the photo')]);
+      const [a, b] = await ocr(await imageCanvas(file), progress, 'Reading the photo');
+      result = merge(analyse([a]), analyse([b]));
       how = 'ocr';
     }
     const x = result.x;
