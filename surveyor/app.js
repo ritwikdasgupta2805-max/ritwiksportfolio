@@ -389,12 +389,15 @@
         const found = await window.SV_EXTRACT.fromFile(f, (msg) => busy(true, msg));
         const n = applyExtracted(found);
         busy(false);
-        if (n) toast(`Filled ${n} field${n > 1 ? 's' : ''} from ${f.name}. Highlighted fields came from the file. Check them.`, 5200);
-        else toast("Couldn't find vehicle details in this file. You can fill the form by hand.", 5200);
+        const details = { label: 'See what was read', fn: showRead };
+        if (n) toast(`Filled ${n} field${n > 1 ? 's' : ''} from ${f.name}. Yellow fields came from the file. Please check them.`, 7000, details);
+        else toast(found._how === 'ocr' && !(window.SV_LAST_EXTRACT.text || '').trim()
+          ? "Couldn't make out any text in this file. A sharper, straight-on photo may work better."
+          : "Read the file, but couldn't match any vehicle details to this form.", 8000, details);
       } catch (err) {
         console.error(err);
         busy(false);
-        toast("Couldn't read this file. " + (err && err.message ? err.message : ''), 5200);
+        toast("Couldn't read this file. " + (err && err.message ? err.message : String(err)), 8000);
       }
     });
 
@@ -472,11 +475,36 @@
   }
 
   let toastEl;
-  function toast(msg, ms = 2600) {
+  function toast(msg, ms = 2600, action) {
     if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; document.body.appendChild(toastEl); }
-    toastEl.textContent = msg; toastEl.classList.add('on');
+    toastEl.innerHTML = `<span>${esc(msg)}</span>`;
+    if (action) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'toast-a'; b.textContent = action.label;
+      b.onclick = () => { toastEl.classList.remove('on'); action.fn(); };
+      toastEl.appendChild(b);
+    }
+    toastEl.classList.add('on');
     clearTimeout(toast.t); toast.t = setTimeout(() => toastEl.classList.remove('on'), ms);
   }
+  const NAMES = { regNo: 'Registration no.', chassisNo: 'Chassis no.', engineNo: 'Engine no.', ownerName: 'Owner', address: 'Address',
+    makeModel: 'Make/Model', maker: 'Maker', model: 'Model', vehicleClass: 'Vehicle class', bodyType: 'Body type', mfgYear: 'Manufactured',
+    regDate: 'Registered on', fuel: 'Fuel', colour: 'Colour', odometer: 'Odometer', ownerSerial: 'Owner serial no.', hypothecation: 'Financier',
+    fitnessUpto: 'Fitness upto', permitUpto: 'Permit upto', insUpto: 'Insurance upto', policyNo: 'Policy no.', insurer: 'Insurer' };
+  function showRead() {
+    const info = window.SV_LAST_EXTRACT;
+    if (!info) return;
+    const rows = Object.entries(info.x).filter(([k]) => !k.startsWith('_') && NAMES[k]).map(([k, v]) => `<tr><th>${NAMES[k]}</th><td>${esc(v)}</td></tr>`).join('');
+    const m = document.createElement('div');
+    m.className = 'modal';
+    m.innerHTML = `<div class="modal-card"><div class="modal-h"><b>What was read from ${esc(info.file)}</b><button type="button" class="modal-x" aria-label="Close">×</button></div>
+      <p class="modal-s">${info.how === 'ocr' ? 'Read as an image (text recognition). Printed text only; handwriting is not readable this way.' : 'Read from the PDF text.'}</p>
+      ${rows ? `<table class="modal-t">${rows}</table>` : '<p class="modal-s">No vehicle details found.</p>'}
+      <details><summary>All text found in the file</summary><pre>${esc(info.text || '(none)')}</pre></details></div>`;
+    m.addEventListener('click', (e) => { if (e.target === m || e.target.closest('.modal-x')) m.remove(); });
+    document.body.appendChild(m);
+  }
+
   let busyEl;
   function busy(on, msg) {
     if (!busyEl) { busyEl = document.createElement('div'); busyEl.className = 'busy'; busyEl.innerHTML = '<div class="busy-card"><span class="spin"></span><span class="busy-t"></span></div>'; document.body.appendChild(busyEl); }

@@ -13,17 +13,25 @@
   function loadScript(src) {
     return new Promise((res, rej) => {
       const s = document.createElement('script');
-      s.src = src; s.onload = res; s.onerror = () => rej(new Error('Could not load the text reader. Check the internet connection.'));
+      s.src = src; s.onload = res; s.onerror = () => rej(new Error('Could not load the text reader.'));
       document.head.appendChild(s);
     });
   }
 
   /* ---------- Read the file into positioned text items {x0, x1, top, h, str} ---------- */
-  async function pdfItems(file, progress) {
+  async function openPdf(file) {
     const lib = await getPdfjs();
-    const doc = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+    const data = new Uint8Array(await file.arrayBuffer());
+    try {
+      return await lib.getDocument({ data, isEvalSupported: false }).promise;
+    } catch (e) {
+      if (e && e.name === 'PasswordException') throw new Error('This PDF is password protected. Open it, save a copy without the password, and upload that.');
+      throw new Error('This file does not look like a valid PDF.');
+    }
+  }
+
+  async function textLayer(doc) {
     const pages = [];
-    let chars = 0;
     for (let i = 1; i <= Math.min(doc.numPages, 6); i++) {
       const page = await doc.getPage(i);
       const vp = page.getViewport({ scale: 1 });
@@ -34,45 +42,132 @@
         const [, , , d, e, f] = it.transform;
         const h = Math.abs(d) || it.height || 8;
         items.push({ x0: e, x1: e + (it.width || it.str.length * h * 0.5), top: vp.height - f - h, h, str: it.str });
-        chars += it.str.trim().length;
       }
-      pages.push({ items, page, vp });
+      pages.push(items);
     }
-    if (chars > 40) return pages.map((p) => p.items);
-    // Scanned PDF: render pages and OCR them
-    progress && progress('This PDF is a scan. Reading the text from the image…');
-    const out = [];
-    for (const [i, p] of pages.slice(0, 3).entries()) {
-      const scale = 2.2;
-      const vp = p.page.getViewport({ scale });
-      const c = document.createElement('canvas');
-      c.width = vp.width; c.height = vp.height;
-      await p.page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
-      progress && progress(`Reading page ${i + 1} of ${Math.min(pages.length, 3)}…`);
-      out.push(await ocr(c));
-    }
-    return out;
+    return pages;
   }
 
-  async function ocr(source) {
-    if (!window.Tesseract) await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js');
-    const { data } = await window.Tesseract.recognize(source, 'eng');
-    const items = [];
-    (data.words || []).forEach((w) => {
-      if (!w.text || !w.text.trim()) return;
-      items.push({ x0: w.bbox.x0, x1: w.bbox.x1, top: w.bbox.y0, h: w.bbox.y1 - w.bbox.y0, str: w.text });
-    });
-    return items;
-  }
-
-  async function imageItems(file, progress) {
-    progress && progress('Reading the text from the photo…');
-    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('That image could not be opened.')); i.src = URL.createObjectURL(file); });
-    const s = Math.min(1, 2400 / Math.max(img.width, img.height));
+  async function renderPage(doc, n) {
+    const page = await doc.getPage(n);
+    const base = page.getViewport({ scale: 1 });
+    const scale = Math.min(3, 2400 / Math.max(base.width, base.height));
+    const vp = page.getViewport({ scale });
     const c = document.createElement('canvas');
-    c.width = img.width * s; c.height = img.height * s;
-    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-    return [await ocr(c)];
+    c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+    await page.render({ canvasContext: ctx, viewport: vp }).promise;
+    return c;
+  }
+
+  // Grey-scale and stretch contrast: helps with phone photos taken in poor light.
+  function prep(canvas) {
+    const ctx = canvas.getContext('2d');
+    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const d = img.data;
+    let lo = 255, hi = 0;
+    const g = new Uint8ClampedArray(d.length / 4);
+    for (let i = 0, j = 0; i < d.length; i += 4, j++) {
+      const v = (d[i] * 299 + d[i + 1] * 587 + d[i + 2] * 114) / 1000;
+      g[j] = v; if (v < lo) lo = v; if (v > hi) hi = v;
+    }
+    const span = Math.max(1, hi - lo);
+    for (let i = 0, j = 0; i < d.length; i += 4, j++) {
+      const v = ((g[j] - lo) * 255) / span;
+      d[i] = d[i + 1] = d[i + 2] = v;
+    }
+    ctx.putImageData(img, 0, 0);
+    return canvas;
+  }
+
+  let tessWorker = null;
+  async function ocr(canvas, progress, label) {
+    if (!window.Tesseract) await loadScript(BASE + 'vendor/tess/tesseract.min.js');
+    if (!tessWorker) {
+      progress && progress('Getting the text reader ready (first time only, about 9 MB)…');
+      tessWorker = await window.Tesseract.createWorker('eng', 1, {
+        workerPath: BASE + 'vendor/tess/worker.min.js',
+        corePath: BASE + 'vendor/tess/',
+        langPath: BASE + 'vendor/tess/',
+        gzip: false,
+        logger: (m) => { if (m.status === 'recognizing text' && progress) progress(`${label || 'Reading text'}… ${Math.round(m.progress * 100)}%`); },
+      });
+    }
+    // Sparse-text mode: find every word, then rebuild rows ourselves (more reliable on photos of forms)
+    await tessWorker.setParameters({ tessedit_pageseg_mode: '11' });
+    const { data } = await tessWorker.recognize(prep(canvas));
+    return { rows: ocrRows(data) };
+  }
+
+  // Tesseract follows tilted and curved lines well, but splits a printed row into pieces
+  // when there is a wide gap (label ... value). Join pieces that continue the same baseline.
+  function ocrRows(data) {
+    const lines = [];
+    (data.lines || []).forEach((l) => {
+      const words = (l.words || []).filter((w) => w.text && w.text.trim() && w.confidence >= 30);
+      if (!words.length) return;
+      const bl = l.baseline || { x0: l.bbox.x0, y0: l.bbox.y1, x1: l.bbox.x1, y1: l.bbox.y1 };
+      const slope = bl.x1 - bl.x0 > 20 ? (bl.y1 - bl.y0) / (bl.x1 - bl.x0) : 0;
+      const h = Math.max(6, l.bbox.y1 - l.bbox.y0);
+      lines.push({ words, bl, x0: words[0].bbox.x0, x1: words[words.length - 1].bbox.x1, w: bl.x1 - bl.x0, slope, h, top: l.bbox.y0 });
+    });
+    // Short lines give a poor tilt reading, so use the typical tilt of the long lines.
+    const sl = (() => { const v = lines.filter((L) => L.w > 220).map((L) => L.slope).sort((p, q) => p - q); return v.length ? v[Math.floor(v.length / 2)] : 0; })();
+    lines.forEach((L) => { L.yAt = (x) => L.bl.y0 + sl * (x - L.bl.x0); });
+    // Link each piece to its best right-hand neighbour, closest pairs first, one link per side.
+    const pairs = [];
+    lines.forEach((A, i) => lines.forEach((B, j) => {
+      if (i === j || B.x0 < A.x1 - 4) return;
+      const d = Math.abs(A.yAt(B.x0) - B.yAt(B.x0));
+      if (d < Math.min(A.h, B.h) * 0.55) pairs.push({ i, j, d: d + (B.x0 - A.x1) * 0.002 });
+    }));
+    pairs.sort((p, q) => p.d - q.d);
+    const right = new Map(), left = new Map();
+    for (const p of pairs) {
+      if (right.has(p.i) || left.has(p.j)) continue;
+      // avoid cycles
+      let k = p.j, loop = false;
+      while (right.has(k)) { k = right.get(k); if (k === p.i) { loop = true; break; } }
+      if (loop) continue;
+      right.set(p.i, p.j); left.set(p.j, p.i);
+    }
+    const rows = [];
+    lines.forEach((L, i) => {
+      if (left.has(i)) return;
+      const parts = [L];
+      let k = i;
+      while (right.has(k)) { k = right.get(k); parts.push(lines[k]); }
+      rows.push({ parts });
+    });
+    return rows.map((R) => {
+      const segs = [];
+      R.parts.forEach((L, pi) => {
+        L.words.forEach((w, wi) => {
+          const last = segs[segs.length - 1];
+          const gap = last ? w.bbox.x0 - last.x1 : Infinity;
+          if (last && (wi > 0 || pi === 0) && gap < L.h * 1.3) { last.text += ' ' + w.text; last.x1 = w.bbox.x1; }
+          else segs.push({ x0: w.bbox.x0, x1: w.bbox.x1, text: w.text });
+        });
+      });
+      segs.forEach((sg) => (sg.text = sg.text.replace(/\s+/g, ' ').trim()));
+      const first = R.parts[0];
+      return { mid: first.yAt(first.x0) - first.h / 2, h: first.h, segs, ocr: true };
+    }).sort((p, q) => p.mid - q.mid);
+  }
+
+  async function imageCanvas(file) {
+    let src;
+    try {
+      src = await createImageBitmap(file, { imageOrientation: 'from-image' });
+    } catch (e) {
+      src = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('That image could not be opened. Try a JPG or PNG.')); i.src = URL.createObjectURL(file); });
+    }
+    const s = Math.min(1, 2600 / Math.max(src.width, src.height));
+    const c = document.createElement('canvas');
+    c.width = Math.round(src.width * s); c.height = Math.round(src.height * s);
+    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+    return c;
   }
 
   /* ---------- Items -> lines -> segments ---------- */
@@ -110,7 +205,7 @@
     ['engineNo', /engine\s*(?:\/\s*motor\s*)?(?:no\.?|number)|motor\s*(?:no\.?|number)/],
     ['ownerName', /registered\s*owner(?:'?s)?(?:\s*name)?(?:\s*(?:&|and)\s*address)?|owner(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?(?:registered\s*)?owner|insured(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?insured|name\s*(?:&|and)\s*address\s*of\s*registered\s*owner/],
     ['propOwner', /proposed\s*owner(?:\s*(?:&|and)\s*address)?|proposer(?:'?s)?(?:\s*name)?/],
-    ['ignore', /s\s*\/\s*w\s*\/\s*d\s*o(?:f)?|son\s*\/\s*wife\s*\/\s*daughter\s*of|father(?:'?s)?\s*name|husband(?:'?s)?\s*name/],
+    ['ignore', /battery(?:\s*:)?\s*make|tyres?\s*details|paint\s*\(\s*internal\s*\/\s*external\s*\)|s\s*\/\s*w\s*\/\s*d\s*o(?:f)?|son\s*\/\s*wife\s*\/\s*daughter\s*of|father(?:'?s)?\s*name|husband(?:'?s)?\s*name/],
     ['address', /(?:present|permanent|communication|owner(?:'?s)?|insured(?:'?s)?|correspondence)?\s*address/],
     ['makeModel', /make\s*\/\s*model(?:\s*\/\s*variant)?|maker\s*\/\s*model|vehicle\s*make\s*(?:&|and)\s*model|make\s*(?:&|and)\s*model/],
     ['maker', /maker(?:'?s)?(?:\s*name)?|manufacturer(?:'?s)?(?:\s*name)?|vehicle\s*make|make/],
@@ -185,7 +280,7 @@
       labels.forEach((lab, i) => {
         const next = labels[i + 1];
         let val = clean(str.slice(lab.end, next ? next.start : str.length));
-        if (empty(val)) {
+        if (empty(val) && !line.ocr) {
           // value may sit on the next line, under the label
           const seg = (map.find((m) => lab.start >= m.from && lab.start <= m.to) || {}).seg;
           if (seg) {
@@ -217,7 +312,7 @@
     if (m && MONTHS[m[2].toLowerCase()]) return `${pad(m[1])}/${pad(MONTHS[m[2].toLowerCase()])}/${m[3]}`;
     m = v.match(/(\d{4})-(\d{2})-(\d{2})/);
     if (m) return `${m[3]}/${m[2]}/${m[1]}`;
-    return v.split(/\s{2,}/)[0];
+    return /not\s*provided|n\.?a\.?$/i.test(v) ? v.trim() : '';
   }
   function mfg(v) {
     if (!v) return '';
@@ -226,7 +321,7 @@
     m = v.match(/\b([a-z]{3})[a-z]*[\s./,-]*(\d{4})\b/i);
     if (m && MONTHS[m[1].toLowerCase()]) return `${pad(MONTHS[m[1].toLowerCase()])}/${m[2]}`;
     m = v.match(/\b(19|20)\d{2}\b/);
-    return m ? m[0] : v;
+    return m ? m[0] : '';
   }
   const REG = /\b([A-Z]{2})[\s-]?(\d{1,2})[\s-]?([A-Z]{0,3})[\s-]?(\d{1,4})\b|\b(\d{2})[\s-]?BH[\s-]?(\d{4})[\s-]?([A-Z]{1,2})\b/;
   function reg(v) {
@@ -253,10 +348,12 @@
     const x = {};
     x.regNo = reg(raw.regNo) || reg(allText.match(/(?:reg(?:istration|n)?\.?\s*(?:no|number)\.?|vehicle\s*no\.?)\s*[:\-]?\s*([A-Z0-9 -]{6,14})/i)?.[1] || '');
     if (!x.regNo) { const m = allText.toUpperCase().match(new RegExp(REG.source, 'g')); if (m) x.regNo = m.map((s) => s.replace(/[\s-]/g, '')).find((s) => /^[A-Z]{2}\d{1,2}[A-Z]{1,3}\d{3,4}$/.test(s) || /BH/.test(s)) || ''; }
+    const idOk = (v) => /^[A-Z0-9*]{6,25}$/.test(v) && /\d/.test(v) && /[A-Z]/.test(v);
     x.chassisNo = ident(raw.chassisNo).slice(0, 25);
+    if (!idOk(x.chassisNo)) x.chassisNo = '';
     if (!x.chassisNo || x.chassisNo.length < 6) { const m = allText.toUpperCase().match(/\bM[A-Z][A-HJ-NPR-Z0-9]{15}\b/); x.chassisNo = m ? m[0] : ''; }
     x.engineNo = ident(raw.engineNo).slice(0, 25);
-    if (x.engineNo.length < 4) x.engineNo = '';
+    if (x.engineNo.length < 5 || !/\d{3}/.test(x.engineNo)) x.engineNo = '';
     let owner = cut(raw.ownerName || raw.propOwner || '');
     let address = cut(raw.address || '', 160);
     // "MR. NAME , Vill : Charama" style: name and address together
@@ -264,10 +361,10 @@
       const i = owner.indexOf(',');
       address = owner.slice(i + 1).trim(); owner = owner.slice(0, i).trim();
     }
-    x.ownerName = owner.toUpperCase();
+    x.ownerName = (owner.replace(/[^A-Za-z]/g, '').length >= 5 ? owner : '').toUpperCase();
     x.address = address;
     x.makeModel = cut(raw.makeModel);
-    x.maker = cut(raw.maker);
+    x.maker = /paint|exide|internal|external|\d{6}/i.test(raw.maker || '') ? '' : cut(raw.maker);
     x.model = cut(raw.model);
     if (x.maker && x.model && x.model.toUpperCase().startsWith(x.maker.toUpperCase())) x.model = x.model.slice(x.maker.length).trim();
     x.vehicleClass = cut(raw.vehicleClass);
@@ -275,11 +372,12 @@
     x.mfgYear = mfg(raw.mfgYear);
     x.regDate = date(raw.regDate);
     x.fuel = fuel(raw.fuel);
-    x.colour = title(cut(raw.colour, 40));
-    const odo = (raw.odometer || '').replace(/[^\d]/g, '');
+    x.colour = title(cut((raw.colour || '').replace(/^[^A-Za-z]+/, ''), 40));
+    const odo = ((raw.odometer || '').match(/\d[\d,]*/) || [''])[0].replace(/,/g, '');
     x.odometer = odo ? odo + ' km' : '';
     x.ownerSerial = (raw.ownerSerial || '').match(/\d+/)?.[0] || '';
-    x.hypothecation = cut(raw.hypothecation);
+    x.hypothecation = cut((raw.hypothecation || '').replace(/^.*?details\s*(\(\s*if\s*any\s*\))?\s*:?\s*/i, ''));
+    if (/not\s*provided/i.test(x.hypothecation) && !/ltd|bank|finance/i.test(x.hypothecation)) x.hypothecation = '';
     x.fitnessUpto = date(raw.fitnessUpto);
     x.permitUpto = date(raw.permitUpto);
     x.insUpto = date(raw.insUpto);
@@ -289,15 +387,49 @@
     return x;
   }
 
+  const fieldCount = (x) => Object.keys(x).filter((k) => !k.startsWith('_')).length;
+  const looksGarbled = (text) => {
+    const t = text.replace(/\s/g, '');
+    if (t.length < 40) return true;
+    const good = (t.match(/[A-Za-z0-9:.,/()&-]/g) || []).length;
+    return good / t.length < 0.7;
+  };
+
+  function analyse(pages) {
+    const lines = pages.flatMap((p) => (p && p.rows ? p.rows : toLines(p)));
+    const raw = extractPairs(lines);
+    const text = lines.map((l) => l.segs.map((s) => s.text).join('  ')).join('\n');
+    return { raw, text, x: normalise(raw, text) };
+  }
+
   async function fromFile(file, progress) {
     const isPdf = /pdf/i.test(file.type) || /\.pdf$/i.test(file.name);
-    const pages = isPdf ? await pdfItems(file, progress) : await imageItems(file, progress);
-    const lines = pages.flatMap(toLines);
-    const raw = extractPairs(lines);
-    const allText = lines.map((l) => l.segs.map((s) => s.text).join('  ')).join('\n');
-    const x = normalise(raw, allText);
-    x._raw = raw;
-    window.SV_LAST_EXTRACT = { raw, x, text: allText };
+    let result, how;
+    if (isPdf) {
+      const doc = await openPdf(file);
+      result = analyse(await textLayer(doc));
+      how = 'text';
+      // Scanned PDFs, or PDFs whose text is unreadable, go through OCR instead
+      if (fieldCount(result.x) < 3 || looksGarbled(result.text)) {
+        const pages = [];
+        const n = Math.min(doc.numPages, 3);
+        for (let i = 1; i <= n; i++) {
+          progress && progress(`Reading page ${i} of ${n}…`);
+          pages.push(await ocr(await renderPage(doc, i), progress, `Reading page ${i} of ${n}`));
+        }
+        const o = analyse(pages);
+        if (fieldCount(o.x) > fieldCount(result.x)) { result = { ...o, x: { ...o.x, ...result.x } }; how = 'ocr'; }
+        else if (!result.text.trim()) { result = o; how = 'ocr'; }
+      }
+    } else {
+      progress && progress('Reading the photo…');
+      result = analyse([await ocr(await imageCanvas(file), progress, 'Reading the photo')]);
+      how = 'ocr';
+    }
+    const x = result.x;
+    x._raw = result.raw;
+    x._how = how;
+    window.SV_LAST_EXTRACT = { raw: result.raw, x, text: result.text, how, file: file.name };
     return x;
   }
 
