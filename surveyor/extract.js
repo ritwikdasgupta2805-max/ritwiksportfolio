@@ -81,8 +81,53 @@
     return canvas;
   }
 
-  let tessWorker = null;
+  /* PaddleOCR (PP-OCRv4 via ONNX runtime): much better than Tesseract on phone photos
+     and WhatsApp-compressed images. Everything is served from this site, so it also works offline. */
+  let paddle = null;
+  async function getPaddle(progress) {
+    if (!paddle) {
+      paddle = (async () => {
+        progress && progress('Getting the photo reader ready (first time only, about 35 MB)…');
+        await import(BASE + 'vendor/paddle/gocr.mjs');
+        window.ort.env.wasm.wasmPaths = BASE + 'vendor/paddle/';
+        window.ort.env.wasm.numThreads = 1;
+        return window.GOcr.create({ models: {
+          detectionPath: BASE + 'vendor/paddle/ch_PP-OCRv4_det_infer.onnx',
+          recognitionPath: BASE + 'vendor/paddle/en_PP-OCRv4_rec.onnx',
+          dictionaryPath: BASE + 'vendor/paddle/en_dict.txt',
+        } });
+      })();
+      paddle.catch(() => { paddle = null; });
+    }
+    return paddle;
+  }
+  const ascii = (t) => t.replace(/[\uFF01-\uFF5E]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0)).replace(/\u3000/g, ' ');
+
+  async function paddleItems(canvas, progress, label) {
+    const ocrEngine = await getPaddle(progress);
+    progress && progress(`${label || 'Reading text'}…`);
+    const r = await ocrEngine.detect(canvas.toDataURL('image/jpeg', 0.95));
+    const sx = canvas.width / (r.resizedImageWidth || canvas.width), sy = canvas.height / (r.resizedImageHeight || canvas.height);
+    return (r.texts || []).filter((t) => t.text && t.text.trim() && t.mean > 0.5).map((t) => {
+      const xs = t.box.map((p) => p[0] * sx), ys = t.box.map((p) => p[1] * sy);
+      const top = Math.min(...ys), bottom = Math.max(...ys);
+      // boxes on a tilted photo are taller than the text; use the left edge height
+      const h = Math.max(6, Math.abs(t.box[3][1] - t.box[0][1]) * sy);
+      return { x0: Math.min(...xs), x1: Math.max(...xs), top: (t.box[0][1] * sy), h, str: ascii(t.text) };
+    });
+  }
+
   async function ocr(canvas, progress, label) {
+    try {
+      return [await paddleItems(canvas, progress, label)];
+    } catch (e) {
+      console.warn('PaddleOCR unavailable, falling back to Tesseract', e);
+      return tesseract(canvas, progress, label);
+    }
+  }
+
+  let tessWorker = null;
+  async function tesseract(canvas, progress, label) {
     if (!window.Tesseract) await loadScript(BASE + 'vendor/tess/tesseract.min.js');
     if (!tessWorker) {
       progress && progress('Getting the text reader ready (first time only, about 9 MB)…');
@@ -211,7 +256,7 @@
     ['regNo', /(?:vehicle\s*)?reg(?:istration|n|d)?\.?\s*mark\s*(?:no\.?)?|(?:vehicle\s*)?reg(?:istration|n|d)?\.?\s*(?:no\.?|number|num)|registration\s*mark|vehicle\s*(?:no\.?|number)|veh\.?\s*no\.?/],
     ['chassisNo', /ch\.?\s*no\.?|chass?is\s*(?:no\.?|number|num)?|vin(?:\s*no\.?)?/],
     ['engineNo', /e\.?\s*no\.?|eng\.?\s*no\.?|engine\s*(?:\/\s*motor\s*)?(?:no\.?|number)|motor\s*(?:no\.?|number)/],
-    ['ownerName', /name|registered\s*owner(?:'?s)?(?:\s*name)?(?:\s*(?:&|and)\s*address)?|owner(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?(?:registered\s*)?owner|insured(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?insured|name\s*(?:&|and)\s*address\s*of\s*registered\s*owner/],
+    ['ownerName', /na(?:m|rn)e|na[a-z]{1,2}e(?=\s*:)|registered\s*owner(?:'?s)?(?:\s*name)?(?:\s*(?:&|and)\s*address)?|owner(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?(?:registered\s*)?owner|insured(?:'?s)?\s*name|name\s*of\s*(?:the\s*)?insured|name\s*(?:&|and)\s*address\s*of\s*registered\s*owner/],
     ['propOwner', /proposed\s*owner(?:\s*(?:&|and)\s*address)?|proposer(?:'?s)?(?:\s*name)?/],
     ['ignore', /battery(?:\s*:)?\s*make|tyres?\s*details|paint\s*\(\s*internal\s*\/\s*external\s*\)|s\s*\/\s*w\s*\/\s*d\s*o(?:f)?|son\s*\/\s*wife\s*\/\s*daughter\s*of|father(?:'?s)?\s*name|husband(?:'?s)?\s*name/],
     ['address', /adr?d?ress|(?:present|permanent|communication|owner(?:'?s)?|insured(?:'?s)?|correspondence)?\s*address/],
@@ -225,7 +270,7 @@
     ['fuel', /fuel(?:\s*(?:type|used))?|type\s*of\s*fuel/],
     ['colour', /colou?r/],
     ['odometer', /odometer(?:\s*reading)?|kms?\.?\s*reading/],
-    ['hypothecation', /hyp\.?\s*by|hypothecat\w*(?:\s*details)?(?:\s*\(\s*if\s*any\s*\))?|financ(?:er|ier)(?:'?s)?(?:\s*name)?|hp\s*with|financed\s*by|hypothecated\s*to/],
+    ['hypothecation', /h?yp\.?\s*by|hypothecat\w*(?:\s*details)?(?:\s*\(\s*if\s*any\s*\))?|financ(?:er|ier)(?:'?s)?(?:\s*name)?|hp\s*with|financed\s*by|hypothecated\s*to/],
     ['fitnessUpto', /fitness\s*(?:valid\s*)?(?:up\s*to|upto|till|validity)|fitness\s*valid|fit\.?\s*upto/],
     ['permitUpto', /permit\s*(?:valid\s*)?(?:up\s*to|upto|till|validity)|permit\s*valid/],
     ['insUpto', /insurance\s*(?:valid\s*)?(?:up\s*to|upto|till|validity|expiry)|policy\s*(?:valid\s*)?(?:up\s*to|upto|expiry|end\s*date)|period\s*of\s*insurance/],
@@ -264,9 +309,13 @@
       if (best) {
         const start = i, end = i + best.len;
         const before = str.slice(0, start), after = str.slice(end);
-        const wordEnd = /^($|[^a-z0-9])/i.test(after);
+        const wordEnd = /^($|[^a-z])/i.test(after) || /[.:]$/.test(str.slice(start, end));
         const okBefore = /(^|[\s¦|:,(])$/.test(before);
-        const okAfter = /^(\s*[:\-–=¦|]|\s*$)/.test(after) || /(^|¦\s*)$/.test(before);
+        const lab = str.slice(start, end);
+        // A label is trusted when followed by a separator, when it starts a segment, when it is an
+        // abbreviation or several words (photo readers often drop the colon), or when a number follows.
+        const okAfter = /^(\s*[:\-–=¦|]|\s*$)/.test(after) || /(^|¦\s*)$/.test(before) || /[.:]$/.test(lab)
+          || /[.\s]/.test(lab.trim()) || /^\s*\d/.test(after) || /^[A-Z][a-z]{3,}$/.test(lab);
         if (wordEnd && okBefore && okAfter) { out.push({ key: best.key, start, end }); i = end; continue; }
       }
       i++;
@@ -292,13 +341,23 @@
           // value may sit on the next line, under the label
           const seg = (map.find((m) => lab.start >= m.from && lab.start <= m.to) || {}).seg;
           if (seg) {
-            for (const nl of lines.slice(li + 1, li + 3)) {
+            const upTo = (t) => { const ls = findLabels(t); return ls.length && ls[0].start === 0 ? null : clean(ls.length ? t.slice(0, ls[0].start) : t); };
+            for (const [k, nl] of lines.slice(li + 1, li + 3).entries()) {
               const under = nl.segs.find((s) => s.x0 < seg.x1 + 4 && s.x1 > seg.x0 - 4);
-              if (under) {
-                if (findLabels(under.text).some((l) => l.start === 0)) break;
-                val = clean(under.text);
-                break;
+              if (!under) continue;
+              const v = upTo(under.text);
+              if (v == null) break;
+              val = v;
+              if (lab.key === 'address') {
+                // addresses run over several lines
+                for (const more of lines.slice(li + 2 + k, li + 5 + k)) {
+                  const u = more.segs.find((s) => s.x0 < seg.x1 + 4 && s.x1 > seg.x0 - 4 && Math.abs(s.x0 - under.x0) < 40);
+                  const mv = u && upTo(u.text);
+                  if (!mv) break;
+                  val += ', ' + mv;
+                }
               }
+              break;
             }
           }
         }
@@ -352,6 +411,7 @@
     return parts.length ? parts.join('/') : (v || '');
   }
   const title = (v) => (v || '').toLowerCase().replace(/\b[a-z]/g, (c) => c.toUpperCase());
+  const respace = (v) => (v || '').replace(/([A-Za-z])(LTD|LIMITED|MOTORS?|FINANCE|BANK|SOLUTIONS?|INDIA|PVT|SERVICES)\b/g, '$1 $2').replace(/\b(MR|MRS|SMT|SHRI)\.(?=[A-Z])/g, '$1. ');
   function cut(v, n = 120) { return (v || '').slice(0, n).trim(); }
 
   function normalise(raw, allText) {
@@ -367,17 +427,21 @@
     let owner = cut(raw.ownerName || raw.propOwner || '');
     let address = cut(raw.address || '', 160);
     // "MR. NAME , Vill : Charama" style: name and address together
-    if (!address && /\s,\s|,\s*(vill|village|ward|h\.?\s*no|at|post|po)\b/i.test(owner)) {
+    if (!address && /,\s*[A-Za-z]{2,}/.test(owner)) {
       const i = owner.indexOf(',');
       address = owner.slice(i + 1).trim(); owner = owner.slice(0, i).trim();
     }
+    owner = respace(owner);
     x.ownerName = (owner.replace(/[^A-Za-z]/g, '').length >= 5 ? owner : '').toUpperCase();
     x.address = address;
-    x.makeModel = cut(raw.makeModel);
-    x.maker = /paint|exide|internal|external|\d{6}/i.test(raw.maker || '') ? '' : cut(raw.maker);
+    x.makeModel = respace(cut(raw.makeModel));
+    x.maker = /paint|exide|internal|external|\d{6}/i.test(raw.maker || '') ? '' : respace(cut(raw.maker));
     x.model = cut(raw.model);
     if (x.maker && x.model && x.model.toUpperCase().startsWith(x.maker.toUpperCase())) x.model = x.model.slice(x.maker.length).trim();
-    x.vehicleClass = /\bltd\b|limited|motors\b|\d{4}/i.test(raw.vehicleClass || '') ? '' : cut(raw.vehicleClass);
+    const KNOWN_CLASS = /MOTOR\s*CAR|MOTOR\s*CYCLE|M[-\s]?CYCLE(?:\s*\/\s*SCOOTER)?|SCOOTER|GOODS\s*CARRIER|MAXI\s*CAB|MOTOR\s*CAB|OMNI\s*BUS|BUS|TRACTOR|THREE\s*WHEELER|E-?RICKSHAW|AMBULANCE|LMV|LGV|MGV|HGV|HPMV|TRAILER/i;
+    const kc = (raw.vehicleClass || '').match(KNOWN_CLASS);
+    const vc = kc && /\d/.test(raw.vehicleClass) ? kc[0] : (raw.vehicleClass || '').replace(/^.*\d(?=[A-Za-z ]{5,}$)/, '').trim();
+    x.vehicleClass = /\bltd\b|limited|motors\b|\d/i.test(vc) ? '' : cut(vc);
     x.bodyType = cut(raw.bodyType);
     x.mfgYear = mfg(raw.mfgYear);
     x.regDate = date(raw.regDate);
@@ -386,7 +450,8 @@
     const odo = ((raw.odometer || '').match(/\d[\d,]*/) || [''])[0].replace(/,/g, '');
     x.odometer = odo ? odo + ' km' : '';
     x.ownerSerial = (raw.ownerSerial || '').match(/(?:^|\D)([1-9])(?:\D|$)/)?.[1] || '';
-    x.hypothecation = cut((raw.hypothecation || '').replace(/\s*w\.?e\.?f\.?.*$/i, '').replace(/^.*?details\s*(\(\s*if\s*any\s*\))?\s*:?\s*/i, ''));
+    x.hypothecation = respace(cut((raw.hypothecation || '').replace(/\s*w\.?e\.?f\.?.*$/i, '').replace(/^.*?details\s*(\(\s*if\s*any\s*\))?\s*:?\s*/i, '')));
+    x.hypothecation = x.hypothecation.toUpperCase();
     if (/not\s*provided/i.test(x.hypothecation) && !/ltd|bank|finance/i.test(x.hypothecation)) x.hypothecation = '';
     x.fitnessUpto = date(raw.fitnessUpto);
     x.permitUpto = date(raw.permitUpto);
@@ -432,16 +497,16 @@
         for (let i = 1; i <= n; i++) {
           progress && progress(`Reading page ${i} of ${n}…`);
           const [a, b] = await ocr(await renderPage(doc, i), progress, `Reading page ${i} of ${n}`);
-          passA.push(a); passB.push(b);
+          passA.push(a); if (b) passB.push(b);
         }
-        const o = merge(analyse(passA), analyse(passB));
+        const o = passB.length ? merge(analyse(passA), analyse(passB)) : analyse(passA);
         if (fieldCount(o.x) > fieldCount(result.x)) { result = { ...o, x: { ...o.x, ...result.x } }; how = 'ocr'; }
         else if (!result.text.trim()) { result = o; how = 'ocr'; }
       }
     } else {
       progress && progress('Reading the photo…');
       const [a, b] = await ocr(await imageCanvas(file), progress, 'Reading the photo');
-      result = merge(analyse([a]), analyse([b]));
+      result = b ? merge(analyse([a]), analyse([b])) : analyse([a]);
       how = 'ocr';
     }
     const x = result.x;
