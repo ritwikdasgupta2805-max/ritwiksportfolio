@@ -488,7 +488,52 @@
     return { raw: { ...q.raw, ...p.raw }, text: p.text + '\n\n— second pass —\n' + q.text, x };
   }
 
-  async function fromFile(file, progress) {
+  function cleanAi(v) {
+    const g = (k) => String(v[k] || '').trim();
+    const x = {
+      regNo: reg(g('regNo')) || g('regNo').toUpperCase().replace(/\s+/g, ''),
+      chassisNo: ident(g('chassisNo')), engineNo: ident(g('engineNo')),
+      ownerName: g('ownerName').toUpperCase(), address: g('address'),
+      maker: /^others?$/i.test(g('maker')) ? '' : g('maker'), model: g('model'),
+      vehicleClass: g('vehicleClass'), bodyType: g('bodyType'),
+      mfgYear: mfg(g('mfgYear')) || g('mfgYear'), regDate: date(g('regDate')) || g('regDate'),
+      fuel: fuel(g('fuel')), colour: title(g('colour')),
+      odometer: g('odometer').replace(/[^\d]/g, '') ? g('odometer').replace(/[^\d]/g, '') + ' km' : '',
+      ownerSerial: (g('ownerSerial').match(/\d+/) || [''])[0],
+      hypothecation: g('hypothecation').toUpperCase(),
+      fitnessUpto: date(g('fitnessUpto')) || g('fitnessUpto'), permitUpto: date(g('permitUpto')) || g('permitUpto'),
+      insUpto: date(g('insUpto')) || g('insUpto'), policyNo: g('policyNo'), insurer: g('insurer'),
+    };
+    Object.keys(x).forEach((k) => { if (empty(x[k])) delete x[k]; });
+    return x;
+  }
+
+  async function fromFile(file, progress, opts = {}) {
+    let aiError = '';
+    if (window.SV_AI && window.SV_AI.available()) {
+      try {
+        const { json, model, text } = await window.SV_AI.read(file, { formFields: opts.formFields || [], progress });
+        const x = cleanAi(json.vehicle || {});
+        const form = {};
+        Object.entries(json.form || {}).forEach(([k, val]) => { if (val && String(val).trim()) form[k] = String(val).trim(); });
+        x._form = form;
+        x._how = 'ai';
+        x._doc = json.documentType || '';
+        window.SV_LAST_EXTRACT = { raw: json, x, text: JSON.stringify(json, null, 2), how: 'ai', model, file: file.name };
+        return x;
+      } catch (e) {
+        console.warn('AI reader failed, using the offline reader', e);
+        aiError = e.kind === 'quota' ? "The AI reader's free limit for today is used up"
+          : e.kind === 'key' ? 'The AI key was not accepted'
+          : e.kind === 'network' ? 'No internet' : 'The AI reader failed (' + (e.message || 'error') + ')';
+      }
+    }
+    const x = await offline(file, progress);
+    if (aiError) { x._aiError = aiError; window.SV_LAST_EXTRACT.aiError = aiError; }
+    return x;
+  }
+
+  async function offline(file, progress) {
     const isPdf = /pdf/i.test(file.type) || /\.pdf$/i.test(file.name);
     let result, how;
     if (isPdf) {

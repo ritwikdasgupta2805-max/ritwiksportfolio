@@ -207,3 +207,17 @@ body.zoomed .bar { zoom: 1.75; }
 body.zoomed .fab { zoom: 1.75; right: 14px; bottom: 14px; }
 body.zoomed .toast { zoom: 1.75; bottom: 70px; }
 body.zoomed .busy-card { zoom: 1.75; }
+
+.ai-btn { display: inline-flex; align-items: center; gap: 7px; }
+.ai-btn .dot { width: 8px; height: 8px; border-radius: 50%; background: #c4c1b7; }
+.ai-btn.on { color: #1f6b3a; }
+.ai-btn.on .dot { background: #2fa560; box-shadow: 0 0 0 3px rgba(47, 165, 96, .18); }
+.ai-steps { padding-left: 20px; margin: 0 0 14px; line-height: 1.55; }
+.ai-steps a { color: var(--accent); font-weight: 600; }
+.ai-ok { color: #1f6b3a; font-weight: 600; margin: 0 0 12px; }
+.ai-l { display: grid; gap: 6px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.ai-in { font: inherit; font-size: 15px; padding: 11px 12px; border: 1px solid #d3d0c6; border-radius: 10px; color: var(--ink); }
+.ai-in:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+.ai-msg { min-height: 18px; font-size: 13.5px; color: #b42318; margin: 8px 0; }
+.ai-row { display: flex; justify-content: flex-end; gap: 8px; }
+.modal-s.small { font-size: 12.5px; margin-top: 14px; }

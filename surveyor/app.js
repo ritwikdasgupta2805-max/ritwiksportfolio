@@ -262,6 +262,7 @@
         <a class="bar-back" href="${back}" aria-label="Back">‹</a>
         <div class="bar-t"><small>${esc(tpl.kind)}</small><b>${esc(tpl.style === 'val' ? 'Valuation report' : tpl.name)}</b></div>
         <span class="saved" id="saved"></span>
+        <button type="button" class="btn ghost ai-btn" id="aiBtn"></button>
         <button type="button" class="btn ghost" id="clear">Clear</button>
         <button type="button" class="btn" id="dlWord">Word</button>
         <button type="button" class="btn dark" id="dlPdf">PDF</button>
@@ -386,14 +387,17 @@
       if (!f) return;
       busy(true, 'Reading ' + f.name + '…');
       try {
-        const found = await window.SV_EXTRACT.fromFile(f, (msg) => busy(true, msg));
+        const found = await window.SV_EXTRACT.fromFile(f, (msg) => busy(true, msg), { formFields: formCatalog(tpl) });
         const n = applyExtracted(found);
         busy(false);
         const details = { label: 'See what was read', fn: showRead };
-        if (n) toast(`Filled ${n} field${n > 1 ? 's' : ''} from ${f.name}. Yellow fields came from the file. Please check them.`, 7000, details);
-        else toast(found._how === 'ocr' && !(window.SV_LAST_EXTRACT.text || '').trim()
-          ? "Couldn't make out any text in this file. A sharper, straight-on photo may work better."
-          : "Read the file, but couldn't match any vehicle details to this form.", 8000, details);
+        const by = found._how === 'ai' ? ' with the AI reader' : '';
+        const aiNote = found._aiError ? `${found._aiError}, so the offline reader was used. ` : '';
+        const setup = !window.SV_AI.getKey() && found._how === 'ocr' ? { label: 'Get better reading', fn: openAiSettings } : details;
+        if (n) toast(`${aiNote}Filled ${n} field${n > 1 ? 's' : ''}${by}. Yellow fields came from the file. Please check them.`, 8000, setup);
+        else toast(aiNote + (found._how === 'ocr' && !(window.SV_LAST_EXTRACT.text || '').trim()
+          ? "Couldn't make out any text in this file."
+          : "Read the file, but couldn't match any vehicle details to this form."), 8000, setup);
       } catch (err) {
         console.error(err);
         busy(false);
@@ -401,6 +405,8 @@
       }
     });
 
+    $('#aiBtn').addEventListener('click', openAiSettings);
+    paintAiBtn();
     $('#dlWord').addEventListener('click', () => runExport('docx'));
     $('#dlPdf').addEventListener('click', () => runExport('pdf'));
   }
@@ -416,6 +422,53 @@
       busy(false);
       toast('Export failed. ' + (err && err.message ? err.message : ''), 5200);
     }
+  }
+
+  /* Every field of this form, with a readable label, for the AI reader (vehicle details are handled separately). */
+  const VEHICLE_KEYS = new Set(['vehicleNo', 'regNo', 'chassisNo', 'engineNo', 'makeModel', 'manufacturer', 'model', 'bodyType', 'vehicleClass',
+    'mfgYear', 'regDate', 'colour', 'fuel', 'odometer', 'ownerSerial', 'permitUpto', 'fitnessUpto', 'hypothecation', 'insuranceDetails',
+    'owner', 'regOwner', 'propOwner', 'proposer', 'address', 'insurer', 'reqBy', 'reportNo', 'reportDate', 'marketWords']);
+  function formCatalog(t) {
+    const out = [], seen = new Set();
+    const txt = (p) => (typeof p === 'string' ? p : p && p.b != null ? p.b : '');
+    const push = (p, label, section) => {
+      const key = p.f || p.o || p.k || p.p;
+      if (!key || VEHICLE_KEYS.has(key) || seen.has(key)) return;
+      seen.add(key);
+      const opts = p.opts || (p.k ? ['✓', '—'] : null);
+      out.push({ key, label: [section, label.replace(/[:\s]+$/, '').trim()].filter(Boolean).join(' › '), opts });
+    };
+    let section = '';
+    const walkParts = (parts, label) => {
+      const list = Array.isArray(parts) ? parts : [parts];
+      let pre = '';
+      list.forEach((p) => { if (typeof p === 'string' || (p && p.b != null)) pre += txt(p); else if (p) push(p, /[a-z]/i.test(pre) ? pre : label, section); });
+    };
+    t.blocks.forEach((b) => {
+      // section headings apply to the columns under them (two-column layouts have two sets)
+      const secByCol = [];
+      const held = []; // columns still covered by a rowspan from an earlier row
+      if (b.rows) b.rows.forEach((r) => {
+        let last = '', col = 0;
+        r.forEach((cell) => {
+          while (held[col] > 0) col++;
+          const c = cell && typeof cell === 'object' && !Array.isArray(cell) && 'c' in cell ? cell : { c: cell };
+          const span = c.span || 1;
+          if (c.rowspan) for (let i = col; i < col + span; i++) held[i] = c.rowspan;
+          section = secByCol[col] || '';
+          if (typeof c.c === 'string' || (c.c && c.c.b != null)) {
+            const s = txt(c.c).trim();
+            if ((c.cls || '').includes('band')) for (let i = col; i < col + span; i++) secByCol[i] = s;
+            else if (/[a-z0-9]/i.test(s)) last = s;
+          } else if (c.c) walkParts(c.c, last);
+          col += span;
+        });
+        held.forEach((v, i) => { if (v > 0) held[i] = v - 1; });
+      });
+      section = '';
+      if (b.t === 'text' && Array.isArray(b.parts)) walkParts(b.parts, '');
+    });
+    return out;
   }
 
   /* Map extracted values onto the fields this template has. */
@@ -452,6 +505,15 @@
       state.auto[k] = true;
       n++;
     }
+    // Values the AI read off a filled-in form (conditions, remarks, inspection date...)
+    const cat = new Map(formCatalog(tpl).map((f) => [f.key, f]));
+    Object.entries(x._form || {}).forEach(([k, v]) => {
+      const f = cat.get(k);
+      if (!f || (f.opts && !f.opts.includes(v))) return;
+      const cur = (state.data[k] || '').trim(), def = (tpl.defaults[k] || '').trim();
+      if (cur && cur !== def && !state.auto[k]) return;
+      state.data[k] = v; state.auto[k] = true; n++;
+    });
     store.set('form:' + tpl.id, state);
     rerenderSheet();
     return n;
@@ -498,10 +560,48 @@
     const m = document.createElement('div');
     m.className = 'modal';
     m.innerHTML = `<div class="modal-card"><div class="modal-h"><b>What was read from ${esc(info.file)}</b><button type="button" class="modal-x" aria-label="Close">×</button></div>
-      <p class="modal-s">${info.how === 'ocr' ? 'Read as an image (text recognition). Printed text only; handwriting is not readable this way.' : 'Read from the PDF text.'}</p>
+      <p class="modal-s">${info.how === 'ai' ? `Read by the AI reader (Google ${esc(info.model || 'Gemini')}).` : info.how === 'ocr' ? 'Read with the offline reader.' + (info.aiError ? ' ' + esc(info.aiError) + '.' : '') : 'Read from the PDF text.'}</p>
       ${rows ? `<table class="modal-t">${rows}</table>` : '<p class="modal-s">No vehicle details found.</p>'}
       <details><summary>All text found in the file</summary><pre>${esc(info.text || '(none)')}</pre></details></div>`;
     m.addEventListener('click', (e) => { if (e.target === m || e.target.closest('.modal-x')) m.remove(); });
+    document.body.appendChild(m);
+  }
+
+  function paintAiBtn() {
+    const b = $('#aiBtn');
+    if (!b) return;
+    const on = !!window.SV_AI.getKey();
+    b.classList.toggle('on', on);
+    b.innerHTML = `<span class="dot"></span>AI reader${on ? ' on' : ''}`;
+  }
+
+  function openAiSettings() {
+    const has = window.SV_AI.getKey();
+    const m = document.createElement('div');
+    m.className = 'modal';
+    m.innerHTML = `<div class="modal-card"><div class="modal-h"><b>AI reader</b><button type="button" class="modal-x" aria-label="Close">×</button></div>
+      <p class="modal-s">Reads blurry WhatsApp photos, scans and handwritten forms much better than the offline reader. It uses Google Gemini's free tier and needs internet. Without internet, the offline reader is used automatically.</p>
+      ${has ? '<p class="ai-ok">✓ AI reader is set up on this device.</p>' : `<ol class="ai-steps">
+        <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with any Google account.</li>
+        <li>Tap <b>Create API key</b> and copy it.</li>
+        <li>Paste it below. No card or payment is needed.</li></ol>`}
+      <label class="ai-l">Google AI key<input class="ai-in" type="password" autocomplete="off" spellcheck="false" placeholder="Paste key here" value="${has ? esc(has) : ''}"></label>
+      <p class="ai-msg"></p>
+      <div class="ai-row">${has ? '<button type="button" class="btn ghost ai-del">Remove key</button>' : ''}<button type="button" class="btn dark ai-save">Save</button></div>
+      <p class="modal-s small">The key is saved only in this browser. On the free tier Google may use what is sent to improve its products.</p></div>`;
+    const close = () => m.remove();
+    m.addEventListener('click', async (e) => {
+      if (e.target === m || e.target.closest('.modal-x')) return close();
+      if (e.target.closest('.ai-del')) { window.SV_AI.setKey(''); paintAiBtn(); close(); toast('AI key removed. The offline reader will be used.'); return; }
+      if (e.target.closest('.ai-save')) {
+        const v = m.querySelector('.ai-in').value.trim();
+        const msg = m.querySelector('.ai-msg');
+        if (!v) { msg.textContent = 'Paste the key first.'; return; }
+        msg.textContent = 'Checking the key…';
+        try { await window.SV_AI.testKey(v); paintAiBtn(); close(); toast('AI reader is on. Upload a photo to try it.'); }
+        catch (err) { msg.textContent = err.kind === 'network' ? 'No internet. Connect and try again.' : "This key didn't work. Copy it again from AI Studio. (" + err.message + ')'; }
+      }
+    });
     document.body.appendChild(m);
   }
 
